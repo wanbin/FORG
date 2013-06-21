@@ -4,13 +4,10 @@ import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-<<<<<<< HEAD
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
-=======
 import android.content.Intent;
->>>>>>> 6f4e68df6c467f0ac52e92577bbbabf208f054d3
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +16,7 @@ import android.widget.TextView;
 @SuppressLint("UseSparseArrays")
 public class MainActivity extends Activity {
 	 private SoundPool sp; 
+	 private int a;
 	 private HashMap<Integer,Integer> spMap; 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,17 +54,14 @@ public class MainActivity extends Activity {
         BtnGo.setOnClickListener(new Button.OnClickListener(){//´´½¨¼àÌý    
             @Override
 			public void onClick(View v) {    
-<<<<<<< HEAD
                 String strTmp = String.valueOf(a++);    
                 Ev1.setText(strTmp);    
 //                sp.paly(spMap.get(1)); 
                 sp.play(spMap.get(spMap.get(1)), 50, 50, 1, 1, 1);
-=======
                 Intent intentGo	= new Intent();
                 intentGo.setClass(MainActivity.this, ChronometerActivity.class);
                 startActivity(intentGo);
                 finish();
->>>>>>> 6f4e68df6c467f0ac52e92577bbbabf208f054d3
             }    
   
         });
