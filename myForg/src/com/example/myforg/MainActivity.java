@@ -4,9 +4,13 @@ import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+<<<<<<< HEAD
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+=======
+import android.content.Intent;
+>>>>>>> 6f4e68df6c467f0ac52e92577bbbabf208f054d3
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -37,14 +41,32 @@ public class MainActivity extends Activity {
         Ev1 = (TextView)findViewById(R.id.myText);    
   
         Button Btn1 = (Button)findViewById(R.id.button1);//获取按钮资源    
+        Button BtnGo = (Button)findViewById(R.id.button2);//获取按钮资源    
+        //Btn1添加监听
         Btn1.setOnClickListener(new Button.OnClickListener(){//创建监听    
         	int a;
+        	@Override
+        	public void onClick(View v) {    
+        		String strTmp = String.valueOf(a++);    
+        		Ev1.setText(strTmp);    
+        	}    
+        	
+        });
+        //BtnGo 添加监听，用于页面的跳转
+        BtnGo.setOnClickListener(new Button.OnClickListener(){//创建监听    
             @Override
 			public void onClick(View v) {    
+<<<<<<< HEAD
                 String strTmp = String.valueOf(a++);    
                 Ev1.setText(strTmp);    
 //                sp.paly(spMap.get(1)); 
                 sp.play(spMap.get(spMap.get(1)), 50, 50, 1, 1, 1);
+=======
+                Intent intentGo	= new Intent();
+                intentGo.setClass(MainActivity.this, ChronometerActivity.class);
+                startActivity(intentGo);
+                finish();
+>>>>>>> 6f4e68df6c467f0ac52e92577bbbabf208f054d3
             }    
   
         });
