@@ -25,11 +25,12 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f090004;
-        public static final int button1=0x7f090001;
-        public static final int button2=0x7f090002;
-        public static final int chronometer=0x7f090003;
-        public static final int myText=0x7f090000;
+        public static final int action_settings=0x7f090005;
+        public static final int button1=0x7f090003;
+        public static final int remainCount=0x7f090000;
+        public static final int remainTime=0x7f090002;
+        public static final int textView1=0x7f090004;
+        public static final int totalSouce=0x7f090001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -47,9 +48,12 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060002;
+        public static final int reaminTime=0x7f060009;
+        public static final int remainCount=0x7f06000a;
         public static final int reset=0x7f060007;
         public static final int startTime=0x7f060005;
         public static final int stopTime=0x7f060006;
+        public static final int totalCount=0x7f060008;
     }
     public static final class style {
         /** 

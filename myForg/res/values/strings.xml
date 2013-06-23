@@ -9,5 +9,7 @@
     <string name="startTime">开始计时</string>
     <string name="stopTime">停止计时</string>
     <string name="reset">重置</string>
-
+    <string name="totalCount">source</string>
+    <string name="reaminTime">remainTime</string>
+    <string name="remainCount">remainCount</string>
 </resources>
