@@ -45,5 +45,14 @@
 	    android:layout_marginBottom="25dp"
 	    android:text="@string/reaminTime"
 	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<Button
+	    android:id="@+id/button2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/remainTime"
+	    android:layout_alignParentRight="true"
+	    android:background="@drawable/btnreturn"
+	    android:text="" />
  
 </RelativeLayout>

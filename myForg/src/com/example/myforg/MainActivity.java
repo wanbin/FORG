@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 	private boolean hasPlaySound;
 	private Timer timer;
 	private Button btnFrog;
+	private Button btnFrogback;
 	private boolean start;
 	
 
@@ -73,6 +74,7 @@ public class MainActivity extends Activity {
 		updateTime();
 //
 		btnFrog = (Button) findViewById(R.id.button1);// 获取按钮资源
+		btnFrogback = (Button) findViewById(R.id.button2);//获取按钮资源
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
 			@Override
@@ -80,8 +82,11 @@ public class MainActivity extends Activity {
 				if(start==false)
 				{
 					start=true;
+					if(timer==null)
+					{
 					timer = new Timer();
 					timer.schedule(timetask, 0, 10);
+					}
 				}
 				source++;
 				tagretsource--;
@@ -102,7 +107,20 @@ public class MainActivity extends Activity {
 		});
 		
 		
-		
+		btnFrogback.setOnClickListener(new Button.OnClickListener() {// 创建监听
+			@Override
+			public void onClick(View v) {
+				source=0;
+				timelimit=500;
+				tagretsource=20;
+				addTarget=0;
+				updateText();
+				updateTime();
+				start=false;
+//				timer.purge();
+				btnFrog.setClickable(true);
+			}
+		});
 //		
 //		
 //		
@@ -143,12 +161,16 @@ public class MainActivity extends Activity {
 	
 	//加十毫秒
 	private void addTenMMS() {
-		timelimit -= 1;
+		if(start)
+		{
+			timelimit -= 1;
+		}
 		if (timelimit <= 0) {
 			timelimit=0;
-			timer.cancel();
+//			timer.cancel();
 			btnFrog.setClickable(false);
 		}
+		
 		updateTime();
 	}
 	
