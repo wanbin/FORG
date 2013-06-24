@@ -7,7 +7,9 @@
 
 # Java class files
 *.class
-
+*.classpath
+*.cache
+*.prefs
 # generated files
 bin/
 gen/
