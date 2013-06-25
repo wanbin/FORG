@@ -75,6 +75,7 @@ public class MainActivity extends Activity {
 //
 		btnFrog = (Button) findViewById(R.id.button1);// 获取按钮资源
 		btnFrogback = (Button) findViewById(R.id.button2);//获取按钮资源
+		
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
 			@Override
@@ -104,6 +105,7 @@ public class MainActivity extends Activity {
 					}
 				}
 				updateText();
+				
 			}
 		});
 		
@@ -120,6 +122,7 @@ public class MainActivity extends Activity {
 				start=false;
 				hasPlaySound = false;
 				btnFrog.setClickable(true);
+				btnFrogback.setClickable(false);	
 			}
 		});
 //		
@@ -140,7 +143,7 @@ public class MainActivity extends Activity {
 //
 //		});
 
-		
+		btnFrogback.setClickable(false);
 	}
 	
 	
@@ -170,6 +173,7 @@ public class MainActivity extends Activity {
 			timelimit=0;
 //			timer.cancel();
 			btnFrog.setClickable(false);
+			btnFrogback.setClickable(true);
 		}
 		
 		updateTime();
