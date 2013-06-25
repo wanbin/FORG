@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.Window;
+import android.view.WindowManager;
 
 @SuppressLint("UseSparseArrays")
 public class MainActivity extends Activity {
@@ -51,6 +53,9 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	        //隐去电池等图标和一切修饰部分（状态栏部分）
+	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
 		sp = new SoundPool(2, AudioManager.STREAM_SYSTEM, 0);
