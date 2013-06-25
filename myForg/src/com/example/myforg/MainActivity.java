@@ -96,6 +96,7 @@ public class MainActivity extends Activity {
 					timelimit += 500;
 				}
 				if (source > maxSource) {
+					maxSource=source;
 					setMaxSource(source);
 					if (hasPlaySound == false) {
 						hasPlaySound = true;
@@ -117,7 +118,7 @@ public class MainActivity extends Activity {
 				updateText();
 				updateTime();
 				start=false;
-//				timer.purge();
+				hasPlaySound = false;
 				btnFrog.setClickable(true);
 			}
 		});
