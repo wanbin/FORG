@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
 	private Button btnFrog;
 	private Button btnFrogback;
 	private boolean start;
-	private ImageView rightpoint;
 	
 
 	@Override
@@ -68,7 +67,6 @@ public class MainActivity extends Activity {
 //		totalCount = (TextView) findViewById(R.id.totalCount);
 		remainTime = (TextView) findViewById(R.id.remainTime);
 		remainCount = (TextView) findViewById(R.id.remainCount);
-		rightpoint = (ImageView) findViewById(R.id.imageView1);
 		
 		source=0;
 		timelimit=500;
