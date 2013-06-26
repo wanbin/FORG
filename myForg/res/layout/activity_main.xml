@@ -2,10 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
 	<TextView
@@ -27,15 +25,6 @@
 	    android:text="@string/totalCount"
 	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-	<Button
-	    android:id="@+id/button1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_above="@+id/totalSouce"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginBottom="42dp"
-	    android:background="@drawable/forgsad" />
-
 	<TextView
 	    android:id="@+id/remainTime"
 	    android:layout_width="wrap_content"
@@ -54,5 +43,24 @@
 	    android:layout_alignParentRight="true"
 	    android:background="@drawable/btnreturn"
 	    android:text="" />
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/totalSouce"
+	    android:layout_marginBottom="42dp"
+	    android:layout_toRightOf="@+id/remainTime"
+	    android:background="@drawable/forgsad" />
+
+	<ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/remainTime"
+	    android:layout_alignTop="@+id/button1"
+	    android:layout_marginTop="38dp"
+	    android:scaleType="matrix"
+	    android:src="@drawable/btnright" />
  
 </RelativeLayout>

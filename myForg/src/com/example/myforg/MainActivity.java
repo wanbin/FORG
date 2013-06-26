@@ -17,6 +17,7 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +36,7 @@ public class MainActivity extends Activity {
 	private Button btnFrog;
 	private Button btnFrogback;
 	private boolean start;
+	private ImageView rightpoint;
 	
 
 	@Override
@@ -66,6 +68,7 @@ public class MainActivity extends Activity {
 //		totalCount = (TextView) findViewById(R.id.totalCount);
 		remainTime = (TextView) findViewById(R.id.remainTime);
 		remainCount = (TextView) findViewById(R.id.remainCount);
+		rightpoint = (ImageView) findViewById(R.id.imageView1);
 		
 		source=0;
 		timelimit=500;
@@ -80,6 +83,7 @@ public class MainActivity extends Activity {
 //
 		btnFrog = (Button) findViewById(R.id.button1);// 获取按钮资源
 		btnFrogback = (Button) findViewById(R.id.button2);//获取按钮资源
+		
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
 			@Override
@@ -109,6 +113,7 @@ public class MainActivity extends Activity {
 					}
 				}
 				updateText();
+				
 			}
 		});
 		
@@ -125,6 +130,7 @@ public class MainActivity extends Activity {
 				start=false;
 				hasPlaySound = false;
 				btnFrog.setClickable(true);
+				btnFrogback.setClickable(false);	
 			}
 		});
 //		
@@ -145,7 +151,7 @@ public class MainActivity extends Activity {
 //
 //		});
 
-		
+		btnFrogback.setClickable(false);
 	}
 	
 	
@@ -175,6 +181,7 @@ public class MainActivity extends Activity {
 			timelimit=0;
 //			timer.cancel();
 			btnFrog.setClickable(false);
+			btnFrogback.setClickable(true);
 		}
 		
 		updateTime();
