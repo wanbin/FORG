@@ -4,61 +4,54 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-	<TextView
-	    android:id="@+id/remainCount"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_alignParentTop="true"
-	    android:text="@string/reaminTime"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/totalSouce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/remainTime"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:text="@string/totalCount"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-	<TextView
-	    android:id="@+id/totalSouce"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/remainTime"
-	    android:layout_alignParentBottom="true"
-	    android:layout_marginBottom="14dp"
-	    android:text="@string/totalCount"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/totalSouce"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/btnreturn" />
 
-	<TextView
-	    android:id="@+id/remainTime"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_above="@+id/button1"
-	    android:layout_alignLeft="@+id/remainCount"
-	    android:layout_marginBottom="25dp"
-	    android:text="@string/reaminTime"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-	<Button
-	    android:id="@+id/button2"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/remainTime"
-	    android:layout_alignParentRight="true"
-	    android:background="@drawable/btnreturn"
-	    android:text="" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/totalSouce"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/forgsad" />
 
-	<Button
-	    android:id="@+id/button1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_above="@+id/totalSouce"
-	    android:layout_marginBottom="42dp"
-	    android:layout_toRightOf="@+id/remainTime"
-	    android:background="@drawable/forgsad" />
+    <TextView
+        android:id="@+id/remainCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button1"
+        android:layout_marginRight="26dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="@string/reaminTime"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-	<ImageView
-	    android:id="@+id/imageView1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/remainTime"
-	    android:layout_alignTop="@+id/button1"
-	    android:layout_marginTop="38dp"
-	    android:scaleType="matrix"
-	    android:src="@drawable/btnright" />
- 
+    <TextView
+        android:id="@+id/remainTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remainCount"
+        android:layout_marginRight="26dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="@string/reaminTime"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>
+

@@ -12,4 +12,6 @@
     <string name="totalCount">source</string>
     <string name="reaminTime">remainTime</string>
     <string name="remainCount">remainCount</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
 </resources>
