@@ -15,9 +15,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+=======
+import android.widget.Button;
+>>>>>>> Frog can smile , intent to mainActivity
 import android.widget.ImageView;
 
 
@@ -25,15 +29,24 @@ import android.widget.ImageView;
 public class WelcomeActivity extends Activity {
 	
 	private ImageView imageView;
+<<<<<<< HEAD
 	private ImageView points;
 	private AnimationDrawable animDrawable;
+=======
+	private AnimationDrawable animDrawable;
+
+>>>>>>> Frog can smile , intent to mainActivity
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
+<<<<<<< HEAD
 		points = (ImageView)findViewById(R.id.imageView1);
+=======
+		animDrawable = new AnimationDrawable();
+>>>>>>> Frog can smile , intent to mainActivity
 		
 		animDrawable = new AnimationDrawable();
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -89,9 +102,15 @@ public class WelcomeActivity extends Activity {
 	 */
 	public void stopAnimate(View view)
 	{
+<<<<<<< HEAD
 //		if (animDrawable.isRunning()) {
 //			animDrawable.stop();
 //		}
+=======
+		if (animDrawable.isRunning()) {
+			animDrawable.stop();
+		}
+>>>>>>> Frog can smile , intent to mainActivity
 		Intent goMain = new Intent();
 		goMain.setClass(WelcomeActivity.this,MainActivity.class);
 		startActivity(goMain);
