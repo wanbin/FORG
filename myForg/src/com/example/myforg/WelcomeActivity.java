@@ -13,6 +13,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 public class WelcomeActivity extends Activity {
 	
 	private ImageView imageView;
+	private AnimationDrawable animDrawable;
 
 	
 	@Override
@@ -27,6 +29,7 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
+		animDrawable = new AnimationDrawable();
 		
 	}
 	
@@ -47,7 +50,6 @@ public class WelcomeActivity extends Activity {
 	
 	public void AnimateFrame()
 	{
-		AnimationDrawable animDrawable = new AnimationDrawable();
 		
 		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
 		
@@ -55,7 +57,7 @@ public class WelcomeActivity extends Activity {
 		for (int i = 0; i < 4; i++) {
 			
 			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);
-			animDrawable.addFrame(new BitmapDrawable(frameBitmap), 100);
+			animDrawable.addFrame(new BitmapDrawable(getResources(),frameBitmap), 100);
 		}
 		
 		animDrawable.setOneShot(false);
@@ -67,13 +69,14 @@ public class WelcomeActivity extends Activity {
 	/**
 	 * Í£Ö¹¶¯»­
 	 */
-	public void stopAnimate()
+	public void stopAnimate(View view)
 	{
-		AnimationDrawable anim = (AnimationDrawable)imageView.getBackground();
-		if (anim.isRunning()) {
-			anim.stop();
+		if (animDrawable.isRunning()) {
+			animDrawable.stop();
 		}
-		finish();
+		Intent goMain = new Intent();
+		goMain.setClass(WelcomeActivity.this,MainActivity.class);
+		startActivity(goMain);
 	}
 	
 	public void gotoMain()
