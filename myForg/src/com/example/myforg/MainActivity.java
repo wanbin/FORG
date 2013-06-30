@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 
 @SuppressLint("UseSparseArrays")
 public class MainActivity extends Activity {
@@ -49,6 +50,8 @@ public class MainActivity extends Activity {
 	TextView totalCount;
 	TextView remainTime;
 	TextView remainCount;
+	TextView plus_time;
+	TextView plus_target;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class MainActivity extends Activity {
 //		totalCount = (TextView) findViewById(R.id.totalCount);
 		remainTime = (TextView) findViewById(R.id.remainTime);
 		remainCount = (TextView) findViewById(R.id.remainCount);
+		plus_time = (TextView)findViewById(R.id.plusTime);
+		plus_target = (TextView)findViewById(R.id.plusTarget);
 		
 		source=0;
 		timelimit=500;
@@ -76,8 +81,8 @@ public class MainActivity extends Activity {
 		updateText();
 		updateTime();
 //
-		btnFrog = (Button) findViewById(R.id.button1);// 获取按钮资源
-		btnFrogback = (Button) findViewById(R.id.button2);//获取按钮资源
+		btnFrog = (Button) findViewById(R.id.cryfrog);// 获取按钮资源
+		btnFrogback = (Button) findViewById(R.id.reset);//获取按钮资源
 		
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
@@ -98,6 +103,13 @@ public class MainActivity extends Activity {
 					addTarget++;
 					tagretsource = 20 + addTarget;
 					timelimit += 500;
+					
+					//显示提示
+					fadeIn(plus_time);
+					fadeIn(plus_target);
+					
+					fadeOut(plus_target);
+					fadeOut(plus_time);
 				}
 				if (source > maxSource) {
 					maxSource=source;
@@ -178,7 +190,6 @@ public class MainActivity extends Activity {
 			btnFrog.setClickable(false);
 			btnFrogback.setClickable(true);
 		}
-		
 		updateTime();
 	}
 	
@@ -211,5 +222,21 @@ public class MainActivity extends Activity {
 		editor.commit();
 		return ;
 	}
+	
+	private void fadeIn(TextView textView) {
+		AlphaAnimation fade = new AlphaAnimation(0.0f, 1.0f);
+		fade.setDuration(1000);
+		textView.setAnimation(fade);
+		fade.startNow();
+	}
+	
+	
+	private void fadeOut(TextView textView) {
+		AlphaAnimation fade = new AlphaAnimation(1.0f, 0.0f);
+		fade.setDuration(1000);
+		textView.setAnimation(fade);
+		fade.startNow();
+	}
+	
 	
 }

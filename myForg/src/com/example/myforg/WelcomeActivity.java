@@ -2,7 +2,9 @@ package com.example.myforg;
 
 import java.io.InputStream;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class WelcomeActivity extends Activity {
 	
 	private ImageView imageView;
@@ -48,6 +51,7 @@ public class WelcomeActivity extends Activity {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public void AnimateFrame()
 	{
 		
@@ -61,7 +65,12 @@ public class WelcomeActivity extends Activity {
 		}
 		
 		animDrawable.setOneShot(false);
-		imageView.setBackground(animDrawable);
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+		    imageView.setBackgroundDrawable(animDrawable);
+		} else {
+		    imageView.setBackground(animDrawable);
+		}
 		
 		animDrawable.start();
 	}
@@ -71,9 +80,9 @@ public class WelcomeActivity extends Activity {
 	 */
 	public void stopAnimate(View view)
 	{
-		if (animDrawable.isRunning()) {
-			animDrawable.stop();
-		}
+//		if (animDrawable.isRunning()) {
+//			animDrawable.stop();
+//		}
 		Intent goMain = new Intent();
 		goMain.setClass(WelcomeActivity.this,MainActivity.class);
 		startActivity(goMain);
