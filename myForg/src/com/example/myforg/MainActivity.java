@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -16,11 +17,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.Window;
-import android.view.WindowManager;
 
 @SuppressLint("UseSparseArrays")
 public class MainActivity extends Activity {
@@ -49,16 +48,13 @@ public class MainActivity extends Activity {
 	TextView totalCount;
 	TextView remainTime;
 	TextView remainCount;
+	TextView plus_time;
+	TextView plus_target;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-	        //隐去电池等图标和一切修饰部分（状态栏部分）
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-
 		sp = new SoundPool(2, AudioManager.STREAM_SYSTEM, 0);
 		spMap = new HashMap<Integer, Integer>();
 
@@ -67,6 +63,8 @@ public class MainActivity extends Activity {
 //		totalCount = (TextView) findViewById(R.id.totalCount);
 		remainTime = (TextView) findViewById(R.id.remainTime);
 		remainCount = (TextView) findViewById(R.id.remainCount);
+		plus_time = (TextView)findViewById(R.id.plusTime);
+		plus_target = (TextView)findViewById(R.id.plusTarget);
 		
 		source=0;
 		timelimit=500;
@@ -79,8 +77,8 @@ public class MainActivity extends Activity {
 		updateText();
 		updateTime();
 //
-		btnFrog = (Button) findViewById(R.id.button1);// 获取按钮资源
-		btnFrogback = (Button) findViewById(R.id.button2);//获取按钮资源
+		btnFrog = (Button) findViewById(R.id.cryfrog);// 获取按钮资源
+		btnFrogback = (Button) findViewById(R.id.reset);//获取按钮资源
 		
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
@@ -101,6 +99,13 @@ public class MainActivity extends Activity {
 					addTarget++;
 					tagretsource = 20 + addTarget;
 					timelimit += 500;
+					
+					//显示提示
+					fadeIn(plus_time);
+					fadeIn(plus_target);
+					
+					fadeOut(plus_target);
+					fadeOut(plus_time);
 				}
 				if (source > maxSource) {
 					maxSource=source;
@@ -181,7 +186,6 @@ public class MainActivity extends Activity {
 			btnFrog.setClickable(false);
 			btnFrogback.setClickable(true);
 		}
-		
 		updateTime();
 	}
 	
@@ -214,5 +218,21 @@ public class MainActivity extends Activity {
 		editor.commit();
 		return ;
 	}
+	
+	private void fadeIn(TextView textView) {
+		AlphaAnimation fade = new AlphaAnimation(0.0f, 1.0f);
+		fade.setDuration(1000);
+		textView.setAnimation(fade);
+		fade.startNow();
+	}
+	
+	
+	private void fadeOut(TextView textView) {
+		AlphaAnimation fade = new AlphaAnimation(1.0f, 0.0f);
+		fade.setDuration(1000);
+		textView.setAnimation(fade);
+		fade.startNow();
+	}
+	
 	
 }
