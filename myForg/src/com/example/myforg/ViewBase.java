@@ -19,4 +19,8 @@ public class ViewBase extends Activity {
 		sb.append("class: ").append(stacks[1].getClassName());
 		return sb.toString();
 	}
+
+	protected void Log(String string) {
+		Log.v("tag", string);
+	}
 }

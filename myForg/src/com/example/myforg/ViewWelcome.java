@@ -23,7 +23,7 @@ import android.widget.ImageView;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class WelcomeActivity extends Activity {
+public class ViewWelcome extends Activity {
 	
 	private ImageView imageView;
 	private ImageView points;
@@ -44,7 +44,7 @@ public class WelcomeActivity extends Activity {
         al.setDuration(500);
         as.addAnimation(al);
         al.setRepeatMode(Animation.REVERSE);
-        al.setRepeatCount(100);
+        al.setRepeatCount(-1);
         points.startAnimation(as);  
 	}
 	
@@ -91,14 +91,14 @@ public class WelcomeActivity extends Activity {
 	public void stopAnimate(View view)
 	{
 		Intent goMain = new Intent();
-		goMain.setClass(WelcomeActivity.this,MainActivity.class);
+		goMain.setClass(ViewWelcome.this,ViewChangeHard.class);
 		startActivity(goMain);
 	}
 	
 	public void gotoMain()
 	{
 		Intent intentGo = new Intent();
-		intentGo.setClass(WelcomeActivity.this, MainActivity.class);
+		intentGo.setClass(ViewWelcome.this, ViewChangeHard.class);
 		startActivity(intentGo);
 		finish();
 	}

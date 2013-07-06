@@ -15,4 +15,8 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="plus_target">+1</string>
     <string name="plus_time">+5s</string>
+    <string name="hard">困难</string>
+    <string name="Simple">简单</string>
+    <string name="medium">中等</string>
+
 </resources>

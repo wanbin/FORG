@@ -5,16 +5,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -22,7 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 @SuppressLint("UseSparseArrays")
-public class MainActivity extends Activity {
+public class ViewGameTap extends ViewBase {
 	private SoundPool sp;
 	private int addTarget;
 	private HashMap<Integer, Integer> spMap;
@@ -35,6 +34,7 @@ public class MainActivity extends Activity {
 	private Button btnFrog;
 	private Button btnFrogback;
 	private boolean start;
+	private int peraddscour;
 	
 
 	@Override
@@ -54,6 +54,19 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		
+		Bundle bundle = this.getIntent().getExtras();
+//        /*获取Bundle中的数据，注意类型和key*/
+        String hard = bundle.getString("SelectHard");
+		if ( hard.equals("hard") ) {
+			peraddscour = 6;
+		} else if (hard.equals("middle")) {
+			peraddscour = 4;
+		} else {
+			peraddscour = 2;
+		}
+        
 		sp = new SoundPool(2, AudioManager.STREAM_SYSTEM, 0);
 		spMap = new HashMap<Integer, Integer>();
 
@@ -95,7 +108,7 @@ public class MainActivity extends Activity {
 				source++;
 				tagretsource--;
 				if (tagretsource == 0) {
-					addTarget++;
+					addTarget += peraddscour;
 					tagretsource = 20 + addTarget;
 					timelimit += 500;
 					
@@ -103,6 +116,7 @@ public class MainActivity extends Activity {
 					fadeIn(plus_time);
 					fadeIn(plus_target);
 					
+					plus_target.setText("+"+tagretsource);
 					fadeOut(plus_target);
 					fadeOut(plus_time);
 				}
@@ -202,14 +216,14 @@ public class MainActivity extends Activity {
 	private int getMaxSource() {
 //		return 5;
 		// 获取SharedPreferences对象
-		Context ctx = MainActivity.this;
+		Context ctx = ViewGameTap.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
 		return  sp.getInt("maxSource", 0);
 	}
 	
 	
 	private void setMaxSource(int source){
-		Context ctx = MainActivity.this;
+		Context ctx = ViewGameTap.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
 		// 存入数据
 		Editor editor = sp.edit();
