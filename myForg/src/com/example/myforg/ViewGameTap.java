@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.example.util.SoundPlayer;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -54,7 +56,8 @@ public class ViewGameTap extends ViewBase {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		//在这里load音效
+		SoundPlayer.init(ViewGameTap.this);
 		
 		Bundle bundle = this.getIntent().getExtras();
 //        /*获取Bundle中的数据，注意类型和key*/
@@ -66,11 +69,7 @@ public class ViewGameTap extends ViewBase {
 		} else {
 			peraddscour = 2;
 		}
-        
-		sp = new SoundPool(2, AudioManager.STREAM_SYSTEM, 0);
-		spMap = new HashMap<Integer, Integer>();
 
-		spMap.put(1, sp.load(this, R.raw.clap, 1));
 		totalCount = (TextView) findViewById(R.id.totalSouce);
 //		totalCount = (TextView) findViewById(R.id.totalCount);
 		remainTime = (TextView) findViewById(R.id.remainTime);
@@ -119,13 +118,16 @@ public class ViewGameTap extends ViewBase {
 					plus_target.setText("+"+tagretsource);
 					fadeOut(plus_target);
 					fadeOut(plus_time);
+					
+					//播放鼓掌音效
+					
+					SoundPlayer.clap();
 				}
 				if (source > maxSource) {
 					maxSource=source;
 					setMaxSource(source);
 					if (hasPlaySound == false) {
 						hasPlaySound = true;
-						sp.play(spMap.get(spMap.get(1)), 50, 50, 1, 0, 1);
 					}
 				}
 				updateText();

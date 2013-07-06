@@ -1,6 +1,9 @@
 package com.example.myforg;
 
 import java.io.InputStream;
+
+import com.example.util.SoundPlayer;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
@@ -12,8 +15,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
@@ -35,6 +36,9 @@ public class ViewWelcome extends Activity {
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
+		//在这里load音效
+		SoundPlayer.init(ViewWelcome.this);
+		SoundPlayer.startMusic();
 		
 		animDrawable = new AnimationDrawable();
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -113,6 +117,12 @@ public class ViewWelcome extends Activity {
 		//获取图片资源
 		InputStream inputStream = context.getResources().openRawResource(resID);
 		return BitmapFactory.decodeStream(inputStream, null, options);
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		SoundPlayer.setMusicSt(false);
 	}
 	
 
