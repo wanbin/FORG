@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 :qadfaiwanbin
-=======
-iwanbin
->>>>>>> new file test
-=======
-:qadfaiwanbin
->>>>>>> test commit
