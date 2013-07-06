@@ -4,36 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-<<<<<<< HEAD
-    <TextView
-        android:id="@+id/totalSouce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/remainTime"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="14dp"
-        android:text="@string/totalCount"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/totalSouce"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="28dp"
-        android:background="@drawable/btnreturn" />
-
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/totalSouce"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/forgsad" />
-=======
 	<TextView
 	    android:id="@+id/remainTime"
 	    android:layout_width="wrap_content"
@@ -70,7 +40,6 @@
 	    android:text="@string/totalCount"
 	    android:textAppearance="?android:attr/textAppearanceLarge"
 	    android:textSize="@android:dimen/app_icon_size" />
->>>>>>> ADD TIPS  RUN WELL
 
 	<TextView
 	    android:id="@+id/remainCount"
@@ -95,10 +64,6 @@
 	    android:textSize="@dimen/fontMiddle"
 	    android:visibility="invisible" />
 
-<<<<<<< HEAD
-</RelativeLayout>
-
-=======
 	<TextView
 	    android:id="@+id/plusTarget"
 	    android:layout_width="wrap_content"
@@ -112,4 +77,3 @@
 	    android:visibility="invisible" />
  
 </RelativeLayout>
->>>>>>> ADD TIPS  RUN WELL
