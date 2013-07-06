@@ -2,21 +2,22 @@ package com.example.myforg;
 
 import java.io.InputStream;
 
-import android.os.Build;
-import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 
@@ -24,16 +25,26 @@ import android.widget.ImageView;
 public class WelcomeActivity extends Activity {
 	
 	private ImageView imageView;
+	private ImageView points;
 	private AnimationDrawable animDrawable;
-
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
-		animDrawable = new AnimationDrawable();
+		points = (ImageView)findViewById(R.id.imageView1);
 		
+		animDrawable = new AnimationDrawable();
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		
+		AnimationSet as=new AnimationSet(true);  
+        TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
+        al.setDuration(500);
+        as.addAnimation(al);
+        al.setRepeatMode(Animation.REVERSE);
+        al.setRepeatCount(100);
+        points.startAnimation(as);  
 	}
 	
 	@Override
@@ -56,8 +67,6 @@ public class WelcomeActivity extends Activity {
 	{
 		
 		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
-		
-		
 		for (int i = 0; i < 4; i++) {
 			
 			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);

@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -16,12 +17,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
+import android.widget.TextView;
 
 @SuppressLint("UseSparseArrays")
 public class MainActivity extends Activity {
@@ -55,10 +53,8 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		sp = new SoundPool(2, AudioManager.STREAM_SYSTEM, 0);
 		spMap = new HashMap<Integer, Integer>();
 
