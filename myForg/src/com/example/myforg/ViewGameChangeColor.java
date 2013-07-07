@@ -159,7 +159,7 @@ public class ViewGameChangeColor extends ViewBase {
 				count1++;
 			}
 		}
-		if (count == count0 || count == count1) {
+		if (count <= count0 || count <= count1) {
 			return true;
 		}
 		return false;
