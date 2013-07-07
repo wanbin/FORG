@@ -115,6 +115,10 @@ public class ViewGameTap extends ViewBase {
 					fadeIn(plus_target);
 					
 					plus_target.setText("+"+tagretsource);
+					
+					//²¥·Å¹ÄÕÆÒôÐ§
+					
+					SoundPlayer.clap();
 				}
 				if (source > maxSource) {
 					maxSource=source;

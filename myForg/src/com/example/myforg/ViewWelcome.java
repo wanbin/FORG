@@ -120,8 +120,12 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
+<<<<<<< HEAD
 //		SoundPlayer.setMusicSt(false);
 		super.onDestroy();
+=======
+		SoundPlayer.setMusicSt(false);
+>>>>>>> 0bef99f71564a1560896899f7a131e05e7394324
 	}
 	
 
