@@ -24,9 +24,7 @@ import android.widget.TextView;
 
 @SuppressLint("UseSparseArrays")
 public class ViewGameTap extends ViewBase {
-	private SoundPool sp;
 	private int addTarget;
-	private HashMap<Integer, Integer> spMap;
 	private int source;
 	private int tagretsource;
 	private int timelimit;
@@ -56,6 +54,7 @@ public class ViewGameTap extends ViewBase {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		//在这里load音效
 		SoundPlayer.init(ViewGameTap.this);
 		
