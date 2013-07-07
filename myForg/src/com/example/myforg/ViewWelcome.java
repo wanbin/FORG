@@ -38,7 +38,7 @@ public class ViewWelcome extends Activity {
 		points = (ImageView)findViewById(R.id.imageView1);
 		//在这里load音效
 		SoundPlayer.init(ViewWelcome.this);
-		SoundPlayer.startMusic();
+		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
 		animDrawable = new AnimationDrawable();
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

@@ -3,18 +3,19 @@ package com.example.util;
 import com.example.myforg.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.media.SoundPool;
+import android.util.Log;
 
 /**
- * @Todo 声音控制类
+ * 声音控制类
  * @author Wenson
- *
+ * @version 2013-07-06
  */
 public class SoundPlayer{
 
@@ -25,38 +26,16 @@ public class SoundPlayer{
 	private static boolean soundSt = true; //音效开关
 	private static Context context;
 	
-	private static final int[] musicId = {R.raw.forgbg};
 	private static Map<Integer,Integer> soundMap; //音效资源id与加载过后的音源id的映射关系表
 	
-	/**
-	 * 初始化方法
-	 * @param c
-	 */
-	public static void init(Context c)
-	{
-		context = c;
-
-		initMusic();
-		
-		initSound();
-	}
-	
-	//初始化音效播放器
 	@SuppressLint("UseSparseArrays")
-	private static void initSound()
-	{
-		soundPool = new SoundPool(2,AudioManager.STREAM_MUSIC,100);
+	public static void init(Context pContext) {
+		context = pContext;
 		
-		soundMap = new HashMap<Integer,Integer>();
-		soundMap.put(R.raw.clap, soundPool.load(context, R.raw.clap, 1));
-	}
-	
-	//初始化音乐播放器
-	private static void initMusic()
-	{
-		int r = new Random().nextInt(musicId.length);
-		music = MediaPlayer.create(context,musicId[r]);
-		music.setLooping(true);
+		//初始化音效的东西 SoundPool
+		soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC,100);
+		soundMap  = new HashMap<Integer, Integer>();
+		
 	}
 	
 	/**
@@ -65,14 +44,40 @@ public class SoundPlayer{
 	 */
 	public static void playSound(int resId)
 	{
-		if(soundSt == false)
-			return;
-		
-		Integer soundId = soundMap.get(resId);
-		if(soundId != null)
-			soundPool.play(soundId, 1, 1, 1, 0, 1);
+		if(soundSt)
+		{
+			if(!soundMap.containsKey(resId))
+				soundMap.put(resId, soundPool.load(context, resId, 1));
+			Integer soundId = soundMap.get(resId);
+			if(soundId != null)
+				soundPool.play(soundId, 1, 1, 1, 0, 1);
+		}
 	}
+	
+	/**
+	 * 播放音乐
+	 * @param resId 资源ID
+	 * @param loop  是否循环
+	 */
+	public static void playMusic(int resId, boolean loop) {
+		if (musicSt) {
+			music = MediaPlayer.create(context, resId);
+			music.start();
+			music.setLooping(loop);
 
+			//监听播放完成事件
+//			music.setOnCompletionListener(new OnCompletionListener() {
+//				@Override
+//				public void onCompletion(MediaPlayer mp) {
+//					mp.seekTo(0);
+//					Log.v("Loop", "Completed");
+//					music.seekTo(3000);
+//					music.start();
+//				}
+//			});
+		}
+	}
+	
 	/**
 	 * 暂停音乐
 	 */
@@ -82,36 +87,17 @@ public class SoundPlayer{
 			music.pause();
 	}
 	
-	/**
-	 * 播放音乐
-	 */
-	public static void startMusic()
-	{
-		if(musicSt)
-			music.start();
-	}
-	
-	/**
-	 * 切换一首音乐并播放
-	 */
-	public static void changeAndPlayMusic()
-	{
-		if(music != null)
-			music.release();
-		initMusic();
-		startMusic();
-	}
 	
 	/**
 	 * 获得音乐开关状态
-	 * @return
+	 * @return boolean
 	 */
-	public static boolean isMusicSt() {
+	public static boolean getMusicSt() {
 		return musicSt;
 	}
 	
 	/**
-	 * 设置音乐开关
+	 * 设置音乐开关状态
 	 * @param musicSt
 	 */
 	public static void setMusicSt(boolean musicSt) {
@@ -126,7 +112,7 @@ public class SoundPlayer{
 	 * 获得音效开关状态
 	 * @return
 	 */
-	public static boolean isSoundSt() {
+	public static boolean getSoundSt() {
 		return soundSt;
 	}
 
