@@ -115,12 +115,6 @@ public class ViewGameTap extends ViewBase {
 					fadeIn(plus_target);
 					
 					plus_target.setText("+"+tagretsource);
-					fadeOut(plus_target);
-					fadeOut(plus_time);
-					
-					//²¥·Å¹ÄÕÆÒôÐ§
-					
-					SoundPlayer.clap();
 				}
 				if (source > maxSource) {
 					maxSource=source;
@@ -233,20 +227,5 @@ public class ViewGameTap extends ViewBase {
 		return ;
 	}
 	
-	private void fadeIn(TextView textView) {
-		AlphaAnimation fade = new AlphaAnimation(0.0f, 1.0f);
-		fade.setDuration(1000);
-		textView.setAnimation(fade);
-		fade.startNow();
-	}
-	
-	
-	private void fadeOut(TextView textView) {
-		AlphaAnimation fade = new AlphaAnimation(1.0f, 0.0f);
-		fade.setDuration(1000);
-		textView.setAnimation(fade);
-		fade.startNow();
-	}
-	
-	
+
 }

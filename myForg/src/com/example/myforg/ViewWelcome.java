@@ -95,14 +95,14 @@ public class ViewWelcome extends Activity {
 	public void stopAnimate(View view)
 	{
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this,ViewChangeHard.class);
+		goMain.setClass(ViewWelcome.this,ViewGameChangeColor.class);
 		startActivity(goMain);
 	}
 	
 	public void gotoMain()
 	{
 		Intent intentGo = new Intent();
-		intentGo.setClass(ViewWelcome.this, ViewChangeHard.class);
+		intentGo.setClass(ViewWelcome.this, ViewGameChangeColor.class);
 		startActivity(intentGo);
 		finish();
 	}
