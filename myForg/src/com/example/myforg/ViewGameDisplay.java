@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ViewGameChangeColor extends ViewBase {
+public class ViewGameDisplay extends ViewBase {
 	protected Button startGame;
 	protected View viewcan;
 	protected GridLayout girdlayout;
@@ -116,7 +116,7 @@ public class ViewGameChangeColor extends ViewBase {
 		for (int n = 0; n < count; n++) {
 			Button btn = new Button(this);
 			Random random = new Random();
-			int clickcount = Math.abs(random.nextInt()) % 2;
+			int clickcount = Math.abs(random.nextInt()) % 2+1;
 			btn.setText("btn" + clickcount);
 			btn.setTag(clickcount);
 			//计算本次游戏的需要点击次数
@@ -125,18 +125,21 @@ public class ViewGameChangeColor extends ViewBase {
 				@Override
 				public void onClick(View v) {
 					int temtag=(Integer)v.getTag();
-					if (temtag == 1) {
-						temtag = 0;
-					} else {
-						temtag = 1;
+					if(temtag<=1)
+					{
+						v.setVisibility(View.INVISIBLE);
 					}
-					Button tem = (Button) v;
-					tem.setText("btn" + temtag);
-					v.setTag(temtag);
+					else{
+						temtag-=1;
+						Button tem=(Button)v;
+						tem.setText("btn"+temtag);
+						v.setTag(temtag);
+					}
 					
+					frogcount--;
 					source++;
 					updateText();
-					if (checkFinish()) {
+					if (frogcount <= 0) {
 						controlGame();
 					}
 				}
@@ -146,24 +149,6 @@ public class ViewGameChangeColor extends ViewBase {
 		frogcount=temclickcount;
 	}
 
-	protected boolean checkFinish() {
-		int count = girdlayout.getChildCount();
-		int count0 = 0;
-		int count1 = 0;
-		for (int i = 0; i < count; i++) {
-			View v = (View) girdlayout.getChildAt(i);
-			int temtag = (Integer) v.getTag();
-			if (temtag == 0) {
-				count0++;
-			} else {
-				count1++;
-			}
-		}
-		if (count == count0 || count == count1) {
-			return true;
-		}
-		return false;
-	}
 	protected int checkBtnCount() {
 
 		return 1;

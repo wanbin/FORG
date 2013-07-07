@@ -24,7 +24,7 @@ import android.widget.ImageView;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class ViewWelcome extends Activity {
+public class ViewWelcome extends ViewBase {
 	
 	private ImageView imageView;
 	private ImageView points;
@@ -37,12 +37,10 @@ public class ViewWelcome extends Activity {
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
 		//在这里load音效
-		SoundPlayer.init(ViewWelcome.this);
-		SoundPlayer.playMusic(R.raw.forgbg, true);
+//		SoundPlayer.init(ViewWelcome.this);
+//		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
 		animDrawable = new AnimationDrawable();
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
         al.setDuration(500);
@@ -122,7 +120,8 @@ public class ViewWelcome extends Activity {
 	@Override
 	public void onDestroy()
 	{
-		SoundPlayer.setMusicSt(false);
+//		SoundPlayer.setMusicSt(false);
+		super.onDestroy();
 	}
 	
 
