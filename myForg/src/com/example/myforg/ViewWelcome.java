@@ -2,25 +2,22 @@ package com.example.myforg;
 
 import java.io.InputStream;
 
-import com.example.util.SoundPlayer;
-
-import android.os.Build;
-import android.os.Bundle;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import cn.jpush.android.api.JPushInterface;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -48,6 +45,14 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatMode(Animation.REVERSE);
         al.setRepeatCount(-1);
         points.startAnimation(as);  
+        initJPUSH();
+	}
+	
+	protected void initJPUSH()
+	{
+		 JPushInterface.setDebugMode(true);
+         JPushInterface.init(this);
+         JPushInterface.setAliasAndTags(getApplicationContext(), "wanbin", null);
 	}
 	
 	@Override
