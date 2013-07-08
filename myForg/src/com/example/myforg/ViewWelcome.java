@@ -93,14 +93,14 @@ public class ViewWelcome extends ViewBase {
 	public void stopAnimate(View view)
 	{
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this,ViewGameChangeColor.class);
+		goMain.setClass(ViewWelcome.this,ViewSelectGame.class);
 		startActivity(goMain);
 	}
 	
 	public void gotoMain()
 	{
 		Intent intentGo = new Intent();
-		intentGo.setClass(ViewWelcome.this, ViewGameChangeColor.class);
+		intentGo.setClass(ViewWelcome.this, ViewSelectGame.class);
 		startActivity(intentGo);
 		finish();
 	}

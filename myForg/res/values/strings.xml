@@ -18,5 +18,8 @@
     <string name="hard">困难</string>
     <string name="Simple">简单</string>
     <string name="medium">中等</string>
+    <string name="tapforg">点青蛙</string>
+    <string name="gamedisplay">爆青蛙</string>
+    <string name="gamecolor">画青蛙</string>
 
 </resources>
