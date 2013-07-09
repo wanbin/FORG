@@ -1,0 +1,4 @@
+achiev_info.png, 2, 2, 797, 495, 1, 1, 1, 1
+achiev_info_cross.png, 801, 2, 61, 62, 11, 13, 11, 11
+rate-button1.png, 2, 499, 416, 84, 0, 4, 0, 0
+rate-button2.png, 420, 499, 414, 84, 0, 1, 2, 3

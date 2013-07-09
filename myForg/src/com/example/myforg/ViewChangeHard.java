@@ -1,6 +1,8 @@
 //wanbin 困难选择界面
 package com.example.myforg;
 
+import com.example.util.SoundPlayer;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
@@ -19,6 +21,11 @@ public class ViewChangeHard extends ViewBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.change_hard);
+		
+		//在这里load音效
+		SoundPlayer.init(ViewChangeHard.this);
+		SoundPlayer.playMusic(R.raw.clap, true);
+		
 		
 		simple = (Button) findViewById(R.id.btnsimple);
 		middle = (Button) findViewById(R.id.btnmiddle);

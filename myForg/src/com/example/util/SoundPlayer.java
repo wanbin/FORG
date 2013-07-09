@@ -31,11 +31,9 @@ public class SoundPlayer{
 	@SuppressLint("UseSparseArrays")
 	public static void init(Context pContext) {
 		context = pContext;
-		
 		//初始化音效的东西 SoundPool
 		soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC,100);
 		soundMap  = new HashMap<Integer, Integer>();
-		
 	}
 	
 	/**
@@ -64,7 +62,6 @@ public class SoundPlayer{
 			music = MediaPlayer.create(context, resId);
 			music.start();
 			music.setLooping(loop);
-
 			//监听播放完成事件
 //			music.setOnCompletionListener(new OnCompletionListener() {
 //				@Override

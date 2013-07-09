@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -26,6 +27,8 @@ public class ViewWelcome extends ViewBase {
 	private ImageView imageView;
 	private ImageView points;
 	private AnimationDrawable animDrawable;
+	private ImageView imageTest;
+	private TextView txtTest;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,11 @@ public class ViewWelcome extends ViewBase {
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
-		//在这里load音效
-//		SoundPlayer.init(ViewWelcome.this);
-//		SoundPlayer.playMusic(R.raw.forgbg, true);
+		imageTest = (ImageView)findViewById(R.id.imageTest);
+		txtTest = (TextView)findViewById(R.id.txtText);
+		
+
+		
 		
 		animDrawable = new AnimationDrawable();
 		AnimationSet as=new AnimationSet(true);  
@@ -45,7 +50,14 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatMode(Animation.REVERSE);
         al.setRepeatCount(-1);
         points.startAnimation(as);  
-        initJPUSH();
+       
+//        initJPUSH();
+        
+        
+        //这个函数是调取资源图的入口
+		Bitmap animDrawable = getImg("achiev_info", "rate-button2.png");
+		imageTest.setImageBitmap(animDrawable);
+        
 	}
 	
 	protected void initJPUSH()
@@ -76,7 +88,6 @@ public class ViewWelcome extends ViewBase {
 		
 		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
 		for (int i = 0; i < 4; i++) {
-			
 			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);
 			animDrawable.addFrame(new BitmapDrawable(getResources(),frameBitmap), 100);
 		}
@@ -125,7 +136,7 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-//		SoundPlayer.setMusicSt(false);
+//		SoundPlayer.setMusicSt(true);
 		super.onDestroy();
 	}
 	
