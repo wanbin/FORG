@@ -63,9 +63,8 @@ public class ViewBase extends Activity {
 
 	/**
 	 * 从PNG资源文件中取出相应的图片资源
-	 * @param idpack
-	 * @param idimg
-	 * @param imgPackName
+	 * @param packName 大图名称
+	 * @param imgPackName 内部图的名称
 	 * @return
 	 */
 	public Bitmap getImg(String packName, String imgPackName) {

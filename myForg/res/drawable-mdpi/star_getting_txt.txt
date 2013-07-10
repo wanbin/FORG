@@ -1,0 +1,13 @@
+star_animation_010001.png, 0, 0, 103, 103, 0, 0, 0, 0
+star_animation_010002.png, 103, 0, 103, 103, 0, 0, 0, 0
+star_animation_010003.png, 206, 0, 103, 103, 0, 0, 0, 0
+star_animation_010004.png, 309, 0, 103, 103, 0, 0, 0, 0
+star_animation_010005.png, 0, 103, 103, 103, 0, 0, 0, 0
+star_animation_010006.png, 103, 103, 103, 103, 0, 0, 0, 0
+star_animation_010007.png, 206, 103, 103, 103, 0, 0, 0, 0
+star_animation_010008.png, 309, 103, 103, 103, 0, 0, 0, 0
+star_animation_010009.png, 0, 206, 103, 103, 0, 0, 0, 0
+star_animation_010010.png, 103, 206, 103, 103, 0, 0, 0, 0
+star_animation_010011.png, 206, 206, 103, 103, 0, 0, 0, 0
+star_animation_010012.png, 309, 206, 103, 103, 0, 0, 0, 0
+star_animation_010013.png, 0, 206, 103, 103, 0, 0, 0, 0

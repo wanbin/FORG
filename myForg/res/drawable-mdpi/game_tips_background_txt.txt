@@ -1,0 +1,1 @@
+game_tips_background.png, 2, 2, 977, 592, 6, 2, 4, 8

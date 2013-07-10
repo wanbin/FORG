@@ -1,0 +1,4 @@
+exp_bar.png, 510, 2, 506, 44, 0, 34, 0, 40
+exp_bar_holder.png, 2, 140, 551, 94, 0, 8, 0, 16
+exp_bar_holder_back.png, 2, 48, 549, 90, 0, 22, 0, 6
+exp_bar_shadow.png, 2, 2, 506, 44, 0, 37, 0, 37

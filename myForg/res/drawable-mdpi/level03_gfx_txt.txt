@@ -1,0 +1,5 @@
+blue-splat.png, 1284, 236, 210, 232, 35, 24, 35, 24
+colorize_background.png, 2, 2, 1280, 960, 0, 0, 0, 0
+green-splat.png, 1708, 2, 210, 232, 35, 24, 35, 24
+orange-splat.png, 1496, 2, 210, 232, 35, 24, 35, 24
+red-splat.png, 1284, 2, 210, 232, 35, 24, 35, 24
