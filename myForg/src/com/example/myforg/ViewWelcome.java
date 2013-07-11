@@ -30,7 +30,6 @@ public class ViewWelcome extends ViewBase {
 	private ImageView points;
 	private AnimationDrawable animDrawable;
 	private ImageView imageTest;
-	private TextView txtTest;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +37,14 @@ public class ViewWelcome extends ViewBase {
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
-		imageTest = (ImageView)findViewById(R.id.imageTest);
-		txtTest = (TextView)findViewById(R.id.txtText);
 		
 		SoundPlayer.init(this);
 //		SoundPlayer.playMusic(R.raw.forgbg, true);
-		
+		imageView.setBackgroundResource(R.anim.index_anmi); 
+		animDrawable = (AnimationDrawable)imageView.getBackground();
 		//加载音效
 		SoundPlayer.pushSound(R.raw.claps3);
 		
-		animDrawable = new AnimationDrawable();
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
         al.setDuration(500);
@@ -59,10 +56,10 @@ public class ViewWelcome extends ViewBase {
 //        initJPUSH();
         
         
-        //这个函数是调取资源图的入口
-		Bitmap animDrawable = getImg("achiev_info", "rate-button2.png");
-		imageTest.setImageBitmap(animDrawable);
-        
+//        //这个函数是调取资源图的入口
+//		Bitmap animDrawable = getImg("achiev_info", "rate-button2.png");
+//		imageTest.setImageBitmap(animDrawable);
+//        
 	}
 	
 	protected void initJPUSH()
@@ -83,30 +80,32 @@ public class ViewWelcome extends ViewBase {
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
 		super.onWindowFocusChanged(hasFocus);
-		AnimateFrame();
-	}
-	
-	
-	@SuppressWarnings("deprecation")
-	public void AnimateFrame()
-	{
-		
-		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
-		for (int i = 0; i < 4; i++) {
-			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);
-			animDrawable.addFrame(new BitmapDrawable(getResources(),frameBitmap), 100);
-		}
-		
-		animDrawable.setOneShot(false);
-		int sdk = android.os.Build.VERSION.SDK_INT;
-		if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-		    imageView.setBackgroundDrawable(animDrawable);
-		} else {
-		    imageView.setBackground(animDrawable);
-		}
-		
+//		imageView=GM.playIndex();
 		animDrawable.start();
+//		AnimateFrame();
 	}
+	
+	
+//	@SuppressWarnings("deprecation")
+//	public void AnimateFrame()
+//	{
+//		
+//		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
+//		for (int i = 0; i < 4; i++) {
+//			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);
+//			animDrawable.addFrame(new BitmapDrawable(getResources(),frameBitmap), 100);
+//		}
+//		
+//		animDrawable.setOneShot(false);
+//		int sdk = android.os.Build.VERSION.SDK_INT;
+//		if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//		    imageView.setBackgroundDrawable(animDrawable);
+//		} else {
+//		    imageView.setBackground(animDrawable);
+//		}
+//		
+//		animDrawable.start();
+//	}
 	
 	/**
 	 * 停止动画
@@ -124,20 +123,20 @@ public class ViewWelcome extends ViewBase {
 		Intent intentGo = new Intent();
 		intentGo.setClass(ViewWelcome.this, ViewSelectGame.class);
 		startActivity(intentGo);
-		finish();
+//		finish();
 	}
 	
-	public Bitmap ReadBitmap(Context context,int resID)
-	{
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inPreferredConfig = Bitmap.Config.RGB_565;
-		options.inPurgeable = true;
-		options.inInputShareable = true;
-		
-		//获取图片资源
-		InputStream inputStream = context.getResources().openRawResource(resID);
-		return BitmapFactory.decodeStream(inputStream, null, options);
-	}
+//	public Bitmap ReadBitmap(Context context,int resID)
+//	{
+//		BitmapFactory.Options options = new BitmapFactory.Options();
+//		options.inPreferredConfig = Bitmap.Config.RGB_565;
+//		options.inPurgeable = true;
+//		options.inInputShareable = true;
+//		
+//		//获取图片资源
+//		InputStream inputStream = context.getResources().openRawResource(resID);
+//		return BitmapFactory.decodeStream(inputStream, null, options);
+//	}
 	
 	@Override
 	public void onDestroy()

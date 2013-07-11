@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">myForg</string>
+    <string name="app_name">Clever Giraffe</string>
+    <string name="title_activity_welcome">Clever Giraffe</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!Liu chunlong</string>
     <string name="Button1"></string>
@@ -12,7 +13,6 @@
     <string name="totalCount">source</string>
     <string name="reaminTime">remainTime</string>
     <string name="remainCount">remainCount</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="plus_target">+1</string>
     <string name="plus_time">+5s</string>
     <string name="hard">困难</string>
@@ -21,5 +21,4 @@
     <string name="tapforg">点青蛙</string>
     <string name="gamedisplay">爆青蛙</string>
     <string name="gamecolor">画青蛙</string>
-
 </resources>

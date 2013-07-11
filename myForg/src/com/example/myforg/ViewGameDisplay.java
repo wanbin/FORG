@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -107,6 +109,7 @@ public class ViewGameDisplay extends ViewBase {
 		gamePro = newcount;
 	}
 
+	@SuppressLint("NewApi")
 	protected void initFrog(int count, int column, int row) {
 		frogcount = count;
 		int temclickcount=0;
@@ -117,7 +120,13 @@ public class ViewGameDisplay extends ViewBase {
 			Button btn = new Button(this);
 			Random random = new Random();
 			int clickcount = Math.abs(random.nextInt()) % 2+1;
-			btn.setText("btn" + clickcount);
+//			btn.setText("btn" + clickcount);
+			btn.setBackgroundResource(R.anim.yellow); 
+			btn.setMaxHeight(50);
+			btn.setScaleY(0.5f);
+			btn.setScaleX(0.5f);
+			AnimationDrawable animDrawable = (AnimationDrawable)btn.getBackground();
+			animDrawable.start();
 			btn.setTag(clickcount);
 			//计算本次游戏的需要点击次数
 			temclickcount+=clickcount;
@@ -132,7 +141,6 @@ public class ViewGameDisplay extends ViewBase {
 					else{
 						temtag-=1;
 						Button tem=(Button)v;
-						tem.setText("btn"+temtag);
 						v.setTag(temtag);
 					}
 					

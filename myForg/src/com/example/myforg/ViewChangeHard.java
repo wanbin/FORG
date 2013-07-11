@@ -23,8 +23,8 @@ public class ViewChangeHard extends ViewBase {
 		setContentView(R.layout.change_hard);
 		
 		//在这里load音效
-		SoundPlayer.init(ViewChangeHard.this);
-		SoundPlayer.playMusic(R.raw.clap, true);
+//		SoundPlayer.init(ViewChangeHard.this);
+//		SoundPlayer.playMusic(R.raw.clap, true);
 		
 		
 		simple = (Button) findViewById(R.id.btnsimple);

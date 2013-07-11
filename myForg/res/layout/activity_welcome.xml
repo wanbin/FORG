@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/frog_welcome"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:onClick="stopAnimate" />
 
@@ -20,25 +20,5 @@
         android:layout_toLeftOf="@+id/frog_welcome"
         android:scaleType="centerInside"
         android:src="@drawable/btnright" />
-
-    <ImageView
-        android:id="@+id/imageTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/frog_welcome"
-        android:layout_marginBottom="46dp"
-        android:layout_marginRight="56dp"
-        android:layout_toLeftOf="@+id/imageView1"
-        android:src="@drawable/achiev_pack_01" />
-
-    <TextView
-        android:id="@+id/txtText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/frog_welcome"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView" />
 
 </RelativeLayout>
