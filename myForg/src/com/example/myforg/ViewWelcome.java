@@ -29,7 +29,9 @@ public class ViewWelcome extends ViewBase {
 	private ImageView imageView;
 	private ImageView points;
 	private AnimationDrawable animDrawable;
+	private AnimationDrawable animDrawableStar;
 	private ImageView imageTest;
+	private ImageView star;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class ViewWelcome extends ViewBase {
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
+		star = (ImageView)findViewById(R.id.imageStar);
 		
 		SoundPlayer.init(this);
 //		SoundPlayer.playMusic(R.raw.forgbg, true);
@@ -44,6 +47,9 @@ public class ViewWelcome extends ViewBase {
 		animDrawable = (AnimationDrawable)imageView.getBackground();
 		//º”‘ÿ“Ù–ß
 		SoundPlayer.pushSound(R.raw.claps3);
+		star.setBackgroundResource(R.anim.star); 
+		animDrawableStar = (AnimationDrawable)star.getBackground();
+		
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
@@ -82,6 +88,7 @@ public class ViewWelcome extends ViewBase {
 		super.onWindowFocusChanged(hasFocus);
 //		imageView=GM.playIndex();
 		animDrawable.start();
+		animDrawableStar.start();
 //		AnimateFrame();
 	}
 	

@@ -11,13 +11,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class ViewGameDisplay extends ViewBase {
 	protected Button startGame;
 	protected View viewcan;
-	protected GridLayout girdlayout;
+	protected AbsoluteLayout girdlayout;
 	private int frogcount;
 	private int gamePro;
 	private Timer timer;
@@ -36,7 +38,7 @@ public class ViewGameDisplay extends ViewBase {
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
 
-		girdlayout = (GridLayout) findViewById(R.id.gridlayout1);
+		girdlayout = (AbsoluteLayout) findViewById(R.id.AbsoluteLayout1);
 		startGame.setOnClickListener(new Button.OnClickListener() {// ´´½¨¼àÌý
 					@Override
 					public void onClick(View v) {
@@ -114,8 +116,8 @@ public class ViewGameDisplay extends ViewBase {
 		frogcount = count;
 		int temclickcount=0;
 		girdlayout.removeAllViews();
-		girdlayout.setColumnCount(column);
-		girdlayout.setRowCount(row);
+//		girdlayout.setColumnCount(column);
+//		girdlayout.setRowCount(row);
 		for (int n = 0; n < count; n++) {
 			Button btn = new Button(this);
 			Random random = new Random();
@@ -123,8 +125,6 @@ public class ViewGameDisplay extends ViewBase {
 //			btn.setText("btn" + clickcount);
 			btn.setBackgroundResource(R.anim.yellow); 
 			btn.setMaxHeight(50);
-			btn.setScaleY(0.5f);
-			btn.setScaleX(0.5f);
 			AnimationDrawable animDrawable = (AnimationDrawable)btn.getBackground();
 			animDrawable.start();
 			btn.setTag(clickcount);
@@ -140,7 +140,6 @@ public class ViewGameDisplay extends ViewBase {
 					}
 					else{
 						temtag-=1;
-						Button tem=(Button)v;
 						v.setTag(temtag);
 					}
 					
@@ -155,6 +154,8 @@ public class ViewGameDisplay extends ViewBase {
 			girdlayout.addView(btn);
 		}
 		frogcount=temclickcount;
+		girdlayout.setScaleY(0.5f);
+		girdlayout.setScaleX(0.5f);
 	}
 
 	protected int checkBtnCount() {
