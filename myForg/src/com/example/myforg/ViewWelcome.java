@@ -52,6 +52,9 @@ public class ViewWelcome extends ViewBase {
 		SoundPlayer.init(this);
 //		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
+		SoundPlayer.init(this);
+//		SoundPlayer.playMusic(R.raw.forgbg, true);
+		
 		//º”‘ÿ“Ù–ß
 		SoundPlayer.pushSound(R.raw.claps3);
 		
