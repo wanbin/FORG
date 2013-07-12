@@ -44,12 +44,21 @@ public class SoundPlayer{
 	{
 		if(soundSt)
 		{
-			if(!soundMap.containsKey(resId))
-				soundMap.put(resId, soundPool.load(context, resId, 1));
 			Integer soundId = soundMap.get(resId);
 			if(soundId != null)
 				soundPool.play(soundId, 1, 1, 1, 0, 1);
 		}
+	}
+	
+	
+	/**
+	 * 提前加载音效
+	 * @param resId
+	 */
+	public static void pushSound(int resId)
+	{
+		if(!soundMap.containsKey(resId))
+			soundMap.put(resId, soundPool.load(context, resId, 1));
 	}
 	
 	/**

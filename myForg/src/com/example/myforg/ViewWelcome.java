@@ -2,6 +2,8 @@ package com.example.myforg;
 
 import java.io.InputStream;
 
+import com.example.util.SoundPlayer;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -39,8 +41,11 @@ public class ViewWelcome extends ViewBase {
 		imageTest = (ImageView)findViewById(R.id.imageTest);
 		txtTest = (TextView)findViewById(R.id.txtText);
 		
-
+		SoundPlayer.init(this);
+//		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
+		//º”‘ÿ“Ù–ß
+		SoundPlayer.pushSound(R.raw.claps3);
 		
 		animDrawable = new AnimationDrawable();
 		AnimationSet as=new AnimationSet(true);  
@@ -108,8 +113,9 @@ public class ViewWelcome extends ViewBase {
 	 */
 	public void stopAnimate(View view)
 	{
+		
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this,ViewSelectGame.class);
+		goMain.setClass(ViewWelcome.this,DriveActivity.class);
 		startActivity(goMain);
 	}
 	
@@ -136,7 +142,7 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-//		SoundPlayer.setMusicSt(true);
+		SoundPlayer.setMusicSt(false);
 		super.onDestroy();
 	}
 	
