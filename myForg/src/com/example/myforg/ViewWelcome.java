@@ -49,7 +49,11 @@ public class ViewWelcome extends ViewBase {
 		SoundPlayer.pushSound(R.raw.claps3);
 		star.setBackgroundResource(R.anim.star); 
 		animDrawableStar = (AnimationDrawable)star.getBackground();
+		SoundPlayer.init(this);
+//		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
+		//º”‘ÿ“Ù–ß
+		SoundPlayer.pushSound(R.raw.claps3);
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
