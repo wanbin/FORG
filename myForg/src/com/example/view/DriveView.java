@@ -3,11 +3,16 @@ package com.example.view;
 import com.example.myforg.R;
 import com.example.util.ResReader;
 
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -22,9 +27,11 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	private Bitmap background_1,background_2;
 	private Bitmap drivingFrogBitmap;
 	
+	private Bitmap giraffe[] = new Bitmap[13];
+	
 	private ResReader resReader;
 	
-	private static int _x,_x2,background_width;
+	private static int _x,_x2,_x3,background_width;
 	
 	SurfaceHolder Holder;
 	Thread drivingThread;
@@ -39,9 +46,13 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		
 //		backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 		
-		drivingFrogBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.forgsad);
 		background_1 = resReader.getImg("drive","skate-bg1.png");
 		background_2 = resReader.getImg("drive", "skate-bg2.png");
+		
+		
+		for(int i=0;i<giraffe.length;i++){
+			giraffe[i]=BitmapFactory.decodeResource(getResources(), R.drawable.cg_jump_000+i);
+		}
 		
 		Holder = this.getHolder();
 		Holder.addCallback(this);
@@ -50,6 +61,7 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		
 		_x = 0;
 		_x2 = background_width;
+		_x3 = 0;
 	}
 	
 	
@@ -91,12 +103,12 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 			int rotate = 0 ;
 			int position = 0;
 			mPaint = new Paint();
+			int runCount = 0;
 			while (running) {
 				try {
 					canvas = Holder.lockCanvas();
+					canvas.drawColor(Color.WHITE);
 					//»æÖÆ±³¾°
-//					canvas.drawBitmap(backgroundBitmap, 0, 0,mPaint);
-//					canvas.drawColor(R.color.Yellow);
 					_x -= 10;
 					_x2 -= 10;
 					Log.d("Frog",String.valueOf(_x));
@@ -104,16 +116,35 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 						_x = background_width;
 					}
 					if (_x2 <= -background_width) {
-						_x2 = background_width;
+						_x2 = background_2.getWidth();
 					}
 					canvas.drawBitmap(background_1, _x, 0, mPaint);
 					canvas.drawBitmap(background_2, _x2,0, mPaint);
-//					Matrix m = new Matrix();
+					
+					runCount++;
+					if (runCount >= giraffe.length) {
+						runCount = 0;
+					}
+					
+					
+//					_x3 += 10;
+					
+					if (_x3 > 800) {
+						_x3 = 0;
+					}
+					Matrix m = new Matrix();
+					m.postScale(-1, 1);
+					m.postTranslate(100, 350);
+					canvas.drawBitmap(giraffe[runCount], m, mPaint);
+//					mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+//					mPaint.setXfermode(new PorterDuffXfermode(Mode.DST_OVER));
+					
 //					m.postRotate(
 //							(rotate+=48)%360,
 //							drivingFrogBitmap.getWidth()/2,
 //							drivingFrogBitmap.getHeight()/2
 //							);
+					
 //					
 //					canvas.scale(0.5f, 0.5f);
 //					
@@ -121,13 +152,17 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 //					
 //					canvas.drawBitmap(drivingFrogBitmap, m, mPaint);
 					
-					Thread.sleep(10);
+					Thread.sleep(30);
 				} catch (Exception e) {
 					// TODO: handle exception
 				} finally{
 					Holder.unlockCanvasAndPost(canvas);
 				}
 			}
+		}
+		
+		private void name() {
+			
 		}
 		
 	}
