@@ -1,0 +1,2 @@
+paging.png, 2, 2, 29, 31, 2, 0, 2, 2
+paging_selected.png, 2, 35, 46, 46, 0, 0, 0, 0

@@ -1,0 +1,4 @@
+jumpbutton10.png, 2, 2, 218, 123, 0, 0, 0, 0
+jumpbutton11.png, 2, 127, 218, 121, 0, 2, 0, 0
+jumpbutton20.png, 2, 250, 218, 121, 0, 0, 0, 2
+jumpbutton21.png, 2, 373, 218, 121, 0, 2, 0, 0

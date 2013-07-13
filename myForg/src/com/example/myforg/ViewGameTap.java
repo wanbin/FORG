@@ -24,9 +24,7 @@ import android.widget.TextView;
 
 @SuppressLint("UseSparseArrays")
 public class ViewGameTap extends ViewBase {
-	private SoundPool sp;
 	private int addTarget;
-	private HashMap<Integer, Integer> spMap;
 	private int source;
 	private int tagretsource;
 	private int timelimit;
@@ -56,6 +54,7 @@ public class ViewGameTap extends ViewBase {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		//在这里load音效
 		SoundPlayer.init(ViewGameTap.this);
 		
@@ -116,8 +115,6 @@ public class ViewGameTap extends ViewBase {
 					fadeIn(plus_target);
 					
 					plus_target.setText("+"+tagretsource);
-					fadeOut(plus_target);
-					fadeOut(plus_time);
 					
 					//播放鼓掌音效
 					
@@ -234,20 +231,5 @@ public class ViewGameTap extends ViewBase {
 		return ;
 	}
 	
-	private void fadeIn(TextView textView) {
-		AlphaAnimation fade = new AlphaAnimation(0.0f, 1.0f);
-		fade.setDuration(1000);
-		textView.setAnimation(fade);
-		fade.startNow();
-	}
-	
-	
-	private void fadeOut(TextView textView) {
-		AlphaAnimation fade = new AlphaAnimation(1.0f, 0.0f);
-		fade.setDuration(1000);
-		textView.setAnimation(fade);
-		fade.startNow();
-	}
-	
-	
+
 }

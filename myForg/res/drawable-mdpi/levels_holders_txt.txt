@@ -1,0 +1,4 @@
+blue_holder.png, 0, 0, 474, 439, 12, 10, 34, 38
+green_holder.png, 476, 0, 474, 439, 12, 10, 34, 38
+holder_shadow.png, 0, 441, 466, 409, 32, 64, 22, 14
+purple_holder.png, 468, 441, 471, 439, 14, 10, 34, 38
