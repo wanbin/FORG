@@ -151,7 +151,6 @@ public class ViewGameDisplay extends ViewBase {
 				}
 			});
 			// 设置内部按键大小
-			btn.setPadding(5);
 			girdlayout.addView(btn, 53, 68);
 		}
 		frogcount=temclickcount;
