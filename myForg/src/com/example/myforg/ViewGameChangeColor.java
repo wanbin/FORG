@@ -1,9 +1,12 @@
 package com.example.myforg;
 
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeSet;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +28,9 @@ public class ViewGameChangeColor extends ViewBase {
 	private TextView remaintime;
 	private TextView textScoure;
 	private TextView addTime;
+	// tag 分别为0的时候取什么颜色的青蛙
+	private String tag0;
+	private String tag1;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,14 +81,14 @@ public class ViewGameChangeColor extends ViewBase {
 			column = 4;
 			row = 3;
 		} else if (gamePro == 12) {
-			newcount = 16;
-			column = 4;
-			row = 4;
-		} else if (gamePro == 16) {
-			newcount = 20;
+			newcount = 15;
 			column = 5;
-			row = 4;
-		} else if (gamePro == 20) {
+			row = 3;
+		} else if (gamePro == 15) {
+			newcount = 21;
+			column = 7;
+			row = 3;
+		} else if (gamePro == 21) {
 			newcount = 4;
 			column = 2;
 			row = 2;
@@ -107,8 +113,38 @@ public class ViewGameChangeColor extends ViewBase {
 		gamePro = newcount;
 	}
 
+	/**
+	 * 随机青蛙的颜色
+	 */
+	private void randomColor() {
+		String[] colorArr = { "yellow", "pink", "blue", "green" };
+
+		TreeSet<String> ts = new TreeSet<String>();
+		while (ts.size() < 2) {
+			int n = (int) (Math.random() * 4);
+			ts.add(colorArr[n]);
+		}
+
+		Iterator<String> iter;
+		for (iter = ts.iterator(); iter.hasNext();) {
+			tag0 = iter.next();
+			tag1 = iter.next();
+		}
+	}
+
+	private int returnTagColor(int tag) {
+		if (tag == 0) {
+			return getResources().getIdentifier(
+					"com.example.myforg:anim/" + tag0, null, null);
+		} else {
+			return getResources().getIdentifier(
+					"com.example.myforg:anim/" + tag1, null, null);
+		}
+	}
+
 	protected void initFrog(int count, int column, int row) {
 		frogcount = count;
+		randomColor();
 		int temclickcount=0;
 		girdlayout.removeAllViews();
 		girdlayout.setColumnCount(column);
@@ -117,8 +153,14 @@ public class ViewGameChangeColor extends ViewBase {
 			Button btn = new Button(this);
 			Random random = new Random();
 			int clickcount = Math.abs(random.nextInt()) % 2;
-			btn.setText("btn" + clickcount);
+			// btn.setText("btn" + clickcount);
 			btn.setTag(clickcount);
+
+			btn.setBackgroundResource(returnTagColor(clickcount));
+			AnimationDrawable animDrawable = (AnimationDrawable) btn
+					.getBackground();
+			animDrawable.start();
+
 			//计算本次游戏的需要点击次数
 			temclickcount+=clickcount;
 			btn.setOnClickListener(new Button.OnClickListener() {// 创建监听
@@ -130,8 +172,15 @@ public class ViewGameChangeColor extends ViewBase {
 					} else {
 						temtag = 1;
 					}
+
+					v.setBackgroundResource(returnTagColor(temtag));
+					AnimationDrawable animDrawable = (AnimationDrawable) v
+							.getBackground();
+					animDrawable.start();
+
+
 					Button tem = (Button) v;
-					tem.setText("btn" + temtag);
+					// tem.setText("btn" + temtag);
 					v.setTag(temtag);
 					
 					source++;
@@ -141,7 +190,7 @@ public class ViewGameChangeColor extends ViewBase {
 					}
 				}
 			});
-			girdlayout.addView(btn);
+			girdlayout.addView(btn, 75, 115);
 		}
 		frogcount=temclickcount;
 	}

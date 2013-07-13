@@ -29,6 +29,7 @@ public class ViewGameDisplay extends ViewBase {
 	private TextView textScoure;
 	private TextView addTime;
 
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_change_color);
@@ -78,14 +79,14 @@ public class ViewGameDisplay extends ViewBase {
 			column = 4;
 			row = 3;
 		} else if (gamePro == 12) {
-			newcount = 16;
-			column = 4;
-			row = 4;
-		} else if (gamePro == 16) {
-			newcount = 20;
+			newcount = 15;
 			column = 5;
-			row = 4;
-		} else if (gamePro == 20) {
+			row = 3;
+		} else if (gamePro == 15) {
+			newcount = 21;
+			column = 7;
+			row = 3;
+		} else if (gamePro == 21) {
 			newcount = 4;
 			column = 2;
 			row = 2;
@@ -109,6 +110,8 @@ public class ViewGameDisplay extends ViewBase {
 		initFrog(newcount, column, row);
 		gamePro = newcount;
 	}
+
+
 
 	@SuppressLint("NewApi")
 	protected void initFrog(int count, int column, int row) {
@@ -151,7 +154,7 @@ public class ViewGameDisplay extends ViewBase {
 				}
 			});
 			// 设置内部按键大小
-			girdlayout.addView(btn, 53, 68);
+			girdlayout.addView(btn, 75, 115);
 		}
 		frogcount=temclickcount;
 		// girdlayout.setScaleY(0.5f);

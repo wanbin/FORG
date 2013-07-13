@@ -14,7 +14,6 @@ public class ViewSelectGame extends ViewBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_game);
-		
 		btnGameTap = (Button) findViewById(R.id.btnGameTap);
 		btnGameDiaplay = (Button) findViewById(R.id.btnGameDiaplay);
 		btnGameColor = (Button) findViewById(R.id.btnGameColor);
