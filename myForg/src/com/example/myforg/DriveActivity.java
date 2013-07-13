@@ -1,14 +1,14 @@
 package com.example.myforg;
 
-import com.example.util.SoundPlayer;
-import com.example.view.DriveView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 
-public class DriveActivity extends Activity{
+import com.example.util.SoundPlayer;
+import com.example.view.DriveView;
+
+public class DriveActivity extends Activity {
 	
 	DriveView driveView ;
 	

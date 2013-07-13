@@ -13,8 +13,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import cn.jpush.android.api.JPushInterface;
 
-import com.example.util.SoundPlayer;
-
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ViewWelcome extends ViewBase {
@@ -34,20 +32,16 @@ public class ViewWelcome extends ViewBase {
 		points = (ImageView)findViewById(R.id.imageView1);
 		star = (ImageView)findViewById(R.id.imageStar);
 		
-		SoundPlayer.init(this);
-//		SoundPlayer.playMusic(R.raw.forgbg, true);
+		// SoundPlayer.init(this);
 		imageView.setBackgroundResource(R.anim.index_anmi); 
 		animDrawable = (AnimationDrawable)imageView.getBackground();
 		//加载音效
-		// SoundPlayer.pushSound(R.raw.claps3);
 		star.setBackgroundResource(R.anim.star); 
 		animDrawableStar = (AnimationDrawable)star.getBackground();
-		SoundPlayer.init(this);
-//		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
 		
 		//加载音效
-		SoundPlayer.pushSound(R.raw.claps3);
+		// SoundPlayer.pushSound(R.raw.claps3);
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
@@ -84,10 +78,8 @@ public class ViewWelcome extends ViewBase {
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
 		super.onWindowFocusChanged(hasFocus);
-//		imageView=GM.playIndex();
 		animDrawable.start();
 		animDrawableStar.start();
-//		AnimateFrame();
 	}
 	
 	
@@ -119,7 +111,7 @@ public class ViewWelcome extends ViewBase {
 	{
 		
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this,DriveActivity.class);
+		goMain.setClass(ViewWelcome.this, ViewSelectGame.class);
 		startActivity(goMain);
 	}
 	
@@ -146,7 +138,7 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-		SoundPlayer.setMusicSt(false);
+		// SoundPlayer.setMusicSt(false);
 		super.onDestroy();
 	}
 	

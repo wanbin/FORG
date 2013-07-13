@@ -9,9 +9,9 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
@@ -115,8 +115,8 @@ public class ViewGameDisplay extends ViewBase {
 		frogcount = count;
 		int temclickcount=0;
 		girdlayout.removeAllViews();
-//		girdlayout.setColumnCount(column);
-//		girdlayout.setRowCount(row);
+		girdlayout.setColumnCount(column);
+		girdlayout.setRowCount(row);
 		for (int n = 0; n < count; n++) {
 			Button btn = new Button(this);
 			Random random = new Random();
@@ -150,11 +150,12 @@ public class ViewGameDisplay extends ViewBase {
 					}
 				}
 			});
-			girdlayout.addView(btn);
+			// 设置内部按键大小
+			girdlayout.addView(btn, 53, 68);
 		}
 		frogcount=temclickcount;
-		girdlayout.setScaleY(0.5f);
-		girdlayout.setScaleX(0.5f);
+		// girdlayout.setScaleY(0.5f);
+		// girdlayout.setScaleX(0.5f);
 	}
 
 	protected int checkBtnCount() {
