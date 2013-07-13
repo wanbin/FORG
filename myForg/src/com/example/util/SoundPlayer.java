@@ -1,6 +1,5 @@
 package com.example.util;
 
-import com.example.myforg.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,9 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.media.SoundPool;
-import android.util.Log;
+
+import com.example.myforg.R;
 
 /**
  * 声音控制类
@@ -22,8 +21,8 @@ public class SoundPlayer{
 	private static MediaPlayer music;
 	private static SoundPool soundPool;
 	
-	private static boolean musicSt = true; //音乐开关
-	private static boolean soundSt = true; //音效开关
+	private static boolean musicSt = false; // 音乐开关
+	private static boolean soundSt = false; // 音效开关
 	private static Context context;
 	
 	private static Map<Integer,Integer> soundMap; //音效资源id与加载过后的音源id的映射关系表
