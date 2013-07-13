@@ -25,13 +25,18 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	private boolean running = true;
 	
 	private Bitmap background_1,background_2;
-	private Bitmap drivingFrogBitmap;
+	private Bitmap streetBitmap;
 	
 	private Bitmap giraffe[] = new Bitmap[13];
 	
 	private ResReader resReader;
 	
-	private static int _x,_x2,_x3,background_width;
+	private static int 
+	_x1,                     //背景1的X坐标
+	_x2,                     //背景2的X坐标
+	_x3,                     //长颈鹿的X坐标
+	background_width_1,      //背景1的宽度
+	background_width_2;      //背景2的宽度
 	
 	SurfaceHolder Holder;
 	Thread drivingThread;
@@ -49,6 +54,8 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		background_1 = resReader.getImg("drive","skate-bg1.png");
 		background_2 = resReader.getImg("drive", "skate-bg2.png");
 		
+		streetBitmap = resReader.getImg("drive", "skate-middle.png");
+		
 		
 		for(int i=0;i<giraffe.length;i++){
 			giraffe[i]=BitmapFactory.decodeResource(getResources(), R.drawable.cg_jump_000+i);
@@ -57,10 +64,11 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		Holder = this.getHolder();
 		Holder.addCallback(this);
 		
-		background_width = background_1.getWidth();
+		background_width_1 = background_1.getWidth();
+		background_width_2 = background_2.getWidth();
 		
-		_x = 0;
-		_x2 = background_width;
+		_x1 = 0;
+		_x2 = background_width_1;
 		_x3 = 0;
 	}
 	
@@ -108,18 +116,26 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 				try {
 					canvas = Holder.lockCanvas();
 					canvas.drawColor(Color.WHITE);
+					
 					//绘制背景
-					_x -= 10;
+					_x1 -= 10;
 					_x2 -= 10;
-					Log.d("Frog",String.valueOf(_x));
-					if (_x <= -background_width) {
-						_x = background_width;
+					
+					if (_x1 <= -background_width_1) {
+						_x1 = background_width_2+_x2;
 					}
-					if (_x2 <= -background_width) {
-						_x2 = background_2.getWidth();
+					if (_x2 <= -background_2.getWidth()) {
+						_x2 = background_width_1+_x1;
 					}
-					canvas.drawBitmap(background_1, _x, 0, mPaint);
-					canvas.drawBitmap(background_2, _x2,0, mPaint);
+					int street = 0;
+					while(street <= 1280)
+					{
+						canvas.drawBitmap(streetBitmap, street,120, mPaint);
+						street += streetBitmap.getWidth()-5;
+					}
+					
+					canvas.drawBitmap(background_1, _x1, -135, mPaint);
+					canvas.drawBitmap(background_2, _x2,-135, mPaint);
 					
 					runCount++;
 					if (runCount >= giraffe.length) {
@@ -134,8 +150,9 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 					}
 					Matrix m = new Matrix();
 					m.postScale(-1, 1);
-					m.postTranslate(100, 350);
+					m.postTranslate(250, 300);
 					canvas.drawBitmap(giraffe[runCount], m, mPaint);
+					
 //					mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
 //					mPaint.setXfermode(new PorterDuffXfermode(Mode.DST_OVER));
 					
