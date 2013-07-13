@@ -1,16 +1,8 @@
 package com.example.myforg;
 
-import java.io.InputStream;
-
-import com.example.util.SoundPlayer;
-
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +11,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.TextView;
 import cn.jpush.android.api.JPushInterface;
+
+import com.example.util.SoundPlayer;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -46,14 +39,12 @@ public class ViewWelcome extends ViewBase {
 		imageView.setBackgroundResource(R.anim.index_anmi); 
 		animDrawable = (AnimationDrawable)imageView.getBackground();
 		//加载音效
-		SoundPlayer.pushSound(R.raw.claps3);
+		// SoundPlayer.pushSound(R.raw.claps3);
 		star.setBackgroundResource(R.anim.star); 
 		animDrawableStar = (AnimationDrawable)star.getBackground();
 		SoundPlayer.init(this);
 //		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
-		SoundPlayer.init(this);
-//		SoundPlayer.playMusic(R.raw.forgbg, true);
 		
 		//加载音效
 		SoundPlayer.pushSound(R.raw.claps3);

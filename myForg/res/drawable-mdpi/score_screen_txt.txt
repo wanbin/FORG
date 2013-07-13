@@ -1,5 +1,0 @@
-big_box.png, 0, 0, 150, 87, 0, 0, 0, 0
-score_star_holder_01.png, 150, 0, 59, 59, 0, 0, 0, 0
-score_star_holder_02.png, 0, 87, 59, 59, 0, 0, 0, 0
-score_star_holder_03.png, 59, 87, 59, 59, 0, 0, 0, 0
-small_box.png, 118, 87, 60, 38, 0, 0, 0, 0

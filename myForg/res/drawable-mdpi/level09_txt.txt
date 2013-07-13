@@ -1,7 +1,0 @@
-bottom.png, 0, 0, 1280, 300, 0, 20, 0, 0
-jumpbutton_up_left.png, 660, 302, 218, 123, 0, 0, 0, 0
-jumpbutton_up_left_press.png, 440, 302, 218, 123, 0, 0, 0, 0
-jumpbutton_up_right.png, 220, 302, 218, 123, 0, 0, 0, 0
-jumpbutton_up_right_press.png, 0, 302, 218, 123, 0, 0, 0, 0
-level09-clock.png, 0, 427, 84, 82, 27, 31, 29, 27
-stick_broken.png, 86, 427, 188, 24, 0, 9, 0, 9

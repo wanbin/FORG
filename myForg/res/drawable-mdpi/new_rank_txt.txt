@@ -1,4 +1,0 @@
-cross.png, 2, 562, 72, 74, 5, 3, 5, 5
-facebook_icon.png, 76, 562, 73, 69, 4, 7, 4, 5
-new_rank_box_2.png, 2, 2, 1017, 558, 30, 3, 22, 1
-twitter_icon.png, 2, 638, 73, 69, 4, 7, 4, 5

@@ -1,2 +1,0 @@
-facebook_icon.png, 0, 0, 88, 83, 0, 0, 0, 0
-twitter_icon.png, 0, 85, 88, 83, 0, 0, 0, 0

@@ -1,1 +1,0 @@
-sumo_win_background.png, 0, 0, 1280, 960, 0, 0, 0, 0

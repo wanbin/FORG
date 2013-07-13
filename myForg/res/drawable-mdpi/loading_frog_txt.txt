@@ -1,5 +1,0 @@
-loading-frog0001.png, 0, 0, 169, 175, 5, 0, 5, 4
-loading-frog0002.png, 0, 177, 169, 175, 5, 0, 5, 4
-loading-frog0003.png, 0, 354, 169, 175, 5, 0, 5, 4
-loading-frog0004.png, 0, 531, 169, 175, 5, 0, 5, 4
-loading-frog0005.png, 0, 708, 169, 175, 5, 0, 5, 4

@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,7 +18,7 @@ import android.widget.TextView;
 public class ViewGameDisplay extends ViewBase {
 	protected Button startGame;
 	protected View viewcan;
-	protected AbsoluteLayout girdlayout;
+	protected GridLayout girdlayout;
 	private int frogcount;
 	private int gamePro;
 	private Timer timer;
@@ -38,7 +37,7 @@ public class ViewGameDisplay extends ViewBase {
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
 
-		girdlayout = (AbsoluteLayout) findViewById(R.id.AbsoluteLayout1);
+		girdlayout = (GridLayout) findViewById(R.id.gridlayout1);
 		startGame.setOnClickListener(new Button.OnClickListener() {// ´´½¨¼àÌý
 					@Override
 					public void onClick(View v) {
