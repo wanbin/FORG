@@ -33,7 +33,7 @@ public class ViewWelcome extends ViewBase {
 		star = (ImageView)findViewById(R.id.imageStar);
 		
 		// SoundPlayer.init(this);
-		imageView.setBackgroundResource(R.anim.index_anmi); 
+		imageView.setBackgroundResource(R.anim.index_anmi);
 		animDrawable = (AnimationDrawable)imageView.getBackground();
 		//º”‘ÿ“Ù–ß
 		star.setBackgroundResource(R.anim.star); 

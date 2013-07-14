@@ -22,4 +22,5 @@
     <string name="gamedisplay">爆青蛙</string>
     <string name="gamecolor">画青蛙</string>
     <string name="frogRun">跑青蛙</string>
+    <string name="btnJume">跳青蛙</string>
 </resources>

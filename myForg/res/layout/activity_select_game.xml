@@ -38,4 +38,13 @@
         android:layout_marginLeft="41dp"
         android:text="@string/frogRun" />
 
+    <Button
+        android:id="@+id/btnJump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnGameColor"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:text="@string/btnJume" />
+
 </RelativeLayout>

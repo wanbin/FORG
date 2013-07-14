@@ -116,6 +116,7 @@
         <activity android:name="ViewSelectGame"></activity>
         <activity android:name="ViewGameDisplay"></activity>
          <activity android:name="DriveActivity"></activity>
+         <activity android:name="ActivityJump"></activity>
     </application>
     
     <supports-screens  android:largeScreens="true"
