@@ -24,9 +24,6 @@ public class ActivityJump extends ViewBase {
 		btnJumpOne.setImageBitmap(getImg("jumpbutton", "jumpbutton10.png"));
 		btnJumpTwo.setImageBitmap(getImg("jumpbutton", "jumpbutton20.png"));
 
-		for (int i = 0; i < 14; i++) {
-
-		}
 
 		btnFrog.setBackgroundResource(R.anim.jump);
 		animDrawable = (AnimationDrawable) btnFrog.getBackground();
