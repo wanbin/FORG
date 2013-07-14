@@ -12,7 +12,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
+//import android.widget.GridLayout;
+import android.support.v7.widget.GridLayout;
 import android.widget.TextView;
 
 public class ViewGameChangeColor extends ViewBase {

@@ -15,7 +15,6 @@ public class DriveActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SoundPlayer.playSound(R.raw.claps3);
 		
 		driveView = new DriveView(this);
 		setContentView(driveView);

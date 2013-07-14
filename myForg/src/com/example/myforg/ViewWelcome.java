@@ -1,5 +1,7 @@
 package com.example.myforg;
 
+import com.example.util.SoundPlayer;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -32,16 +34,15 @@ public class ViewWelcome extends ViewBase {
 		points = (ImageView)findViewById(R.id.imageView1);
 		star = (ImageView)findViewById(R.id.imageStar);
 		
-		// SoundPlayer.init(this);
 		imageView.setBackgroundResource(R.anim.index_anmi);
 		animDrawable = (AnimationDrawable)imageView.getBackground();
-		//加载音效
 		star.setBackgroundResource(R.anim.star); 
 		animDrawableStar = (AnimationDrawable)star.getBackground();
 		
 		
 		//加载音效
-		// SoundPlayer.pushSound(R.raw.claps3);
+		SoundPlayer.init(this);
+		SoundPlayer.pushSound(R.raw.rocket);
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
