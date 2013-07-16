@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:gravity="end" >
 
-    <GridLayout
-        android:id="@+id/gridlayoutMap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </GridLayout>
-
-
 <ImageView
     android:id="@+id/imageOne"
     android:layout_width="100dp"
@@ -35,5 +28,14 @@
     android:layout_centerInParent="true"
      android:layout_marginBottom="5dp"
     android:layout_marginRight="57dp" />
+
+<LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_marginBottom="40dp" >
+
+</LinearLayout>
     
 </RelativeLayout>
