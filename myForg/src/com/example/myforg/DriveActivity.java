@@ -1,11 +1,11 @@
 package com.example.myforg;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.example.util.SoundPlayer;
 import com.example.view.DriveView;
 
 public class DriveActivity extends Activity {
@@ -15,7 +15,7 @@ public class DriveActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		driveView = new DriveView(this);
 		setContentView(driveView);
 		

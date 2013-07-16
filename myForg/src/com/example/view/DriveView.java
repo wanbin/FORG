@@ -63,21 +63,21 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		// TODO Auto-generated constructor stub
 		mContext = context;
 		
-		resReader = new ResReader(context);
+		resReader = new ResReader(context,"drive");
 		
 //		backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 		
-		background_1 = resReader.getImg("drive","skate-bg1.png");
-		background_2 = resReader.getImg("drive","skate-bg2.png");
-		streetBitmap = resReader.getImg("drive","skate-middle.png");
-		streetLine   = resReader.getImg("drive","line.png");
-		speedUp      = resReader.getImg("drive", "street0002.png");
+		background_1 = resReader.getImg("skate-bg1.png");
+		background_2 = resReader.getImg("skate-bg2.png");
+		streetBitmap = resReader.getImg("skate-middle.png");
+		streetLine   = resReader.getImg("line.png");
+		speedUp      = resReader.getImg("street0002.png");
 		
-		upButton     = resReader.getImg("drive","upbutton.png");
-		upButtonClick= resReader.getImg("drive","upbutton1.png");
+		upButton     = resReader.getImg("upbutton.png");
+		upButtonClick= resReader.getImg("upbutton1.png");
 		
-		downButton   = resReader.getImg("drive","downbutton.png");
-		downButtonClick = resReader.getImg("drive","downbutton1.png");
+		downButton   = resReader.getImg("downbutton.png");
+		downButtonClick = resReader.getImg("downbutton1.png");
 		
 		//µã»÷ÇøÓò
 		upRect = new Rect(40, 510, 145, 575);
