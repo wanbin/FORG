@@ -1,13 +1,13 @@
 package com.example.myforg;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,22 +16,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.util.ResReader;
-import com.example.view.JumpView;
 
 public class ActivityJump extends ViewBase {
 	private ImageView btnJumpOne;
 	private ImageView btnJumpTwo;
-	private ImageView btnFrog;
-	private AnimationDrawable animDrawable;
-	JumpView jumpView;
+	// private ImageView btnFrog;
+	// private AnimationDrawable animDrawable;
 	private int objectLong = 8;
 	private int mapNow = 0;
 	private SurfaceHolder holder;
 	private Paint paint;
 	private ResReader resReader;
+	private ResReader bgReader;
 	private int a;
 	private boolean running = true;
-	private Bitmap back;
 	Thread jumpThread;
 	Paint mPaint;
 	private Bitmap zhaoze01;
@@ -40,7 +38,11 @@ public class ActivityJump extends ViewBase {
 	private Bitmap zhaoze04;
 	private Bitmap zhaoze05;
 	private Bitmap zhaoze06;
+	private Bitmap bg1;
+	private Bitmap bg2;
 	private int jumpStep;
+	private Bitmap giraffe[] = new Bitmap[13];
+	private float bgMove = 0;
 	private int[] objectplace = { 1, 1, 2, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1,
 			1, 0, 3, 1, 2, 0, 1, 4, 4, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1,
 			0, 3, 1, 5, 1, 2, 5, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1,
@@ -56,13 +58,22 @@ public class ActivityJump extends ViewBase {
 		surfaceView.setZOrderOnTop(true);
 		surfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 		resReader = new ResReader(this, "zhaoze_objects");
-
 		zhaoze01 = resReader.getImg("objects0001.png");
 		zhaoze02 = resReader.getImg("objects0002.png");
 		zhaoze03 = resReader.getImg("objects0003.png");
 		zhaoze04 = resReader.getImg("objects0004.png");
 		zhaoze05 = resReader.getImg("objects0005.png");
 		zhaoze06 = resReader.getImg("objects0006.png");
+
+		bgReader = new ResReader(this, "bgbig1");
+		bg1 = bgReader.getImg("bgbig2_1.png");
+		bg2 = bgReader.getImg("bgbig2_2.png");
+
+
+		for (int i = 0; i < giraffe.length; i++) {
+			giraffe[i] = BitmapFactory.decodeResource(getResources(),
+					R.drawable.cg_jump_right_000 + i);
+		}
 
 		paint = new Paint();
 		paint.setColor(Color.GREEN);
@@ -92,13 +103,13 @@ public class ActivityJump extends ViewBase {
 
 
 		// linearLayout.setWidth();
-		btnFrog = (ImageView) findViewById(R.id.imageFrog);
+		// btnFrog = (ImageView) findViewById(R.id.imageFrog);
 		btnJumpOne.setImageBitmap(getImg("jumpbutton", "jumpbutton10.png"));
 		btnJumpTwo.setImageBitmap(getImg("jumpbutton", "jumpbutton20.png"));
 
-		btnFrog.setBackgroundResource(R.anim.jump);
-		animDrawable = (AnimationDrawable) btnFrog.getBackground();
-
+		// btnFrog.setBackgroundResource(R.anim.jump);
+		// btnFrog.bringToFront();
+		// animDrawable = (AnimationDrawable) btnFrog.getBackground();
 		btnJumpOne.setOnClickListener(new Button.OnClickListener() {// 创建监听
 					@Override
 					public void onClick(View v) {
@@ -139,8 +150,6 @@ public class ActivityJump extends ViewBase {
 	}
 
 	protected void jumpOne(int count) {
-		animDrawable.stop();
-		animDrawable.start();
 		jumpStep = count;
 		jumpThread = new Thread(new JumpThread());
 		jumpThread.start();
@@ -185,14 +194,23 @@ public class ActivityJump extends ViewBase {
 		@Override
 		public void run() {
 			int move = 0;
+			int runCount = 0;
+			boolean frogmove = true;
 			int[] map = initObject(mapNow);
 			boolean init = mapNow == 0 ? true : false;
 			try {
 				// TODO Auto-generated method stub
 				while (move > -132 * jumpStep || init) {
 					Canvas canvas = holder.lockCanvas();
-					canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+					// canvas.drawColor(R.color.River2);
 					Bitmap temmap = zhaoze01;
+					if (frogmove) {
+						runCount++;
+					}
+					if (runCount >= giraffe.length) {
+						runCount = 0;
+						frogmove = false;
+					}
 					for (int tem = 0; tem < map.length; tem++) {
 						boolean skip = false;
 						switch (map[tem]) {
@@ -213,14 +231,29 @@ public class ActivityJump extends ViewBase {
 							break;
 						}
 						if (!skip) {
-							canvas.drawBitmap(temmap, tem * 132 + move, 0, null);
+							bgMove -= 0.2;
+							// 超过显示范围
+							if (bgMove < -991 + disWidth) {
+								canvas.drawBitmap(bg1, (int) bgMove + 991, 0,
+										null);
+								// 如果退太多，就加991
+								if (bgMove < -991) {
+									bgMove += 991;
+								}
+							}
+							canvas.drawBitmap(bg1, (int) bgMove, 0, null);
+							canvas.drawBitmap(temmap, tem * 132 + move,
+									disHeight - 160, null);
+							//绘制小鹿
+							canvas.drawBitmap(giraffe[runCount],
+									disWidth / 2 - 150,
+									150, null);
 						}
-
 					}
 					holder.unlockCanvasAndPost(canvas);
 					holder.lockCanvas(new Rect(0, 0, 0, 0));
 					holder.unlockCanvasAndPost(canvas);
-					move = move - 16 * jumpStep;
+					move = move - 132 / 13 * jumpStep;
 					init = false;
 					Thread.sleep(5);
 				}
