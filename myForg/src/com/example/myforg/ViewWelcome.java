@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import cn.jpush.android.api.JPushInterface;
+//import cn.jpush.android.api.JPushInterface;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -62,9 +62,9 @@ public class ViewWelcome extends ViewBase {
 	
 	protected void initJPUSH()
 	{
-		 JPushInterface.setDebugMode(true);
-         JPushInterface.init(this);
-         JPushInterface.setAliasAndTags(getApplicationContext(), "wanbin", null);
+//		 JPushInterface.setDebugMode(true);
+//         JPushInterface.init(this);
+//         JPushInterface.setAliasAndTags(getApplicationContext(), "wanbin", null);
 	}
 	
 	@Override

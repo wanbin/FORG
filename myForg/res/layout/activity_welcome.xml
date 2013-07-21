@@ -47,4 +47,13 @@
         android:layout_marginRight="71dp"
         android:background="@drawable/cg_star_000" />
 
+    <Button
+        android:id="@+id/set_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageStar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:text="SET" />
+
 </RelativeLayout>
