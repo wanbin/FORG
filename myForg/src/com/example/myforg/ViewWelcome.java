@@ -1,9 +1,8 @@
 package com.example.myforg;
 
-import com.example.util.SoundPlayer;
-
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,8 +11,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import cn.jpush.android.api.JPushInterface;
+
+import com.example.util.ResReader;
+import com.example.util.SoundPlayer;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -25,6 +28,9 @@ public class ViewWelcome extends ViewBase {
 	private AnimationDrawable animDrawableStar;
 	private ImageView imageTest;
 	private ImageView star;
+	private ImageView imageSetting;
+	private ResReader resReader;
+	private Bitmap btnBg;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,12 @@ public class ViewWelcome extends ViewBase {
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 		points = (ImageView)findViewById(R.id.imageView1);
 		star = (ImageView)findViewById(R.id.imageStar);
+		imageSetting = (ImageView) findViewById(R.id.imageSetting);
 		
+		resReader = new ResReader(this, "achiev_not_done");
+		btnBg = resReader.getImg("achiev_not_done.png");
+		imageSetting.setImageBitmap(btnBg);
+
 		imageView.setBackgroundResource(R.anim.index_anmi);
 		animDrawable = (AnimationDrawable)imageView.getBackground();
 		star.setBackgroundResource(R.anim.star); 
@@ -51,6 +62,7 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatMode(Animation.REVERSE);
         al.setRepeatCount(-1);
         points.startAnimation(as);  
+
        
 //        initJPUSH();
         
@@ -58,7 +70,19 @@ public class ViewWelcome extends ViewBase {
 //        //这个函数是调取资源图的入口
 //		Bitmap animDrawable = getImg("achiev_info", "rate-button2.png");
 //		imageTest.setImageBitmap(animDrawable);
+
 //        
+
+		imageSetting.setOnClickListener(new Button.OnClickListener() {// 创建监听
+			@Override
+			public void onClick(View v) {
+						Intent intentGo = new Intent();
+						intentGo.setClass(ViewWelcome.this,
+								ActivitySetting.class);
+						startActivity(intentGo);
+			}
+		});
+
 	}
 	
 	protected void initJPUSH()
