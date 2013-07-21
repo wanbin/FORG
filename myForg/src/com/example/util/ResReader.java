@@ -41,12 +41,18 @@ public class ResReader{
 	 * @return
 	 */
 	public Bitmap getImg(String imgName) {
-		
-		
+
 		String[] arr = getImageString(imgName);
-		Bitmap imgNew = Bitmap.createBitmap(resBitmap,
-				changeStringToInt(arr[1]), changeStringToInt(arr[2]),
-				changeStringToInt(arr[3]), changeStringToInt(arr[4]));
+		Bitmap imgNew = null;
+		try {
+
+			imgNew = Bitmap.createBitmap(resBitmap, changeStringToInt(arr[1]),
+					changeStringToInt(arr[2]), changeStringToInt(arr[3]),
+					changeStringToInt(arr[4]));
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+		}
 		return imgNew;
 	}
 	

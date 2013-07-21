@@ -39,6 +39,7 @@ public class ViewWelcome extends ViewBase {
 	private Bitmap btnBg;
 	private int frogIndex = 1;
 	private boolean onthis = false;
+	private Timer timer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class ViewWelcome extends ViewBase {
 			@Override
 			public void onClick(View v) {
 						onthis = false;
+						stopTimer();
 						Intent intentGo = new Intent();
 						intentGo.setClass(ViewWelcome.this,
 								ActivitySetting.class);
@@ -91,7 +93,7 @@ public class ViewWelcome extends ViewBase {
 
 		// 再做个线程，更新青蛙动画
 
-		Timer timer = new Timer();
+		timer = new Timer();
 		timer.schedule(timetask, 0, 40);
 		onthis = true;
 	}
@@ -104,6 +106,17 @@ public class ViewWelcome extends ViewBase {
 		}
 	};
 	
+	private void stopTimer() {
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+		if (timetask != null) {
+			timetask.cancel();
+			timetask = null;
+		}
+	}
+
 	TimerTask timetask = new TimerTask() {
 		public void run() {
 			Message message = new Message();
@@ -114,13 +127,10 @@ public class ViewWelcome extends ViewBase {
 
 	// 首页动画
 	private void updateFrog() {
-		if (!onthis) {
-			return;
-		}
 		Bitmap bit = frogReader.getImg("frog_idle_small0"
 				+ String.format("%03d", frogIndex) + ".png");
 		Log(String.format("%03d", frogIndex));
-		if (frogIndex == 200) {
+		if (frogIndex >= 200) {
 			frogIndex = 1;
 		} else {
 			frogIndex++;
