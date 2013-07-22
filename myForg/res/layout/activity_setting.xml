@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+             >
+            <ImageView
+                android:id="@+id/imageSetSound"
+                android:layout_width="match_parent"
+                 android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/txtSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="40dp"
+                android:text="@string/txtSound" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imageSetMusic"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/txtMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/txtMusic" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+       >
+
+            <ImageView
+                android:id="@+id/imageSetLang"
+                android:layout_width="match_parent"
+                 android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/txtLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/txtLangCn" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:padding="5dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageSetCri"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/txtCri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/txtCre" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageSetReset"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/txtReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/txtReset" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:padding="10dp" />
+
+</RelativeLayout>

@@ -13,10 +13,9 @@
 
     <ImageView
         android:id="@+id/frog_welcome"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/cg_main_000"
         android:onClick="stopAnimate" />
 
     <ImageView
@@ -46,5 +45,52 @@
         android:layout_alignTop="@+id/imageView3"
         android:layout_marginRight="71dp"
         android:background="@drawable/cg_star_000" />
+
+
+    <ImageView
+        android:id="@+id/imageSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"/>
+
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+         >
+
+        <ImageView
+            android:id="@+id/imageShadow"
+            android:layout_width="wrap_content"
+            android:paddingTop="3dp"
+            android:layout_height="wrap_content" />
+        
+         <ImageView
+            android:id="@+id/imageBarContent"
+            android:layout_width="wrap_content"
+            android:paddingTop="17dp"
+            android:paddingLeft="5dp"
+            android:gravity="left"
+            android:transformPivotX="5dp"
+            android:layout_height="wrap_content" />
+         
+        <ImageView
+            android:id="@+id/imageBarBackground"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content" />
+        
+         <ImageView
+            android:id="@+id/imageBarholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            />
+
+    </FrameLayout>
+
 
 </RelativeLayout>

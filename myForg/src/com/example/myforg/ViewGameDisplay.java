@@ -11,14 +11,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
-@SuppressWarnings("deprecation")
 public class ViewGameDisplay extends ViewBase {
 	protected Button startGame;
 	protected View viewcan;
-	protected GridLayout girdlayout;
 	private int frogcount;
 	private int gamePro;
 	private Timer timer;
@@ -28,6 +27,7 @@ public class ViewGameDisplay extends ViewBase {
 	private TextView remaintime;
 	private TextView textScoure;
 	private TextView addTime;
+	private TableLayout tableLayout;
 
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,8 @@ public class ViewGameDisplay extends ViewBase {
 		remaintime = (TextView) findViewById(R.id.remaintime);
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
+		tableLayout = (TableLayout) findViewById(R.id.tableLayout);
 
-		girdlayout = (GridLayout) findViewById(R.id.gridlayout1);
 		startGame.setOnClickListener(new Button.OnClickListener() {// 创建监听
 					@Override
 					public void onClick(View v) {
@@ -104,7 +104,7 @@ public class ViewGameDisplay extends ViewBase {
 				timer.schedule(timetask, 0, 10);
 			}
 			startGame.setClickable(false);
-			girdlayout.setVisibility(View.VISIBLE);
+			tableLayout.setVisibility(View.VISIBLE);
 		}
 
 		initFrog(newcount, column, row);
@@ -116,47 +116,47 @@ public class ViewGameDisplay extends ViewBase {
 	@SuppressLint("NewApi")
 	protected void initFrog(int count, int column, int row) {
 		frogcount = count;
-		int temclickcount=0;
-		girdlayout.removeAllViews();
-		girdlayout.setColumnCount(column);
-		girdlayout.setRowCount(row);
-		for (int n = 0; n < count; n++) {
-			Button btn = new Button(this);
-			Random random = new Random();
-			int clickcount = Math.abs(random.nextInt()) % 2+1;
-//			btn.setText("btn" + clickcount);
-			btn.setBackgroundResource(R.anim.yellow); 
-			btn.setMaxHeight(50);
-			AnimationDrawable animDrawable = (AnimationDrawable)btn.getBackground();
-			animDrawable.start();
-			btn.setTag(clickcount);
-			//计算本次游戏的需要点击次数
-			temclickcount+=clickcount;
-			btn.setOnClickListener(new Button.OnClickListener() {// 创建监听
-				@Override
-				public void onClick(View v) {
-					int temtag=(Integer)v.getTag();
-					if(temtag<=1)
-					{
-						v.setVisibility(View.INVISIBLE);
+		tableLayout.removeAllViews();
+		int temclickcount = 0;
+		for (int n = 0; n < row; n++) {
+			TableRow tb = new TableRow(this);
+			tableLayout.addView(tb);
+			for (int m = 0; m < column; m++) {
+				Button btn = new Button(this);
+				Random random = new Random();
+				int clickcount = Math.abs(random.nextInt()) % 2 + 1;
+				btn.setBackgroundResource(R.anim.yellow);
+				btn.setMaxHeight(50);
+				AnimationDrawable animDrawable = (AnimationDrawable) btn
+						.getBackground();
+				animDrawable.start();
+				btn.setTag(clickcount);
+				// 计算本次游戏的需要点击次数
+				temclickcount += clickcount;
+				btn.setOnClickListener(new Button.OnClickListener() {// 创建监听
+					@Override
+					public void onClick(View v) {
+						int temtag = (Integer) v.getTag();
+						if (temtag <= 1) {
+							v.setVisibility(View.INVISIBLE);
+						} else {
+							temtag -= 1;
+							v.setTag(temtag);
+						}
+
+						frogcount--;
+						source++;
+						updateText();
+						if (frogcount <= 0) {
+							controlGame();
+						}
 					}
-					else{
-						temtag-=1;
-						v.setTag(temtag);
-					}
-					
-					frogcount--;
-					source++;
-					updateText();
-					if (frogcount <= 0) {
-						controlGame();
-					}
-				}
-			});
-			// 设置内部按键大小
-			girdlayout.addView(btn, 75, 115);
+				});
+				// 设置内部按键大小
+				tb.addView(btn, 65, 100);
+			}
 		}
-		frogcount=temclickcount;
+		frogcount = temclickcount;
 		// girdlayout.setScaleY(0.5f);
 		// girdlayout.setScaleX(0.5f);
 	}
@@ -175,7 +175,7 @@ public class ViewGameDisplay extends ViewBase {
 			timelimit = 0;
 			start = false;
 			startGame.setClickable(true);
-			girdlayout.setVisibility(View.INVISIBLE);
+			tableLayout.setVisibility(View.INVISIBLE);
 			
 		}
 		updateTime();
