@@ -34,8 +34,15 @@ public class ViewWelcome extends ViewBase {
 	private ImageView imageTest;
 	private ImageView star;
 	private ImageView imageSetting;
+	private ImageView imageBarShadow;
+	private ImageView imageBarBg;
+	private ImageView imageBarContent;
+	private ImageView imageBarholder;
+
 	private ResReader resReader;
 	private ResReader frogReader;
+	private ResReader barReader;
+
 	private Bitmap btnBg;
 	private int frogIndex = 1;
 	private boolean onthis = false;
@@ -46,6 +53,10 @@ public class ViewWelcome extends ViewBase {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
+
+
+		
+
 		points = (ImageView)findViewById(R.id.imageView1);
 		star = (ImageView)findViewById(R.id.imageStar);
 		imageSetting = (ImageView) findViewById(R.id.imageSetting);
@@ -53,6 +64,8 @@ public class ViewWelcome extends ViewBase {
 		resReader = new ResReader(this, "achiev_not_done");
 		btnBg = resReader.getImg("achiev_not_done.png");
 		imageSetting.setImageBitmap(btnBg);
+
+		initProBar();
 
 		// imageView.setBackgroundResource(R.anim.index_anmi);
 		// animDrawable = (AnimationDrawable)imageView.getBackground();
@@ -96,6 +109,26 @@ public class ViewWelcome extends ViewBase {
 		timer = new Timer();
 		timer.schedule(timetask, 0, 40);
 		onthis = true;
+
+	}
+
+	private void setProBar(float barlong) {
+		imageBarContent.setScaleX(barlong);
+	}
+	
+	private void initProBar() {
+		// 经验进度条
+		imageBarShadow = (ImageView) findViewById(R.id.imageShadow);
+		imageBarBg = (ImageView) findViewById(R.id.imageBarBackground);
+		imageBarContent = (ImageView) findViewById(R.id.imageBarContent);
+		imageBarholder = (ImageView) findViewById(R.id.imageBarholder);
+
+		barReader = new ResReader(this, "exp_bar");
+		imageBarShadow.setImageBitmap(barReader
+				.getImg("exp_bar_holder_back.png"));
+		imageBarBg.setImageBitmap(barReader.getImg("exp_bar_holder.png"));
+		imageBarContent.setImageBitmap(barReader.getImg("exp_bar.png"));
+
 	}
 	
 
@@ -135,6 +168,7 @@ public class ViewWelcome extends ViewBase {
 		} else {
 			frogIndex++;
 		}
+		setProBar((float) frogIndex / 200);
 		imageView.setImageBitmap(bit);
 
 	}
