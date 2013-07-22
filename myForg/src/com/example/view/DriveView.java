@@ -1,13 +1,10 @@
 package com.example.view;
 
-import cn.jpush.android.c.i;
 
 import com.example.myforg.R;
 import com.example.util.ResReader;
 import com.example.util.SoundPlayer;
 
-import android.R.array;
-import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,12 +13,11 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
 public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 
@@ -53,6 +49,8 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	
 	private int[] _y = new int[]{150,250,350};
 	private int current = 0;
+	
+	private float scale_x,scale_y;
 	
 	SurfaceHolder Holder;
 	Thread drivingThread;
@@ -92,6 +90,16 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		
 		background_width_1 = background_1.getWidth();
 		background_width_2 = background_2.getWidth();
+		
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		float width = display.getWidth();
+		float height = display.getHeight();
+		
+		float a = width/1280f;
+		float b = height/720f;
+		scale_x = (float)(Math.round(a*100))/100;
+		scale_y = (float)(Math.round(b*100))/100;
 		
 		_x1 = 0;
 		_x2 = background_width_1;
@@ -165,6 +173,8 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 				try {
 					canvas = Holder.lockCanvas();
 					canvas.drawColor(Color.WHITE);
+					canvas.scale(scale_x,scale_y);
+					
 					//ªÊ÷∆±≥æ∞
 					_x1 -= speed;
 					_x2 -= speed;
@@ -259,10 +269,6 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 					Holder.unlockCanvasAndPost(canvas);
 				}
 			}
-		}
-		
-		private void name() {
-			
 		}
 		
 	}
