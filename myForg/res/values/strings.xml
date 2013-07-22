@@ -23,4 +23,10 @@
     <string name="gamecolor">画青蛙</string>
     <string name="frogRun">跑青蛙</string>
     <string name="btnJume">跳青蛙</string>
+    <!-- 游戏结算界面   show_score.xml -->
+    <string name="best_score">历史最好得分</string>
+    <string name="score">本局得分</string>
+    <string name="historyScore">203</string>
+    <string name="thisScore">121</string>
+    
 </resources>
