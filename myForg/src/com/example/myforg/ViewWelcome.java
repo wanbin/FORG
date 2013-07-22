@@ -129,7 +129,7 @@ public class ViewWelcome extends ViewBase {
 	private void updateFrog() {
 		Bitmap bit = frogReader.getImg("frog_idle_small0"
 				+ String.format("%03d", frogIndex) + ".png");
-		Log(String.format("%03d", frogIndex));
+//		Log(String.format("%03d", frogIndex));
 		if (frogIndex >= 200) {
 			frogIndex = 1;
 		} else {
@@ -176,7 +176,9 @@ public class ViewWelcome extends ViewBase {
 	public void onDestroy()
 	{
 		// SoundPlayer.setMusicSt(false);
-		super.onDestroy();
+    	this.finish();// Õ∑≈activity
+    	System.exit(0);//πÿ±’≥Ã–Ú
+    	super.onDestroy();
 	}
 	
 
