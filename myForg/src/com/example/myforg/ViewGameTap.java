@@ -1,6 +1,5 @@
 package com.example.myforg;
 
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -8,20 +7,14 @@ import com.example.util.SoundPlayer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.res.Resources;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
@@ -271,5 +264,16 @@ public class ViewGameTap extends ViewBase {
 		return ;
 	}
 	
+	protected void selectGame(String score) {
+		Intent intentGo = new Intent()
+		;
+		Bundle bundle = new Bundle();
+		/*字符、字符串、布尔、字节数组、浮点数等等，都可以传*/
+		bundle.putString("thisScore", score);
+//		/*把bundle对象assign给Intent*/
+		intentGo.putExtras(bundle);
 
+		intentGo.setClass(ViewGameTap.this, ShowScore.class);
+		startActivity(intentGo);
+	}
 }
