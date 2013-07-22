@@ -20,8 +20,8 @@ public class ViewChangeHard extends ViewBase {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.change_hard);
 		
+		setContentView(R.layout.change_hard);
 		//在这里load音效
 //		SoundPlayer.init(ViewChangeHard.this);
 //		SoundPlayer.playMusic(R.raw.clap, true);
