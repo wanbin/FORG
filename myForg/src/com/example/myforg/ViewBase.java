@@ -11,12 +11,19 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewParent;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewBase extends Activity {
@@ -136,5 +143,18 @@ public class ViewBase extends Activity {
 		return null;
 	}
 
+	public void showHelpViewByImageId(int imageId)
+	{
+		ImageButton helpBtn = new ImageButton(this);
+		helpBtn.setImageResource(imageId);
+		helpBtn.setOnClickListener(new ImageButton.OnClickListener() {// ´´½¨¼àÌý
+			@Override
+			public void onClick(View v) {
+				v.setVisibility(8);
+			}
+		});
+		
+		addContentView(helpBtn,new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+	}
 
 }

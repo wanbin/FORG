@@ -36,6 +36,7 @@ public class ViewGameChangeColor extends ViewBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_change_color);
+		showHelpViewByImageId(R.drawable.cg_jump_001);
 		startGame = (Button) findViewById(R.id.btnStart);
 		remaintime = (TextView) findViewById(R.id.remaintime);
 		textScoure = (TextView) findViewById(R.id.textSource);
