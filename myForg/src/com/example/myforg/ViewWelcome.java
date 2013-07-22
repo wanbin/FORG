@@ -113,7 +113,7 @@ public class ViewWelcome extends ViewBase {
 	}
 
 	private void setProBar(float barlong) {
-		imageBarContent.setScaleX(barlong);
+		//imageBarContent.setScaleX(barlong);
 	}
 	
 	private void initProBar() {
