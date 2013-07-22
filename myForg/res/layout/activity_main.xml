@@ -76,13 +76,15 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/btnreturn" />
     </LinearLayout>
+
 	<Button
 	    android:id="@+id/cryfrog"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
 	    android:layout_centerVertical="true"
-	    android:layout_marginRight="32dp" />
+	    android:layout_marginRight="32dp"
+	    android:background="@drawable/cg_main_000" />
 
 </RelativeLayout>
 

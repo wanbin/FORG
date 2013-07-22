@@ -1,17 +1,27 @@
 package com.example.myforg;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 //import cn.jpush.android.api.JPushInterface;
+
+import com.example.util.ResReader;
+import com.example.util.SoundPlayer;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -23,25 +33,51 @@ public class ViewWelcome extends ViewBase {
 	private AnimationDrawable animDrawableStar;
 	private ImageView imageTest;
 	private ImageView star;
+	private ImageView imageSetting;
+	private ImageView imageBarShadow;
+	private ImageView imageBarBg;
+	private ImageView imageBarContent;
+	private ImageView imageBarholder;
+
+	private ResReader resReader;
+	private ResReader frogReader;
+	private ResReader barReader;
+
+	private Bitmap btnBg;
+	private int frogIndex = 1;
+	private boolean onthis = false;
+	private Timer timer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
+
+
+		
+
 		points = (ImageView)findViewById(R.id.imageView1);
 		star = (ImageView)findViewById(R.id.imageStar);
+		imageSetting = (ImageView) findViewById(R.id.imageSetting);
 		
-		// SoundPlayer.init(this);
-		imageView.setBackgroundResource(R.anim.index_anmi); 
-		animDrawable = (AnimationDrawable)imageView.getBackground();
-		//加载音效
+		resReader = new ResReader(this, "achiev_not_done");
+		btnBg = resReader.getImg("achiev_not_done.png");
+		imageSetting.setImageBitmap(btnBg);
+
+		initProBar();
+
+		// imageView.setBackgroundResource(R.anim.index_anmi);
+		// animDrawable = (AnimationDrawable)imageView.getBackground();
 		star.setBackgroundResource(R.anim.star); 
 		animDrawableStar = (AnimationDrawable)star.getBackground();
 		
 		
+		frogReader = new ResReader(this, "frog_idle_small");
+
 		//加载音效
-		// SoundPlayer.pushSound(R.raw.claps3);
+		SoundPlayer.init(this);
+		SoundPlayer.pushSound(R.raw.rocket);
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
@@ -50,16 +86,92 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatMode(Animation.REVERSE);
         al.setRepeatCount(-1);
         points.startAnimation(as);  
+
        
+
 //        initJPUSH();
         
-        
-//        //这个函数是调取资源图的入口
-//		Bitmap animDrawable = getImg("achiev_info", "rate-button2.png");
-//		imageTest.setImageBitmap(animDrawable);
-//        
+
+		imageSetting.setOnClickListener(new Button.OnClickListener() {// 设置界面
+			@Override
+			public void onClick(View v) {
+						onthis = false;
+						stopTimer();
+						Intent intentGo = new Intent();
+						intentGo.setClass(ViewWelcome.this,
+								ActivitySetting.class);
+						startActivity(intentGo);
+			}
+		});
+
+		// 再做个线程，更新青蛙动画
+
+		timer = new Timer();
+		timer.schedule(timetask, 0, 40);
+		onthis = true;
+
+	}
+
+	private void setProBar(float barlong) {
+		imageBarContent.setScaleX(barlong);
 	}
 	
+	private void initProBar() {
+		// 经验进度条
+		imageBarShadow = (ImageView) findViewById(R.id.imageShadow);
+		imageBarBg = (ImageView) findViewById(R.id.imageBarBackground);
+		imageBarContent = (ImageView) findViewById(R.id.imageBarContent);
+		imageBarholder = (ImageView) findViewById(R.id.imageBarholder);
+
+		barReader = new ResReader(this, "exp_bar");
+		imageBarShadow.setImageBitmap(barReader
+				.getImg("exp_bar_holder_back.png"));
+		imageBarBg.setImageBitmap(barReader.getImg("exp_bar_holder.png"));
+		imageBarContent.setImageBitmap(barReader.getImg("exp_bar.png"));
+
+	}
+	
+
+	Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			updateFrog();
+			super.handleMessage(msg);
+		}
+	};
+	
+	private void stopTimer() {
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+		if (timetask != null) {
+			timetask.cancel();
+			timetask = null;
+		}
+	}
+
+	TimerTask timetask = new TimerTask() {
+		public void run() {
+			Message message = new Message();
+			message.what = 1;
+			handler.sendMessage(message);
+		}
+	};
+
+	// 首页动画
+	private void updateFrog() {
+		Bitmap bit = frogReader.getImg("frog_idle_small0"
+				+ String.format("%03d", frogIndex) + ".png");
+		Log(String.format("%03d", frogIndex));
+		if (frogIndex >= 200) {
+			frogIndex = 1;
+		} else {
+			frogIndex++;
+		}
+		setProBar((float) frogIndex / 200);
+		imageView.setImageBitmap(bit);
+
+	}
 	protected void initJPUSH()
 	{
 //		 JPushInterface.setDebugMode(true);
@@ -78,31 +190,10 @@ public class ViewWelcome extends ViewBase {
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
 		super.onWindowFocusChanged(hasFocus);
-		animDrawable.start();
+		// animDrawable.start();
 		animDrawableStar.start();
 	}
 	
-	
-//	@SuppressWarnings("deprecation")
-//	public void AnimateFrame()
-//	{
-//		
-//		Bitmap frogBitmap = ReadBitmap(this, R.drawable.frog_smile_frame);
-//		for (int i = 0; i < 4; i++) {
-//			Bitmap frameBitmap = Bitmap.createBitmap(frogBitmap, 0, 100*i, 100, 100);
-//			animDrawable.addFrame(new BitmapDrawable(getResources(),frameBitmap), 100);
-//		}
-//		
-//		animDrawable.setOneShot(false);
-//		int sdk = android.os.Build.VERSION.SDK_INT;
-//		if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-//		    imageView.setBackgroundDrawable(animDrawable);
-//		} else {
-//		    imageView.setBackground(animDrawable);
-//		}
-//		
-//		animDrawable.start();
-//	}
 	
 	/**
 	 * 停止动画
@@ -114,26 +205,6 @@ public class ViewWelcome extends ViewBase {
 		goMain.setClass(ViewWelcome.this, ViewSelectGame.class);
 		startActivity(goMain);
 	}
-	
-	public void gotoMain()
-	{
-		Intent intentGo = new Intent();
-		intentGo.setClass(ViewWelcome.this, ViewSelectGame.class);
-		startActivity(intentGo);
-//		finish();
-	}
-	
-//	public Bitmap ReadBitmap(Context context,int resID)
-//	{
-//		BitmapFactory.Options options = new BitmapFactory.Options();
-//		options.inPreferredConfig = Bitmap.Config.RGB_565;
-//		options.inPurgeable = true;
-//		options.inInputShareable = true;
-//		
-//		//获取图片资源
-//		InputStream inputStream = context.getResources().openRawResource(resID);
-//		return BitmapFactory.decodeStream(inputStream, null, options);
-//	}
 	
 	@Override
 	public void onDestroy()

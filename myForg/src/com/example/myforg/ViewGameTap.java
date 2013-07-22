@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -18,7 +19,11 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,7 +40,29 @@ public class ViewGameTap extends ViewBase {
 	private Button btnFrogback;
 	private boolean start;
 	private int peraddscour;
+	private Integer frogHeight;
+	private Integer frogWidth;
 	
+
+	public int getFrogHeight() {
+		return frogHeight;
+	}
+
+
+	public void setFrogHeight(int frogHeight) {
+		this.frogHeight = frogHeight;
+	}
+
+
+	public int getFrogWidth() {
+		return frogWidth;
+	}
+
+
+	public void setFrogWidth(int frogWidth) {
+		this.frogWidth = frogWidth;
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,11 +116,23 @@ public class ViewGameTap extends ViewBase {
 //
 		btnFrog = (Button) findViewById(R.id.cryfrog);// 获取按钮资源
 		btnFrogback = (Button) findViewById(R.id.reset);//获取按钮资源
+		final AnimationSet aniSet	= new AnimationSet(true);
+		final ScaleAnimation scaleAn	= new ScaleAnimation(1.02f, 1f, 1.02f, 1f);
+		final ScaleAnimation scaleAni	= new ScaleAnimation(1.0f, 1.02f, 1.0f, 1.02f);
 		
+//		final ScaleAnimation scaleAni	= new ScaleAnimation(btnFrog.getContext(),);
+		scaleAni.setDuration(10);
+		scaleAn.setDuration(10);
+		scaleAn.setStartOffset(10);
+		aniSet.addAnimation(scaleAni);
+		aniSet.addAnimation(scaleAn);
+		btnFrog.setAnimation(aniSet);
 		// Btn1添加监听
 		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
 			@Override
 			public void onClick(View v) {
+//				aniSet.reset();
+				v.startAnimation(aniSet);
 				if(start==false)
 				{
 					start=true;
@@ -128,6 +167,7 @@ public class ViewGameTap extends ViewBase {
 					}
 				}
 				updateText();
+				
 				
 			}
 		});

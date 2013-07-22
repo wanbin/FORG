@@ -22,4 +22,14 @@
     <string name="gamedisplay">爆青蛙</string>
     <string name="gamecolor">画青蛙</string>
     <string name="frogRun">跑青蛙</string>
+    <string name="btnJume">跳青蛙</string>
+    <string name="txtSound">音效：开</string>
+    <string name="txtMusic">声音：开</string>
+    <string name="txtSoundOff">音效：关</string>
+    <string name="txtMusicOff">声音：关</string>
+    <string name="txtReset">重新开始</string>
+    <string name="txtLangCn">语言：中文</string>
+    <string name="txtLangEn">语言：英文</string>
+    <string name="txtCre">制作人</string>
+          
 </resources>
