@@ -35,7 +35,8 @@ public class ViewGameTap extends ViewBase {
 	private int peraddscour;
 	private Integer frogHeight;
 	private Integer frogWidth;
-	
+	//判断游戏是否结束
+	private boolean flag; 
 
 	public int getFrogHeight() {
 		return frogHeight;
@@ -96,6 +97,7 @@ public class ViewGameTap extends ViewBase {
 		plus_time = (TextView)findViewById(R.id.plusTime);
 		plus_target = (TextView)findViewById(R.id.plusTarget);
 		
+		flag	= true;
 		source=0;
 		timelimit=500;
 		tagretsource=20;
@@ -205,7 +207,9 @@ public class ViewGameTap extends ViewBase {
 	
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-			addTenMMS();
+			if(flag){
+				addTenMMS();
+			}
 			super.handleMessage(msg);
 		}
 	};
@@ -230,6 +234,8 @@ public class ViewGameTap extends ViewBase {
 //			timer.cancel();
 			btnFrog.setClickable(false);
 			btnFrogback.setClickable(true);
+			showScore(this.source,this.maxSource);
+			flag	= false;
 		}
 		updateTime();
 	}
@@ -264,16 +270,11 @@ public class ViewGameTap extends ViewBase {
 		return ;
 	}
 	
-	protected void selectGame(String score) {
-		Intent intentGo = new Intent()
-		;
-		Bundle bundle = new Bundle();
-		/*字符、字符串、布尔、字节数组、浮点数等等，都可以传*/
-		bundle.putString("thisScore", score);
-//		/*把bundle对象assign给Intent*/
-		intentGo.putExtras(bundle);
-
-		intentGo.setClass(ViewGameTap.this, ShowScore.class);
-		startActivity(intentGo);
+	private void showScore(int source ,int maxSource){
+		Intent scoreIntent	= new Intent();
+		scoreIntent.putExtra("currentScore", source);
+		scoreIntent.putExtra("maxScore", maxSource);
+		scoreIntent.setClass(ViewGameTap.this, ShowScore.class);
+		startActivity(scoreIntent);
 	}
 }
