@@ -77,7 +77,6 @@ public class ViewWelcome extends ViewBase {
 
 		//SoundPlayer.init(this);
 		//SoundPlayer.pushSound(R.raw.rocket);
-		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
         al.setDuration(500);
@@ -208,16 +207,9 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-		// SoundPlayer.setMusicSt(false);
-<<<<<<< HEAD
-//    	this.finish();//�ͷ�activity
-//    	System.exit(0);//�رճ���
-=======
-    	//this.finish();//�ͷ�activity
-    	//System.exit(0);//�رճ���
->>>>>>> 添加点击青蛙进入动画播放，暂时还没有跳转游戏，明天搞跳转到游戏。（这个版本大家玩不了游戏了~~�?
-    	super.onDestroy();
+		 this.finish();//�ͷ�activity
+		 System.exit(0);//�رճ���
+    	 super.onDestroy();
 	}
-	
 
 }
