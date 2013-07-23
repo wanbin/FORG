@@ -18,10 +18,8 @@ import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
-//import cn.jpush.android.api.JPushInterface;
 
 import com.example.util.ResReader;
-import com.example.util.SoundPlayer;
 
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -76,8 +74,8 @@ public class ViewWelcome extends ViewBase {
 		frogReader = new ResReader(this, "frog_idle_small");
 
 		//加载音效
-		SoundPlayer.init(this);
-		SoundPlayer.pushSound(R.raw.rocket);
+		// SoundPlayer.init(this);
+		// SoundPlayer.pushSound(R.raw.rocket);
 		
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
@@ -113,7 +111,7 @@ public class ViewWelcome extends ViewBase {
 	}
 
 	private void setProBar(float barlong) {
-		//imageBarContent.setScaleX(barlong);
+		imageBarContent.setScaleX(barlong);
 	}
 	
 	private void initProBar() {
@@ -210,8 +208,8 @@ public class ViewWelcome extends ViewBase {
 	public void onDestroy()
 	{
 		// SoundPlayer.setMusicSt(false);
-    	this.finish();//释放activity
-    	System.exit(0);//关闭程序
+		// this.finish();//释放activity
+		// System.exit(0);//关闭程序
     	super.onDestroy();
 	}
 	

@@ -28,7 +28,8 @@ public class ViewGameDisplay extends ViewBase {
 	private TextView textScoure;
 	private TextView addTime;
 	private TableLayout tableLayout;
-
+	private int randomPlayAnmi = 0;
+	private int[] aninTime;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +39,11 @@ public class ViewGameDisplay extends ViewBase {
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
 		tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-
+		aninTime = new int[25];
+		for (int i = 0; i < 25; i++) {
+			Random random = new Random();
+			aninTime[i] = Math.abs(random.nextInt()) % 100;
+		}
 		startGame.setOnClickListener(new Button.OnClickListener() {// 创建监听
 					@Override
 					public void onClick(View v) {
@@ -127,9 +132,6 @@ public class ViewGameDisplay extends ViewBase {
 				int clickcount = Math.abs(random.nextInt()) % 2 + 1;
 				btn.setBackgroundResource(R.anim.yellow);
 				btn.setMaxHeight(50);
-				AnimationDrawable animDrawable = (AnimationDrawable) btn
-						.getBackground();
-				animDrawable.start();
 				btn.setTag(clickcount);
 				// 计算本次游戏的需要点击次数
 				temclickcount += clickcount;
@@ -176,9 +178,42 @@ public class ViewGameDisplay extends ViewBase {
 			start = false;
 			startGame.setClickable(true);
 			tableLayout.setVisibility(View.INVISIBLE);
-			
+		}
+		randomPlayAnmi++;
+		if (randomPlayAnmi % 5 == 0) {
+			for (int m = 0; m < aninTime.length; m++) {
+				aninTime[m]--;
+				if (aninTime[m] <= 0) {
+					randPlayAnmi(m);
+					Random random = new Random();
+					aninTime[m] = Math.abs(random.nextInt()) % 100 + 100;
+
+				}
+			}
 		}
 		updateTime();
+	}
+
+
+	/**
+	 * 随机延迟播放动画
+	 */
+	private void randPlayAnmi(int palyindex) {
+		int tem = 0;
+		for (int i = 0; i < tableLayout.getChildCount(); i++) {
+			TableRow v = (TableRow) tableLayout.getChildAt(i);
+			for (int m = 0; m < v.getChildCount(); m++) {
+				tem++;
+				if (tem == palyindex) {
+					View imageTem = (View) v.getChildAt(m);
+					AnimationDrawable animDrawable = (AnimationDrawable) imageTem
+							.getBackground();
+					animDrawable.stop();
+					animDrawable.start();
+					return;
+				}
+			}
+		}
 	}
 
 	Handler handler = new Handler() {
