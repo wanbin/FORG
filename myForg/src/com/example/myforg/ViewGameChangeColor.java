@@ -10,6 +10,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -44,6 +45,7 @@ public class ViewGameChangeColor extends ViewBase {
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
 		tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+		tableLayout.setGravity(Gravity.CENTER);
 		aninTime = new int[25];
 		for (int i = 0; i < 25; i++) {
 			Random random = new Random();
@@ -157,6 +159,7 @@ public class ViewGameChangeColor extends ViewBase {
 		tableLayout.removeAllViews();
 		for (int n = 0; n < row; n++) {
 			TableRow tb = new TableRow(this);
+			tb.setGravity(Gravity.CENTER_HORIZONTAL);
 			tableLayout.addView(tb);
 			for (int m = 0; m < column; m++) {
 			Button btn = new Button(this);

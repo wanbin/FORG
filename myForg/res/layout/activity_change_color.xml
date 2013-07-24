@@ -41,17 +41,10 @@
         android:textColor="@color/Red" />
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/tableLayout" 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center_vertical" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:visibility="visible" >
-
-        </TableRow>
+        >
 
     </TableLayout>
 

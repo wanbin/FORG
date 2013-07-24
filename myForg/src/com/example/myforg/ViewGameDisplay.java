@@ -40,6 +40,7 @@ public class ViewGameDisplay extends ViewBase {
 		textScoure = (TextView) findViewById(R.id.textSource);
 		addTime = (TextView) findViewById(R.id.addtime);
 		tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+		tableLayout.setGravity(Gravity.CENTER);
 		aninTime = new int[25];
 		for (int i = 0; i < 25; i++) {
 			Random random = new Random();
@@ -69,9 +70,9 @@ public class ViewGameDisplay extends ViewBase {
 		int column = 2;
 		int row = 2;
 		if (gamePro == -1) {
-			newcount = 4;
-			column = 2;
-			row = 2;
+			newcount = 2;
+			column = 1;
+			row = 1;
 		} else if (gamePro == 4) {
 			newcount = 6;
 			column = 3;
@@ -126,6 +127,7 @@ public class ViewGameDisplay extends ViewBase {
 		int temclickcount = 0;
 		for (int n = 0; n < row; n++) {
 			TableRow tb = new TableRow(this);
+			tb.setGravity(Gravity.CENTER_HORIZONTAL);
 			tableLayout.addView(tb);
 			for (int m = 0; m < column; m++) {
 				Button btn = new Button(this);
