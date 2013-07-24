@@ -196,6 +196,12 @@ public class ViewGameChangeColor extends ViewBase {
 				tb.addView(btn, 65, 100);
 			}
 		}
+		
+		if (checkFinish()) {
+			initFrog(count, column, row);
+			return;
+		}
+		
 		frogcount=temclickcount;
 	}
 
