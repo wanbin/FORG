@@ -74,9 +74,9 @@ public class ViewWelcome extends ViewBase {
 		frogReader = new ResReader(this, "frog_idle_small");
 
 		//加载音效
-//		SoundPlayer.init(this);
-//		SoundPlayer.pushSound(R.raw.rocket);
-		
+
+		//SoundPlayer.init(this);
+		//SoundPlayer.pushSound(R.raw.rocket);
 		AnimationSet as=new AnimationSet(true);  
         TranslateAnimation al=new TranslateAnimation( 0,0,0,20,0,0,0,10);  
         al.setDuration(500);
@@ -200,18 +200,16 @@ public class ViewWelcome extends ViewBase {
 	{
 		
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this, ViewSelectGame.class);
+		goMain.setClass(ViewWelcome.this, kaishidonghua.class);
 		startActivity(goMain);
 	}
 	
 	@Override
 	public void onDestroy()
 	{
-		// SoundPlayer.setMusicSt(false);
-//    	this.finish();//释放activity
-//    	System.exit(0);//关闭程序
-    	super.onDestroy();
+		 this.finish();//释放activity
+		 System.exit(0);//关闭程序
+    	 super.onDestroy();
 	}
-	
 
 }
