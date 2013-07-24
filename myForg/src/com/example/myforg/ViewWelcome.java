@@ -73,8 +73,6 @@ public class ViewWelcome extends ViewBase {
 		
 		frogReader = new ResReader(this, "frog_idle_small");
 
-		//加载音效
-
 		//SoundPlayer.init(this);
 		//SoundPlayer.pushSound(R.raw.rocket);
 		AnimationSet as=new AnimationSet(true);  
@@ -90,7 +88,7 @@ public class ViewWelcome extends ViewBase {
 //        initJPUSH();
         
 
-		imageSetting.setOnClickListener(new Button.OnClickListener() {// 设置界面
+		imageSetting.setOnClickListener(new Button.OnClickListener() {// 锟斤拷锟矫斤拷锟斤拷
 			@Override
 			public void onClick(View v) {
 						onthis = false;
@@ -102,8 +100,7 @@ public class ViewWelcome extends ViewBase {
 			}
 		});
 
-		// 再做个线程，更新青蛙动画
-
+		showHLoading();
 		timer = new Timer();
 		timer.schedule(timetask, 0, 40);
 		onthis = true;
@@ -115,7 +112,6 @@ public class ViewWelcome extends ViewBase {
 	}
 	
 	private void initProBar() {
-		// 经验进度条
 		imageBarShadow = (ImageView) findViewById(R.id.imageShadow);
 		imageBarBg = (ImageView) findViewById(R.id.imageBarBackground);
 		imageBarContent = (ImageView) findViewById(R.id.imageBarContent);
@@ -156,7 +152,6 @@ public class ViewWelcome extends ViewBase {
 		}
 	};
 
-	// 首页动画
 	private void updateFrog() {
 		Bitmap bit = frogReader.getImg("frog_idle_small0"
 				+ String.format("%03d", frogIndex) + ".png");
@@ -194,7 +189,6 @@ public class ViewWelcome extends ViewBase {
 	
 	
 	/**
-	 * 停止动画
 	 */
 	public void stopAnimate(View view)
 	{
@@ -207,8 +201,8 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-		 this.finish();//释放activity
-		 System.exit(0);//关闭程序
+		// this.finish();
+		// System.exit(0);
     	 super.onDestroy();
 	}
 

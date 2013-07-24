@@ -16,15 +16,17 @@ import android.util.Log;
 
 public class ResReader{
 	
-	private static Bitmap resBitmap;
+	private Bitmap resBitmap;
 	private List<String> lineList = new ArrayList<String>();
 	private Context context;
 	private int txtId;
 	
 	/**
-	 * ¹¹Ôìº¯Êý
+	 * ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
+	 * 
 	 * @param context
-	 * @param packName  Í¼Æ¬°üµÄÃû³Æ
+	 * @param packName
+	 *            Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public ResReader(Context c,String packName) {
 		context = c;
@@ -36,8 +38,10 @@ public class ResReader{
 	
 
 	/**
-	 * ´ÓPNG×ÊÔ´ÎÄ¼þÖÐÈ¡³öÏàÓ¦µÄÍ¼Æ¬×ÊÔ´
-	 * @param imgName Í¼Æ¬Ãû³Æ
+	 * ï¿½ï¿½PNGï¿½ï¿½Ô´ï¿½Ä¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´
+	 * 
+	 * @param imgName
+	 *            Í¼Æ¬ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public Bitmap getImg(String imgName) {
@@ -67,7 +71,7 @@ public class ResReader{
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
 		
-		//»ñÈ¡Í¼Æ¬×ÊÔ´
+		// ï¿½ï¿½È¡Í¼Æ¬ï¿½ï¿½Ô´
 		InputStream inputStream = context.getResources().openRawResource(resID);
 		return BitmapFactory.decodeStream(inputStream, null, options);
 	}
@@ -89,8 +93,10 @@ public class ResReader{
 	}
 
 	/**
-	 * ´ÓÏàÓ¦µÄ×ÊÔ´ÅäÖÃÎÄ¼þÖÐÈ¡³öÀ´ÐèÒªµÄÒ»ÌõÍ¼Æ¬¼ÇÂ¼
-	 * @param imgName   Í¼Æ¬Ãû³Æ
+	 * ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ò»ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Â¼
+	 * 
+	 * @param imgName
+	 *            Í¼Æ¬ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	private List<String> getListFromRes() {

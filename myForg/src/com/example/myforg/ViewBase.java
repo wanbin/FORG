@@ -11,19 +11,19 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewParent;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ViewBase extends Activity {
@@ -63,7 +63,7 @@ public class ViewBase extends Activity {
 		as.addAnimation(fadein);
 		as.addAnimation(fadeout);
 		textView.setAnimation(as);
-		//±£Áô½áÊøÊ±Ð§¹û
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ð§ï¿½ï¿½
 		as.setFillAfter(true);
 		as.startNow();
 	}
@@ -78,9 +78,12 @@ public class ViewBase extends Activity {
 	}
 
 	/**
-	 * ´ÓPNG×ÊÔ´ÎÄ¼þÖÐÈ¡³öÏàÓ¦µÄÍ¼Æ¬×ÊÔ´
-	 * @param packName ´óÍ¼Ãû³Æ
-	 * @param imgPackName ÄÚ²¿Í¼µÄÃû³Æ
+	 * ï¿½ï¿½PNGï¿½ï¿½Ô´ï¿½Ä¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´
+	 * 
+	 * @param packName
+	 *            ï¿½ï¿½Í¼ï¿½ï¿½ï¿½
+	 * @param imgPackName
+	 *            ï¿½Ú²ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public Bitmap getImg(String packName, String imgPackName) {
@@ -109,13 +112,14 @@ public class ViewBase extends Activity {
 //		options.inPurgeable = true;
 //		options.inInputShareable = true;
 		
-		//»ñÈ¡Í¼Æ¬×ÊÔ´
+		// ï¿½ï¿½È¡Í¼Æ¬ï¿½ï¿½Ô´
 		InputStream inputStream = context.getResources().openRawResource(resID);
 		return BitmapFactory.decodeStream(inputStream, null, options);
 	}
 
 	/**
-	 * ´ÓÏàÓ¦µÄ×ÊÔ´ÅäÖÃÎÄ¼þÖÐÈ¡³öÀ´ÐèÒªµÄÒ»ÌõÍ¼Æ¬¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ò»ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Â¼
+	 * 
 	 * @param id
 	 * @param imgName
 	 * @return
@@ -147,7 +151,7 @@ public class ViewBase extends Activity {
 	{
 		ImageButton helpBtn = new ImageButton(this);
 		helpBtn.setImageResource(imageId);
-		helpBtn.setOnClickListener(new ImageButton.OnClickListener() {// ´´½¨¼àÌý
+		helpBtn.setOnClickListener(new ImageButton.OnClickListener() {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			@Override
 			public void onClick(View v) {
 				v.setVisibility(8);
@@ -156,5 +160,36 @@ public class ViewBase extends Activity {
 		
 		addContentView(helpBtn,new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
+
+	public void showHLoading() {
+		LinearLayout frlay = new LinearLayout(this);
+		TextView loading = new TextView(this);
+		loading.setText("loading...");
+		loading.setTextSize(10f);
+
+		// loading.setPadding(0, 100, 0, 0);
+		AlphaAnimation al = new AlphaAnimation(0.0f, 1.0f);
+		al.setDuration(2000);
+		al.setRepeatMode(Animation.REVERSE);
+		al.setRepeatCount(-1);
+		loading.setAnimation(al);
+		al.start();
+
+		ImageView loadingFrog = new ImageView(this);
+		loadingFrog.setBackgroundResource(R.anim.loadingfrog);
+		AnimationDrawable animDrawableStar = (AnimationDrawable) loadingFrog
+				.getBackground();
+		animDrawableStar.start();
+		frlay.addView(loadingFrog, 50, 60);
+		frlay.addView(loading);
+		frlay.setPadding(150, 200, 0, 0);
+		frlay.setOrientation(LinearLayout.VERTICAL);
+		frlay.setGravity(Gravity.CENTER);
+
+		addContentView(frlay, new LayoutParams(
+				LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT));
+	}
+
 
 }
