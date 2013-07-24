@@ -13,6 +13,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AnimationSet;
@@ -272,8 +273,11 @@ public class ViewGameTap extends ViewBase {
 	
 	private void showScore(int source ,int maxSource){
 		Intent scoreIntent	= new Intent();
-		scoreIntent.putExtra("currentScore", source);
-		scoreIntent.putExtra("maxScore", maxSource);
+		scoreIntent.putExtra("currentScore", source+"");
+		scoreIntent.putExtra("maxScore", maxSource+"");
+		
+		Log.e("intentTag", "***********source************---------"+source+"");
+		Log.e("intentTag", "***********maxSource*********---------"+maxSource+"");
 		scoreIntent.setClass(ViewGameTap.this, ShowScore.class);
 		startActivity(scoreIntent);
 	}
