@@ -275,6 +275,7 @@ public class ViewGameTap extends ViewBase {
 		Intent scoreIntent	= new Intent();
 		scoreIntent.putExtra("currentScore", source+"");
 		scoreIntent.putExtra("maxScore", maxSource+"");
+		scoreIntent.putExtra("current", source);
 		
 		Log.e("intentTag", "***********source************---------"+source+"");
 		Log.e("intentTag", "***********maxSource*********---------"+maxSource+"");
