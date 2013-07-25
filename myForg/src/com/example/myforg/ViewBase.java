@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ViewBase extends Activity {
+	protected boolean TEST = true;
 	int disWidth;
 	int disHeight;
 
