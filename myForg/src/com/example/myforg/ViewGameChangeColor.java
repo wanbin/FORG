@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
 
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,7 +56,6 @@ public class ViewGameChangeColor extends ViewBase {
 					@Override
 					public void onClick(View v) {
 						startGame();
-						remaintime.setTextColor(Color.BLACK);
 					}
 				});
 	}
@@ -301,19 +299,6 @@ public class ViewGameChangeColor extends ViewBase {
 	};
 
 	private void updateTime() {
-		if(timelimit/100<=4)
-		{
-			if(timelimit<=((timelimit%100)*100+50))
-			{
-			    remaintime.setTextColor(Color.BLACK);
-			}
-			
-		    if(timelimit/100 == timelimit%100)
-		    {
-			    remaintime.setTextColor(Color.RED);
-		    }
-		}
-		
 		remaintime.setText("Remain:"
 				+ Double.toString((double) timelimit / 100) + "s");
 	}
