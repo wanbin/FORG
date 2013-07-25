@@ -194,7 +194,7 @@ public class ViewWelcome extends ViewBase {
 	{
 		
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this, kaishidonghua.class);
+		goMain.setClass(ViewWelcome.this, ViewSelectGame.class);
 		startActivity(goMain);
 	}
 	

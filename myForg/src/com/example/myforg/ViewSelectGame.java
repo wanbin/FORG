@@ -9,8 +9,6 @@ public class ViewSelectGame extends ViewBase {
 	private Button btnGameTap;
 	private Button btnGameDiaplay;
 	private Button btnGameColor;
-	private Button btnGameRun;
-	private Button btnJump;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,11 +16,9 @@ public class ViewSelectGame extends ViewBase {
 		btnGameTap = (Button) findViewById(R.id.btnGameTap);
 		btnGameDiaplay = (Button) findViewById(R.id.btnGameDiaplay);
 		btnGameColor = (Button) findViewById(R.id.btnGameColor);
-		btnGameRun = (Button) findViewById(R.id.BtnRun);
-		btnJump = (Button) findViewById(R.id.btnJump);
 		
 		
-		btnGameTap.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnGameTap.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent goMain = new Intent();
@@ -30,7 +26,7 @@ public class ViewSelectGame extends ViewBase {
 				startActivity(goMain);
 			}
 		});
-		btnGameDiaplay.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnGameDiaplay.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent goMain = new Intent();
@@ -38,29 +34,11 @@ public class ViewSelectGame extends ViewBase {
 				startActivity(goMain);
 			}
 		});
-		btnGameColor.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnGameColor.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent goMain = new Intent();
 				goMain.setClass(ViewSelectGame.this,ViewGameChangeColor.class);
-				startActivity(goMain);
-			}
-		});
-		btnGameRun.setOnClickListener(new Button.OnClickListener() {// 创建监听
-			@Override
-			public void onClick(View v) {
-				Intent goMain = new Intent();
-						goMain.setClass(ViewSelectGame.this,
-								DriveActivity.class);
-				startActivity(goMain);
-			}
-		});
-		btnJump.setOnClickListener(new Button.OnClickListener() {// 创建监听
-			@Override
-			public void onClick(View v) {
-				Intent goMain = new Intent();
-						goMain.setClass(ViewSelectGame.this,
-								ActivityJump.class);
 				startActivity(goMain);
 			}
 		});
