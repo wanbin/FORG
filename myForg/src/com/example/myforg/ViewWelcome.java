@@ -4,7 +4,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
@@ -53,12 +56,10 @@ public class ViewWelcome extends ViewBase {
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 
 
-		
-
-		points = (ImageView)findViewById(R.id.imageView1);
-		star = (ImageView)findViewById(R.id.imageStar);
+		points = (ImageView) findViewById(R.id.imageView1);
+		star = (ImageView) findViewById(R.id.imageStar);
 		imageSetting = (ImageView) findViewById(R.id.imageSetting);
-		
+
 		resReader = new ResReader(this, "achiev_not_done");
 		btnBg = resReader.getImg("achiev_not_done.png");
 		imageSetting.setImageBitmap(btnBg);
@@ -83,7 +84,16 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatCount(-1);
         points.startAnimation(as);  
 
-       
+		//进入动画播放//
+		if (GetAnimationStat()==0) {
+			Intent goMain = new Intent();
+			goMain.setClass(ViewWelcome.this, kaishidonghua.class);
+			startActivity(goMain);
+			finish();
+			SetAnimationStat(1);
+			return;
+		}
+//动画播放完毕//
 
 //        initJPUSH();
         
@@ -201,9 +211,32 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	public void onDestroy()
 	{
-		// this.finish();
-		// System.exit(0);
-    	 super.onDestroy();
-	}
 
-}
+		// SoundPlayer.setMusicSt(false);
+
+//    	this.finish();//释放activity
+//    	System.exit(0);//关闭程序
+
+    	super.onDestroy();
+	}
+	//sharepreferances函数
+	private int GetAnimationStat() {
+//		return 5;
+		// 获取SharedPreferences对象
+		Context ctx = ViewWelcome.this;
+		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
+		return  sp.getInt("AnimationSwith", 0);
+	}
+	
+	
+	private void SetAnimationStat(int TotalTime){
+		Context ctx = ViewWelcome.this;
+		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
+		// 存入数据
+		Editor meditor = sp.edit();
+		meditor.putInt("AnimationSwith",TotalTime );
+		meditor.commit();
+		return ;
+	}
+	//sharepreferance 函数
+
