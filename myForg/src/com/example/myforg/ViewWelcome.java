@@ -84,7 +84,7 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatCount(-1);
         points.startAnimation(as);  
 
-		//½øÈë¶¯»­²¥·Å//
+		// ï¿½ï¿½ï¿½ë¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½//
 		if (GetAnimationStat()==0) {
 			Intent goMain = new Intent();
 			goMain.setClass(ViewWelcome.this, kaishidonghua.class);
@@ -93,7 +93,7 @@ public class ViewWelcome extends ViewBase {
 			SetAnimationStat(1);
 			return;
 		}
-//¶¯»­²¥·ÅÍê±Ï//
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½//
 
 //        initJPUSH();
         
@@ -214,15 +214,16 @@ public class ViewWelcome extends ViewBase {
 
 		// SoundPlayer.setMusicSt(false);
 
-//    	this.finish();//ÊÍ·Åactivity
-//    	System.exit(0);//¹Ø±Õ³ÌÐò
+		// this.finish();//ï¿½Í·ï¿½activity
+		// System.exit(0);//ï¿½Ø±Õ³ï¿½ï¿½ï¿½
 
     	super.onDestroy();
 	}
-	//sharepreferancesº¯Êý
+
+	// sharepreferancesï¿½ï¿½ï¿½ï¿½
 	private int GetAnimationStat() {
 //		return 5;
-		// »ñÈ¡SharedPreferences¶ÔÏó
+		// ï¿½ï¿½È¡SharedPreferencesï¿½ï¿½ï¿½ï¿½
 		Context ctx = ViewWelcome.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
 		return  sp.getInt("AnimationSwith", 0);
@@ -232,11 +233,10 @@ public class ViewWelcome extends ViewBase {
 	private void SetAnimationStat(int TotalTime){
 		Context ctx = ViewWelcome.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
-		// ´æÈëÊý¾Ý
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Editor meditor = sp.edit();
 		meditor.putInt("AnimationSwith",TotalTime );
 		meditor.commit();
 		return ;
 	}
-	//sharepreferance º¯Êý
-
+}

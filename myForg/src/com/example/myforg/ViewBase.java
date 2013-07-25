@@ -30,7 +30,6 @@ public class ViewBase extends Activity {
 	protected boolean TEST = true;
 	int disWidth;
 	int disHeight;
-	boolean TEST=true;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
