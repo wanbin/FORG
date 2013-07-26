@@ -1,8 +1,10 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.example.myforg.R;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.AnimationDrawable;
@@ -16,7 +18,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ViewGameDisplay extends ViewBase {
+public class GamePop extends GameBase {
 	protected Button startGame;
 	protected View viewcan;
 	private int frogcount;
@@ -34,7 +36,7 @@ public class ViewGameDisplay extends ViewBase {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_change_color);
+		setContentView(R.layout.game_painter);
 		startGame = (Button) findViewById(R.id.btnStart);
 		remaintime = (TextView) findViewById(R.id.remaintime);
 		textScoure = (TextView) findViewById(R.id.textSource);
@@ -46,7 +48,7 @@ public class ViewGameDisplay extends ViewBase {
 			Random random = new Random();
 			aninTime[i] = Math.abs(random.nextInt()) % 100;
 		}
-		startGame.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		startGame.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						startGame();
@@ -62,9 +64,7 @@ public class ViewGameDisplay extends ViewBase {
 		updateTime();
 	}
 
-	/**
-	 * 这个方法控制游戏进程
-	 */
+	
 	protected void controlGame() {
 		int newcount = -1;
 		int column = 2;
@@ -136,9 +136,9 @@ public class ViewGameDisplay extends ViewBase {
 				btn.setBackgroundResource(R.anim.yellow);
 				btn.setMaxHeight(50);
 				btn.setTag(clickcount);
-				// 计算本次游戏的需要点击次数
+				
 				temclickcount += clickcount;
-				btn.setOnClickListener(new Button.OnClickListener() {// 创建监听
+				btn.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						int temtag = (Integer) v.getTag();
@@ -157,7 +157,6 @@ public class ViewGameDisplay extends ViewBase {
 						}
 					}
 				});
-				// 设置内部按键大小
 				tb.addView(btn, 65, 100);
 			}
 		}
@@ -171,7 +170,6 @@ public class ViewGameDisplay extends ViewBase {
 		return 1;
 	}
 
-	// 加十毫秒
 	private void addTenMMS() {
 		if (start == true) {
 			timelimit -= 1;
@@ -198,9 +196,6 @@ public class ViewGameDisplay extends ViewBase {
 	}
 
 
-	/**
-	 * 随机延迟播放动画
-	 */
 	private void randPlayAnmi(int palyindex) {
 		int tem = 0;
 		for (int i = 0; i < tableLayout.getChildCount(); i++) {

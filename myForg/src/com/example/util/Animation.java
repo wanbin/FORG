@@ -10,24 +10,23 @@ import android.graphics.Paint;
 
 public class Animation {
 
-	/** …œ“ª÷°≤•∑≈ ±º‰ **/
+	/*Âä®ÁîªÁªìÊùüÊó∂Èó¥*/
 	private long mLastPlayTime = 0;
-	/** ≤•∑≈µ±«∞÷°µƒID **/
+	/*Âä®ÁîªÁªìÊùüÂ∏ßID*/
 	private int mPlayID = 0;
-	/** ∂Øª≠frame ˝¡ø **/
+	/*Âä®ÁîªÂ∏ßÊï∞*/
 	private int mFrameCount = 0;
-	/** ”√”⁄¥¢¥Ê∂Øª≠◊ ‘¥Õº∆¨ **/
+	/*Bitmap Êï∞ÁªÑ*/
 	private Bitmap[] mframeBitmap = null;
-	/**  «∑Ò—≠ª∑≤•∑≈ **/
+	/*ÊòØÂê¶Âæ™ÁéØÊí≠Êîæ*/
 	private boolean mIsLoop = false;
-	/** ≤•∑≈Ω· ¯ **/
+	/*ÊòØÂê¶ÁªìÊùü*/
 	private boolean mIsend = false;
-	/** ∂Øª≠≤•∑≈º‰œ∂ ±º‰ **/
+	/*Èó¥ÈöîÊó∂Èó¥*/
 	private static final int ANIM_TIME = 100;
 
 	/**
-	 * ππ‘Ï∫Ø ˝
-	 * 
+	 * ÊûÑÈÄ†ÂáΩÊï∞
 	 * @param context
 	 * @param frameBitmapID
 	 * @param isloop
@@ -42,8 +41,7 @@ public class Animation {
 	}
 
 	/**
-	 * ππ‘Ï∫Ø ˝
-	 * 
+	 * ÊûÑÈÄ†ÂáΩÊï∞
 	 * @param context
 	 * @param frameBitmap
 	 * @param isloop
@@ -55,8 +53,7 @@ public class Animation {
 	}
 
 	/**
-	 * ªÊ÷∆∂Øª≠÷–µƒ∆‰÷–“ª÷°
-	 * 
+	 * ÁªòÂà∂Âä®ÁîªÂÖ∂‰∏≠‰∏ÄÂ∏ß
 	 * @param Canvas
 	 * @param paint
 	 * @param x
@@ -68,15 +65,13 @@ public class Animation {
 	}
 
 	/**
-	 * ªÊ÷∆∂Øª≠
-	 * 
+	 * ÁªòÂà∂Âä®Áîª
 	 * @param Canvas
 	 * @param paint
 	 * @param x
 	 * @param y
 	 */
 	public void DrawAnimation(Canvas Canvas, Paint paint, int x, int y) {
-		// »Áπ˚√ª”–≤•∑≈Ω· ¯‘ÚºÃ–¯≤•∑≈
 		if (!mIsend) {
 			Canvas.drawBitmap(mframeBitmap[mPlayID], x, y, paint);
 			long time = System.currentTimeMillis();
@@ -84,10 +79,8 @@ public class Animation {
 				mPlayID++;
 				mLastPlayTime = time;
 				if (mPlayID >= mFrameCount) {
-					// ±Í÷æ∂Øª≠≤•∑≈Ω· ¯
 					mIsend = true;
 					if (mIsLoop) {
-						// …Ë÷√—≠ª∑≤•∑≈
 						mIsend = false;
 						mPlayID = 0;
 					}
@@ -97,8 +90,7 @@ public class Animation {
 	}
 
 	/**
-	 * ∂¡»°Õº∆¨◊ ‘¥
-	 * 
+	 * ËØªÂèñBitmap
 	 * @param context
 	 * @param resId
 	 * @return
@@ -108,7 +100,6 @@ public class Animation {
 		opt.inPreferredConfig = Bitmap.Config.RGB_565;
 		opt.inPurgeable = true;
 		opt.inInputShareable = true;
-		// ªÒ»°◊ ‘¥Õº∆¨
 		InputStream is = context.getResources().openRawResource(resId);
 		return BitmapFactory.decodeStream(is, null, opt);
 	}

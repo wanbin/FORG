@@ -1,10 +1,12 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+
+import com.example.myforg.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,8 +27,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-public class ViewBase extends Activity {
+//测试编码：如果你能看懂此行，恭喜你，编码正确！
+public class GameBase extends Activity {
 	protected boolean TEST = true;
 	int disWidth;
 	int disHeight;
@@ -63,7 +65,6 @@ public class ViewBase extends Activity {
 		as.addAnimation(fadein);
 		as.addAnimation(fadeout);
 		textView.setAnimation(as);
-		// ��������ʱЧ��
 		as.setFillAfter(true);
 		as.startNow();
 	}
@@ -78,12 +79,9 @@ public class ViewBase extends Activity {
 	}
 
 	/**
-	 * ��PNG��Դ�ļ���ȡ����Ӧ��ͼƬ��Դ
-	 * 
+	 * �峰��剧���欢
 	 * @param packName
-	 *            ��ͼ���
 	 * @param imgPackName
-	 *            �ڲ�ͼ�����
 	 * @return
 	 */
 	public Bitmap getImg(String packName, String imgPackName) {
@@ -112,18 +110,10 @@ public class ViewBase extends Activity {
 //		options.inPurgeable = true;
 //		options.inInputShareable = true;
 		
-		// ��ȡͼƬ��Դ
 		InputStream inputStream = context.getResources().openRawResource(resID);
 		return BitmapFactory.decodeStream(inputStream, null, options);
 	}
 
-	/**
-	 * ����Ӧ����Դ�����ļ���ȡ������Ҫ��һ��ͼƬ��¼
-	 * 
-	 * @param id
-	 * @param imgName
-	 * @return
-	 */
 	public String[] getStringFromRes(int id, String imgName) {
 		InputStream inputStream = getResources().openRawResource(id);
 		InputStreamReader inputStreamReader = null;
@@ -151,7 +141,7 @@ public class ViewBase extends Activity {
 	{
 		ImageButton helpBtn = new ImageButton(this);
 		helpBtn.setImageResource(imageId);
-		helpBtn.setOnClickListener(new ImageButton.OnClickListener() {// ��������
+		helpBtn.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				v.setVisibility(8);

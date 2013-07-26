@@ -21,13 +21,6 @@ public class ResReader{
 	private Context context;
 	private int txtId;
 	
-	/**
-	 * ���캯��
-	 * 
-	 * @param context
-	 * @param packName
-	 *            ͼƬ������
-	 */
 	public ResReader(Context c,String packName) {
 		context = c;
 		txtId = context.getResources().getIdentifier("com.example.myforg:drawable/"+packName+"_txt",null,null);
@@ -36,12 +29,9 @@ public class ResReader{
 		this.getListFromRes();
 	}
 	
-
 	/**
-	 * ��PNG��Դ�ļ���ȡ����Ӧ��ͼƬ��Դ
-	 * 
+	 * 获取图片
 	 * @param imgName
-	 *            ͼƬ���
 	 * @return
 	 */
 	public Bitmap getImg(String imgName) {
@@ -65,17 +55,26 @@ public class ResReader{
 		return Integer.parseInt(str.replaceAll(" ","") );
 	}
 	
+	/**
+	 * 读取bitmap大图
+	 * @param resID
+	 * @return
+	 */
 	private Bitmap ReadBitmap(int resID)
 	{
 		Log.d("resReader","read bitmap");
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
 		
-		// ��ȡͼƬ��Դ
 		InputStream inputStream = context.getResources().openRawResource(resID);
 		return BitmapFactory.decodeStream(inputStream, null, options);
 	}
 	
+	/**
+	 * 读出图片所在行
+	 * @param imgName
+	 * @return
+	 */
 	private String[] getImageString(String imgName)
 	{
 		if (lineList == null)
@@ -93,10 +92,7 @@ public class ResReader{
 	}
 
 	/**
-	 * ����Ӧ����Դ�����ļ���ȡ������Ҫ��һ��ͼƬ��¼
-	 * 
-	 * @param imgName
-	 *            ͼƬ���
+	 * 将文本放入List以便以后使用
 	 * @return
 	 */
 	private List<String> getListFromRes() {

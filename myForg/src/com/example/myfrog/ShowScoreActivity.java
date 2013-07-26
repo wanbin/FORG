@@ -1,4 +1,6 @@
-package com.example.myforg;
+package com.example.myfrog;
+
+import com.example.myforg.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +8,12 @@ import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**游戏结束后，显示本局等分和 历史最好记录
+/**
+ * 鏄剧ず鎴愮哗鍒嗘暟
  * @author liuchunlong
  * @version 2013-07-17 00:23
  */
-public class ShowScore extends ViewBase {
+public class ShowScoreActivity extends GameBase {
 	private TextView text_currentScore;
 	private TextView text_maxScore;
 	private int defaultMax;
@@ -19,12 +22,11 @@ public class ShowScore extends ViewBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.show_score);
-		Log.v("tag", "CREATE View " + ShowScore.class + "Success!");
+		setContentView(R.layout.show_score_activity);
+		Log.v("tag", "CREATE View " + ShowScoreActivity.class + "Success!");
 		text_currentScore	= (TextView)findViewById(R.id.textView4); 
 		text_maxScore	= (TextView)findViewById(R.id.textView3); 
 		ratBar			= (RatingBar)findViewById(R.id.ratingBar1); 
-		//设置intent传递的值
 		setText();
 //		Intent intent	= getIntent();
 //		String currentScore	= intent.getStringExtra("currentScore");
@@ -41,9 +43,6 @@ public class ShowScore extends ViewBase {
 		
 	}
 	
-	/**
-	 * 获取游戏结束后 跳转页面时候传入的值
-	 */
 	private void setText(){
 		Intent intent	= this.getIntent();
 		String currentScore	= intent.getStringExtra("currentScore");
@@ -53,7 +52,7 @@ public class ShowScore extends ViewBase {
 			text_maxScore.setText(maxScore);
 			text_currentScore.setText(currentScore);
 		}
-		//设置RatingBar
+		//鏇存柊RatingBar
 		ratBar.setRating(current/20);
 	}
 	

@@ -1,4 +1,4 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -7,9 +7,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myforg.R;
 import com.example.util.ResReader;
 
-public class ActivitySetting extends ViewBase {
+public class SettingActivity extends GameBase {
 	private ImageView btnSetSound;
 	private ImageView btnSetMusic;
 	private ImageView btnSetLang;
@@ -32,7 +33,7 @@ public class ActivitySetting extends ViewBase {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setting);
+		setContentView(R.layout.setting_activity);
 		btnSetSound = (ImageView) findViewById(R.id.imageSetSound);
 		btnSetMusic = (ImageView) findViewById(R.id.imageSetMusic);
 		btnSetLang = (ImageView) findViewById(R.id.imageSetLang);
@@ -57,35 +58,35 @@ public class ActivitySetting extends ViewBase {
 		txtCrid = (TextView) findViewById(R.id.txtCri);
 		txtReset = (TextView) findViewById(R.id.txtReset);
 		
-		btnSetSound.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnSetSound.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 						setSound();
 			}
 		});
-		btnSetMusic.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnSetMusic.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 						setMusic();
 			}
 		});
-		btnSetLang.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnSetLang.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 						setLang();
 			}
 		});
-		btnSetCrid.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnSetCrid.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 			}
 		});
-		btnSetReset.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnSetReset.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 					}
 				});
-		btnReturn.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnReturn.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 						finish();

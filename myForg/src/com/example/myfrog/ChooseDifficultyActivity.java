@@ -1,19 +1,16 @@
-//wanbin 困难选择界面
-package com.example.myforg;
+package com.example.myfrog;
 
-import com.example.util.SoundPlayer;
+import com.example.myforg.R;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class ViewChangeHard extends ViewBase {
+public class ChooseDifficultyActivity extends GameBase {
 	protected Button simple;
 	protected Button middle;
 	protected Button hard;
@@ -21,8 +18,7 @@ public class ViewChangeHard extends ViewBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.change_hard);
-		//在这里load音效
+		setContentView(R.layout.choose_difficulty_activity);
 //		SoundPlayer.init(ViewChangeHard.this);
 //		SoundPlayer.playMusic(R.raw.clap, true);
 		
@@ -32,19 +28,19 @@ public class ViewChangeHard extends ViewBase {
 		hard = (Button)findViewById(R.id.btnhard);
 		
 		
-		simple.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		simple.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				selectGame("simple");
 			}
 		});
-		middle.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		middle.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				selectGame("middle");
 			}
 		});
-		hard.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		hard.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				selectGame("hard");
@@ -53,15 +49,12 @@ public class ViewChangeHard extends ViewBase {
 	}
 	
 	protected void selectGame(String hard) {
-		Intent intentGo = new Intent()
-		;
+		Intent intentGo = new Intent();
 		Bundle bundle = new Bundle();
-		/*字符、字符串、布尔、字节数组、浮点数等等，都可以传*/
 		bundle.putString("SelectHard", hard);
-//		/*把bundle对象assign给Intent*/
 		intentGo.putExtras(bundle);
 
-		intentGo.setClass(ViewChangeHard.this, ViewGameTap.class);
+		intentGo.setClass(ChooseDifficultyActivity.this, GameTap.class);
 		startActivity(intentGo);
 	}
 	

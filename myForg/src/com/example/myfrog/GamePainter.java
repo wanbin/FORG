@@ -1,10 +1,12 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
+
+import com.example.myforg.R;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -18,7 +20,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ViewGameChangeColor extends ViewBase {
+/**
+ * 闈掕洐娑傝壊
+ * @author wanbin
+ */
+public class GamePainter extends GameBase {
 	protected Button startGame;
 	protected View viewcan;
 	private int frogcount;
@@ -30,7 +36,6 @@ public class ViewGameChangeColor extends ViewBase {
 	private TextView remaintime;
 	private TextView textScoure;
 	private TextView addTime;
-	// tag 分别为0的时候取什么颜色的青蛙
 	private String tag0;
 	private String tag1;
 	private TableLayout tableLayout;
@@ -39,7 +44,7 @@ public class ViewGameChangeColor extends ViewBase {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_change_color);
+		setContentView(R.layout.game_painter);
 		showHelpViewByImageId(R.drawable.cg_jump_001);
 		startGame = (Button) findViewById(R.id.btnStart);
 		remaintime = (TextView) findViewById(R.id.remaintime);
@@ -53,7 +58,7 @@ public class ViewGameChangeColor extends ViewBase {
 			aninTime[i] = Math.abs(random.nextInt()) % 100;
 		}
 		// girdlayout = (GridLayout) findViewById(R.id.gridlayout1);
-		startGame.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		startGame.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						startGame();
@@ -70,9 +75,6 @@ public class ViewGameChangeColor extends ViewBase {
 		updateTime();
 	}
 
-	/**
-	 * 这个方法控制游戏进程
-	 */
 	protected void controlGame() {
 		int newcount = -1;
 		int column = 2;
@@ -124,10 +126,8 @@ public class ViewGameChangeColor extends ViewBase {
 		initFrog(newcount, column, row);
 		gamePro = newcount;
 	}
+	
 
-	/**
-	 * 随机青蛙的颜色
-	 */
 	private void randomColor() {
 		String[] colorArr = { "yellow", "pink", "blue", "green" };
 
@@ -171,9 +171,8 @@ public class ViewGameChangeColor extends ViewBase {
 			btn.setTag(clickcount);
 			btn.setBackgroundResource(returnTagColor(clickcount));
 
-			//计算本次游戏的需要点击次数
 			temclickcount+=clickcount;
-			btn.setOnClickListener(new Button.OnClickListener() {// 创建监听
+			btn.setOnClickListener(new Button.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					int temtag=(Integer)v.getTag();
@@ -236,7 +235,6 @@ public class ViewGameChangeColor extends ViewBase {
 		return 1;
 	}
 
-	// 加十毫秒
 	private void addTenMMS() {
 		if (start == true) {
 			timelimit -= 1;
@@ -263,9 +261,6 @@ public class ViewGameChangeColor extends ViewBase {
 		updateTime();
 	}
 
-	/**
-	 * 随机延迟播放动画
-	 */
 	private void randPlayAnmi(int palyindex) {
 		int tem = 0;
 		for (int i = 0; i < tableLayout.getChildCount(); i++) {

@@ -12,32 +12,38 @@ import android.media.SoundPool;
 import com.example.myforg.R;
 
 /**
- * ÉùÒô¿ØÖÆÀà
+ * å£°éŸ³æ’­æ”¾ç±»
  * @author Wenson
  * @version 2013-07-06
  */
 public class SoundPlayer{
 
+	/*èƒŒæ™¯éŸ³ä¹*/
 	private static MediaPlayer music;
+	/*æ¸¸æˆéŸ³æ•ˆ*/
 	private static SoundPool soundPool;
-	
-	private static boolean musicSt = true; // ÒôÀÖ¿ª¹Ø
-	private static boolean soundSt = true; // ÒôĞ§¿ª¹Ø
+	/*éŸ³ä¹å¼€å…³*/
+	private static boolean musicSt = true; 
+	/*éŸ³æ•ˆå¼€å…³*/
+	private static boolean soundSt = true;
 	private static Context context;
 	
-	private static Map<Integer,Integer> soundMap; //ÒôĞ§×ÊÔ´idÓë¼ÓÔØ¹ıºóµÄÒôÔ´idµÄÓ³Éä¹ØÏµ±í
+	private static Map<Integer,Integer> soundMap; 
 	
+	/**
+	 * åˆå§‹åŒ–éŸ³æ•ˆ
+	 * @param pContext
+	 */
 	@SuppressLint("UseSparseArrays")
 	public static void init(Context pContext) {
 		context = pContext;
-		//³õÊ¼»¯ÒôĞ§µÄ¶«Î÷ SoundPool
 		soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC,100);
 		soundMap  = new HashMap<Integer, Integer>();
 	}
 	
 	/**
-	 * ²¥·ÅÒôĞ§
-	 * @param resId ÒôĞ§×ÊÔ´id
+	 * æ’­æ”¾éŸ³æ•ˆ
+	 * @param resId  èµ„æºID
 	 */
 	public static void playSound(int resId)
 	{
@@ -49,9 +55,8 @@ public class SoundPlayer{
 		}
 	}
 	
-	
 	/**
-	 * ÌáÇ°¼ÓÔØÒôĞ§
+	 * åŠ è½½éŸ³æ•ˆ
 	 * @param resId
 	 */
 	public static void pushSound(int resId)
@@ -61,30 +66,20 @@ public class SoundPlayer{
 	}
 	
 	/**
-	 * ²¥·ÅÒôÀÖ
-	 * @param resId ×ÊÔ´ID
-	 * @param loop  ÊÇ·ñÑ­»·
+	 * æ’­æ”¾éŸ³ä¹
+	 * @param resId
+	 * @param loop
 	 */
 	public static void playMusic(int resId, boolean loop) {
 		if (musicSt) {
 			music = MediaPlayer.create(context, resId);
 			music.start();
 			music.setLooping(loop);
-			//¼àÌı²¥·ÅÍê³ÉÊÂ¼ş
-//			music.setOnCompletionListener(new OnCompletionListener() {
-//				@Override
-//				public void onCompletion(MediaPlayer mp) {
-//					mp.seekTo(0);
-//					Log.v("Loop", "Completed");
-//					music.seekTo(3000);
-//					music.start();
-//				}
-//			});
 		}
 	}
 	
 	/**
-	 * ÔİÍ£ÒôÀÖ
+	 * æš‚åœéŸ³ä¹
 	 */
 	public static void pauseMusic()
 	{
@@ -92,17 +87,15 @@ public class SoundPlayer{
 			music.pause();
 	}
 	
-	
 	/**
-	 * »ñµÃÒôÀÖ¿ª¹Ø×´Ì¬
-	 * @return boolean
+	 * è·å¾—éŸ³ä¹å¼€å…³çŠ¶æ€
+	 * @return
 	 */
 	public static boolean getMusicSt() {
 		return musicSt;
 	}
-	
 	/**
-	 * ÉèÖÃÒôÀÖ¿ª¹Ø×´Ì¬
+	 * è®¾ç½®éŸ³ä¹å¼€å…³çŠ¶æ€
 	 * @param musicSt
 	 */
 	public static void setMusicSt(boolean musicSt) {
@@ -112,17 +105,15 @@ public class SoundPlayer{
 		else
 			music.stop();
 	}
-
 	/**
-	 * »ñµÃÒôĞ§¿ª¹Ø×´Ì¬
+	 * è·å–éŸ³æ•ˆå¼€å…³çŠ¶æ€
 	 * @return
 	 */
 	public static boolean getSoundSt() {
 		return soundSt;
 	}
-
 	/**
-	 * ÉèÖÃÒôĞ§¿ª¹Ø
+	 * è®¾ç½®éŸ³æ•ˆå¼€å…³çŠ¶æ€
 	 * @param soundSt
 	 */
 	public static void setSoundSt(boolean soundSt) {
@@ -130,7 +121,7 @@ public class SoundPlayer{
 	}
 	
 	/**
-	 * ·¢³ö¹ÄÕÆµÄÉùÒô
+	 * æ’­æ”¾é¼“æŒéŸ³æ•ˆ
 	 */
 	public static void clap()
 	{

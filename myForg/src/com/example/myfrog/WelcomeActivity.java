@@ -1,4 +1,4 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,11 +22,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.myforg.R;
 import com.example.util.ResReader;
 
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class ViewWelcome extends ViewBase {
+public class WelcomeActivity extends GameBase {
 	
 	private ImageView imageView;
 	private ImageView points;
@@ -52,7 +52,7 @@ public class ViewWelcome extends ViewBase {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_welcome);
+		setContentView(R.layout.welcome_activity);
 		imageView = (ImageView)findViewById(R.id.frog_welcome);
 
 
@@ -84,28 +84,26 @@ public class ViewWelcome extends ViewBase {
         al.setRepeatCount(-1);
         points.startAnimation(as);  
 
-		// ���붯������//
 		if (GetAnimationStat()==0) {
 			Intent goMain = new Intent();
-			goMain.setClass(ViewWelcome.this, kaishidonghua.class);
+			goMain.setClass(WelcomeActivity.this, VideoActivity.class);
 			startActivity(goMain);
 			finish();
 			SetAnimationStat(1);
 			return;
 		}
-		// �����������//
 
 //        initJPUSH();
         
 
-		imageSetting.setOnClickListener(new Button.OnClickListener() {// ���ý���
+		imageSetting.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 						onthis = false;
 						stopTimer();
 						Intent intentGo = new Intent();
-						intentGo.setClass(ViewWelcome.this,
-								ActivitySetting.class);
+						intentGo.setClass(WelcomeActivity.this,
+								SettingActivity.class);
 						startActivity(intentGo);
 			}
 		});
@@ -165,7 +163,6 @@ public class ViewWelcome extends ViewBase {
 	private void updateFrog() {
 		Bitmap bit = frogReader.getImg("frog_idle_small0"
 				+ String.format("%03d", frogIndex) + ".png");
-//		Log(String.format("%03d", frogIndex));
 		if (frogIndex >= 200) {
 			frogIndex = 1;
 		} else {
@@ -198,13 +195,12 @@ public class ViewWelcome extends ViewBase {
 	}
 	
 	
-	/**
-	 */
+	
 	public void stopAnimate(View view)
 	{
 		
 		Intent goMain = new Intent();
-		goMain.setClass(ViewWelcome.this, ViewSelectGame.class);
+		goMain.setClass(WelcomeActivity.this, ChooseGameActivity.class);
 		startActivity(goMain);
 	}
 	
@@ -213,27 +209,19 @@ public class ViewWelcome extends ViewBase {
 	{
 
 		// SoundPlayer.setMusicSt(false);
-
-		// this.finish();//�ͷ�activity
-		// System.exit(0);//�رճ���
-
     	super.onDestroy();
 	}
 
-	// sharepreferances����
 	private int GetAnimationStat() {
-//		return 5;
-		// ��ȡSharedPreferences����
-		Context ctx = ViewWelcome.this;
+		Context ctx = WelcomeActivity.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
 		return  sp.getInt("AnimationSwith", 0);
 	}
 	
 	
 	private void SetAnimationStat(int TotalTime){
-		Context ctx = ViewWelcome.this;
+		Context ctx = WelcomeActivity.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
-		// �������
 		Editor meditor = sp.edit();
 		meditor.putInt("AnimationSwith",TotalTime );
 		meditor.commit();

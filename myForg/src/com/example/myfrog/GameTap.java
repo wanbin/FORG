@@ -1,8 +1,9 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.example.myforg.R;
 import com.example.util.SoundPlayer;
 
 import android.annotation.SuppressLint;
@@ -22,7 +23,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 @SuppressLint("UseSparseArrays")
-public class ViewGameTap extends ViewBase {
+public class GameTap extends GameBase {
 	private int addTarget;
 	private int source;
 	private int tagretsource;
@@ -36,7 +37,6 @@ public class ViewGameTap extends ViewBase {
 	private int peraddscour;
 	private Integer frogHeight;
 	private Integer frogWidth;
-	//判断游戏是否结束
 	private boolean flag; 
 
 	public int getFrogHeight() {
@@ -75,13 +75,11 @@ public class ViewGameTap extends ViewBase {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.game_tap);
 		
-		//在这里load音效
-		SoundPlayer.init(ViewGameTap.this);
+		SoundPlayer.init(GameTap.this);
 		
 		Bundle bundle = this.getIntent().getExtras();
-//        /*获取Bundle中的数据，注意类型和key*/
         String hard = bundle.getString("SelectHard");
 		if ( hard.equals("hard") ) {
 			peraddscour = 6;
@@ -109,9 +107,9 @@ public class ViewGameTap extends ViewBase {
 		
 		updateText();
 		updateTime();
-//
-		btnFrog = (Button) findViewById(R.id.cryfrog);// 获取按钮资源
-		btnFrogback = (Button) findViewById(R.id.reset);//获取按钮资源
+		
+		btnFrog = (Button) findViewById(R.id.cryfrog);
+		btnFrogback = (Button) findViewById(R.id.reset);
 		final AnimationSet aniSet	= new AnimationSet(true);
 		final ScaleAnimation scaleAn	= new ScaleAnimation(1.02f, 1f, 1.02f, 1f);
 		final ScaleAnimation scaleAni	= new ScaleAnimation(1.0f, 1.02f, 1.0f, 1.02f);
@@ -123,8 +121,7 @@ public class ViewGameTap extends ViewBase {
 		aniSet.addAnimation(scaleAni);
 		aniSet.addAnimation(scaleAn);
 		btnFrog.setAnimation(aniSet);
-		// Btn1添加监听
-		btnFrog.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnFrog.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 //				aniSet.reset();
@@ -145,14 +142,10 @@ public class ViewGameTap extends ViewBase {
 					tagretsource = 20 + addTarget;
 					timelimit += 500;
 					
-					//显示提示
 					fadeIn(plus_time);
 					fadeIn(plus_target);
 					
 					plus_target.setText("+"+tagretsource);
-					
-					//播放鼓掌音效
-					
 					SoundPlayer.clap();
 				}
 				if (source > maxSource) {
@@ -169,7 +162,7 @@ public class ViewGameTap extends ViewBase {
 		});
 		
 		
-		btnFrogback.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnFrogback.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				source=0;
@@ -187,8 +180,7 @@ public class ViewGameTap extends ViewBase {
 //		
 //		
 //		
-//		// BtnGo 添加监听，用于页面的跳转
-//		BtnGo.setOnClickListener(new Button.OnClickListener() {// 创建监听
+//		BtnGo.setOnClickListener(new Button.OnClickListener() {
 //			@Override
 //			public void onClick(View v) {
 //				String strTmp = String.valueOf(a++);
@@ -224,7 +216,7 @@ public class ViewGameTap extends ViewBase {
 		}
 	};
 	
-	//加十毫秒
+	
 	private void addTenMMS() {
 		if(start)
 		{
@@ -253,18 +245,15 @@ public class ViewGameTap extends ViewBase {
 	}
 	
 	private int getMaxSource() {
-//		return 5;
-		// 获取SharedPreferences对象
-		Context ctx = ViewGameTap.this;
+		Context ctx = GameTap.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
 		return  sp.getInt("maxSource", 0);
 	}
 	
 	
 	private void setMaxSource(int source){
-		Context ctx = ViewGameTap.this;
+		Context ctx = GameTap.this;
 		SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
-		// 存入数据
 		Editor editor = sp.edit();
 		editor.putInt("maxSource",source );
 		editor.commit();
@@ -279,7 +268,7 @@ public class ViewGameTap extends ViewBase {
 		
 		Log.e("intentTag", "***********source************---------"+source+"");
 		Log.e("intentTag", "***********maxSource*********---------"+maxSource+"");
-		scoreIntent.setClass(ViewGameTap.this, ShowScore.class);
+		scoreIntent.setClass(GameTap.this, ShowScoreActivity.class);
 		startActivity(scoreIntent);
 	}
 }

@@ -1,7 +1,9 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.example.myforg.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,22 +27,8 @@ public class ChronometerActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.chronometer_main);
-
-		// chronometer = (Chronometer) findViewById(R.id.chronometer);
-		// chronometer.setFormat("计时：%s");
-
+		setContentView(R.layout.chronometer_activity);
 		Ev1 = (TextView) findViewById(R.id.textView1);
-		// Context ctx = ChronometerActivity.this;
-		// SharedPreferences sp = ctx.getSharedPreferences("SP", MODE_PRIVATE);
-		// 存入数据
-		// Editor editor = sp.edit();
-		// editor.putString("STRING_KEY", "string");
-		// editor.commit();
-
-		// String name= sp.getString("STRING_KEY", "none");
-		// Ev1.setText(name);
-
 		Timer timer = new Timer();
 		timer.schedule(timetask, 1000, 10);
 	}

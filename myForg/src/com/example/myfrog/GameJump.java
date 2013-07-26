@@ -1,4 +1,4 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,9 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.myforg.R;
 import com.example.util.ResReader;
 
-public class ActivityJump extends ViewBase {
+public class GameJump extends GameBase {
 	private ImageView btnJumpOne;
 	private ImageView btnJumpTwo;
 	// private ImageView btnFrog;
@@ -50,7 +51,7 @@ public class ActivityJump extends ViewBase {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_jump);
+		setContentView(R.layout.game_jump);
 		btnJumpOne = (ImageView) findViewById(R.id.imageOne);
 		btnJumpTwo = (ImageView) findViewById(R.id.imageTwo);
 
@@ -110,14 +111,14 @@ public class ActivityJump extends ViewBase {
 		// btnFrog.setBackgroundResource(R.anim.jump);
 		// btnFrog.bringToFront();
 		// animDrawable = (AnimationDrawable) btnFrog.getBackground();
-		btnJumpOne.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnJumpOne.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						jumpOne(1);
 					}
 				});
 
-		btnJumpTwo.setOnClickListener(new Button.OnClickListener() {// 创建监听
+		btnJumpTwo.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						jumpOne(2);
@@ -232,11 +233,9 @@ public class ActivityJump extends ViewBase {
 						}
 						if (!skip) {
 							bgMove -= 0.2;
-							// 超过显示范围
 							if (bgMove < -991 + disWidth) {
 								canvas.drawBitmap(bg1, (int) bgMove + 991, 0,
 										null);
-								// 如果退太多，就加991
 								if (bgMove < -991) {
 									bgMove += 991;
 								}
@@ -244,7 +243,6 @@ public class ActivityJump extends ViewBase {
 							canvas.drawBitmap(bg1, (int) bgMove, 0, null);
 							canvas.drawBitmap(temmap, tem * 132 + move,
 									disHeight - 160, null);
-							//绘制小鹿
 							canvas.drawBitmap(giraffe[runCount],
 									disWidth / 2 - 150,
 									150, null);

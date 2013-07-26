@@ -5,6 +5,10 @@
     android:versionName="FROG1.1" >
 
     
+	<uses-sdk
+    android:minSdkVersion="11"
+    android:targetSdkVersion="17" />
+
     <permission android:name="com.example.myforg.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
    
     <uses-permission android:name="com.example.myforg.permission.JPUSH_MESSAGE" />
@@ -90,7 +94,7 @@
         <!-- JPUSH_CHANNEL 是为了方便开发者统计APK分发渠道。-->
         <!-- 例如: -->
         <!-- 发到 Google Play 的APK可以设置为 google-play; -->
-        <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
+        <!-- 发到其他市场的 APK 可以设置为-market。 -->
         <!-- 目前这个渠道统计功能的报表还未开放。-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="google-play"/>
         <!-- Required. AppKey copied from Portal -->
@@ -98,20 +102,20 @@
         
         
         <activity
-            android:name="com.example.myforg.ViewGameTap"
+            android:name="com.example.myfrog.GameTap"
             android:label="@string/app_name" >
         </activity>
-        <activity android:name="com.example.myforg.ChronometerActivity" >
+        <activity android:name="com.example.myfrog.ChronometerActivity" >
         </activity>
         <activity
-            android:name="com.example.myforg.ViewWelcome"
+            android:name="com.example.myfrog.WelcomeActivity"
             android:label="@string/title_activity_welcome" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.myforg.ViewChangeHard"></activity>
+        <activity android:name="com.example.myfrog.ChooseDifficultyActivity"></activity>
         <activity android:name="ViewGameChangeColor"></activity>
         <activity android:name="ViewSelectGame"></activity>
         <activity android:name="ViewGameDisplay"></activity>
@@ -123,12 +127,10 @@
 
     </application>
     
-    <supports-screens  android:largeScreens="true"
-
-                                  android:normalScreens="true"
-
-                                  android:smallScreens="true"
-
-                                  android:anyDensity="true" />
+    <supports-screens  
+        android:largeScreens="true"
+        android:normalScreens="true"
+		android:smallScreens="true"
+		android:anyDensity="true" />
 
 </manifest>

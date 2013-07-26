@@ -1,4 +1,6 @@
-package com.example.myforg;
+package com.example.myfrog;
+
+import com.example.myforg.R;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -14,24 +16,19 @@ public class GiraffeModel extends Button {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-	/**
-	 * 变颜色
-	 * @param colorname
-	 */
+	
+	
 	public void changeColor(String colorname)
 	{
 		
 	}
-	/**
-	 * 叫声
-	 */
+	
 	public void call()
 	{
 		
 	}
-	/**
-	 * 首页动画
-	 */
+	
+	
 	public ImageView playIndex()
 	{
 		ImageView imageView = new ImageView(null);
@@ -41,9 +38,8 @@ public class GiraffeModel extends Button {
 		animDrawable.start();
 		return imageView;
 	}
-	/**
-	 * 加载动画lodding
-	 */
+	
+	
 	public ImageView playlodding() {
 		ImageView imageView = new ImageView(null);
 		imageView.setBackgroundResource(R.anim.index_loading);

@@ -1,4 +1,4 @@
-package com.example.myforg;
+package com.example.myfrog;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -7,8 +7,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.view.DriveView;
-
-public class DriveActivity extends Activity {
+public class GameDrive extends Activity {
 	
 	DriveView driveView ;
 	
