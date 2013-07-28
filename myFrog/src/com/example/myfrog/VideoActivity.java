@@ -2,7 +2,7 @@ package com.example.myfrog;
 
 //import java.io.File;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 import android.content.Intent;
 import android.graphics.PixelFormat;

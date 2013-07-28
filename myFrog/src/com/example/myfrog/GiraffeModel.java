@@ -1,6 +1,6 @@
 package com.example.myfrog;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;

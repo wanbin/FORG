@@ -4,16 +4,26 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.example.myforg.R;
+import javax.security.auth.callback.Callback;
+
+import com.example.myfrog.R;
+import com.example.util.ResReader;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -33,6 +43,8 @@ public class GamePop extends GameBase {
 	private TableLayout tableLayout;
 	private int randomPlayAnmi = 0;
 	private int[] aninTime;
+	//头盔破碎动画
+	private AnimationDrawable breakHelmet;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +56,16 @@ public class GamePop extends GameBase {
 		tableLayout = (TableLayout) findViewById(R.id.tableLayout);
 		tableLayout.setGravity(Gravity.CENTER);
 		aninTime = new int[25];
+		
+		//初始化帽子破碎的动画
+		ResReader resReader = new ResReader(this, "helmet");
+		breakHelmet = new AnimationDrawable();
+		for(int i=1;i<16;i++){
+			Bitmap helmet = resReader.getImg("helmet"+i);
+			BitmapDrawable frame = new BitmapDrawable(this.getResources(),helmet);
+			breakHelmet.addFrame(frame,10);
+		}
+		
 		for (int i = 0; i < 25; i++) {
 			Random random = new Random();
 			aninTime[i] = Math.abs(random.nextInt()) % 100;
@@ -126,29 +148,21 @@ public class GamePop extends GameBase {
 		tableLayout.removeAllViews();
 		int temclickcount = 0;
 		for (int n = 0; n < row; n++) {
-			TableRow tb = new TableRow(this);
-			tb.setGravity(Gravity.CENTER_HORIZONTAL);
-			tableLayout.addView(tb);
+			TableRow tableRow = new TableRow(this);
+			tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+			tableLayout.addView(tableRow);
 			for (int m = 0; m < column; m++) {
 				Button btn = new Button(this);
 				Random random = new Random();
 				int clickcount = Math.abs(random.nextInt()) % 2 + 1;
+				FrameLayout frameLayout = new FrameLayout(this);
 				btn.setBackgroundResource(R.anim.yellow);
 				btn.setMaxHeight(50);
-				btn.setTag(clickcount);
-				
 				temclickcount += clickcount;
 				btn.setOnClickListener(new Button.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						int temtag = (Integer) v.getTag();
-						if (temtag <= 1) {
-							v.setVisibility(View.INVISIBLE);
-						} else {
-							temtag -= 1;
-							v.setTag(temtag);
-						}
-
+						v.setVisibility(View.INVISIBLE);
 						frogcount--;
 						source++;
 						updateText();
@@ -157,7 +171,24 @@ public class GamePop extends GameBase {
 						}
 					}
 				});
-				tb.addView(btn, 65, 100);
+				
+				frameLayout.addView(btn);
+				if (clickcount == 2) {
+					Button helmetBtn = new Button(this);
+					helmetBtn.setBackground(breakHelmet);
+					helmetBtn.setMaxHeight(50);
+					
+					helmetBtn.setOnClickListener(new Button.OnClickListener() {
+
+						@Override
+						public void onClick(View view) {
+							// TODO 监听帽子点击事件
+							breakHelmet.start();
+						}
+					});
+					frameLayout.addView(helmetBtn);
+				}
+				tableRow.addView(frameLayout, 200, 200);
 			}
 		}
 		frogcount = temclickcount;
@@ -185,7 +216,7 @@ public class GamePop extends GameBase {
 			for (int m = 0; m < aninTime.length; m++) {
 				aninTime[m]--;
 				if (aninTime[m] <= 0) {
-					randPlayAnmi(m);
+//					randPlayAnmi(m);
 					Random random = new Random();
 					aninTime[m] = Math.abs(random.nextInt()) % 100 + 100;
 

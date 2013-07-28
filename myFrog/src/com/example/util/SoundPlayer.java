@@ -9,7 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 /**
  * 声音播放类

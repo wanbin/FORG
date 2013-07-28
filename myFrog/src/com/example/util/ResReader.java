@@ -23,9 +23,11 @@ public class ResReader{
 	
 	public ResReader(Context c,String packName) {
 		context = c;
-		txtId = context.getResources().getIdentifier("com.example.myforg:drawable/"+packName+"_txt",null,null);
-		int imgId = context.getResources().getIdentifier("com.example.myforg:drawable/"+packName,null,null);
+		txtId = context.getResources().getIdentifier("com.example.myfrog:drawable/"+packName+"_txt",null,null);
+		int imgId = context.getResources().getIdentifier("com.example.myfrog:drawable/"+packName,null,null);
 		resBitmap = this.ReadBitmap(imgId);
+		Log.d("ResReader","ReadBitmap Over");
+		Log.d("ResReader", String.valueOf(resBitmap.getWidth()));
 		this.getListFromRes();
 	}
 	
@@ -37,6 +39,7 @@ public class ResReader{
 	public Bitmap getImg(String imgName) {
 
 		String[] arr = getImageString(imgName);
+		Log.d("ResReaer", arr[0]);
 		Bitmap imgNew = null;
 		try {
 

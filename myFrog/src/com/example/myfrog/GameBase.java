@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,7 +1,7 @@
 package com.example.view;
 
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 import com.example.util.ResReader;
 import com.example.util.SoundPlayer;
 
@@ -26,8 +26,8 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	
 	private boolean running = true;
 	
-	private Bitmap background_1,background_2;   //移动的背景
-	private Bitmap streetBitmap;                //道路
+	private Bitmap background_1,background_2;  
+	private Bitmap streetBitmap;                
 	
 	private Bitmap streetLine;
 	private Bitmap upButton,upButtonClick,downButton,downButtonClick;
@@ -41,11 +41,11 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	private int speed;
 	
 	private static int 
-	_x1,                     //背景1的X坐标
-	_x2,                     //背景2的X坐标
-	_x3,                     //马路线的X坐标
-	background_width_1,      //背景1的宽度
-	background_width_2;      //背景2的宽度
+	_x1,                     
+	_x2,                    
+	_x3,                     
+	background_width_1,    
+	background_width_2;     
 	
 	private int[] _y = new int[]{150,250,350};
 	private int current = 0;
@@ -77,7 +77,6 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		downButton   = resReader.getImg("downbutton.png");
 		downButtonClick = resReader.getImg("downbutton1.png");
 		
-		//点击区域
 		upRect = new Rect(40, 510, 145, 575);
 		downRect = new Rect(830, 510, 1000, 575);
 		
@@ -105,7 +104,7 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 		_x2 = background_width_1;
 		_x3 = 0;
 		
-		speed = 20; //移动速度
+		speed = 20; //锟狡讹拷锟劫讹拷
 	}
 	
 	
@@ -120,7 +119,6 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		// 启动自定义线程进行绘图
 		drivingThread = new Thread(new DriveThread());
 		drivingThread.start();
 		
@@ -175,7 +173,6 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 					canvas.drawColor(Color.WHITE);
 					canvas.scale(scale_x,scale_y);
 					
-					//绘制背景
 					_x1 -= speed;
 					_x2 -= speed;
 					_x3 -= speed;
@@ -196,10 +193,8 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 					if (_x3 == -80) {
 						_x3 = 80;
 					}
-					//绘制马路线
 					canvas.drawBitmap(streetLine, _x3, 320, mPaint);
 					canvas.drawBitmap(streetLine, _x3, 430, mPaint);
-					//绘制背景风景
 					canvas.drawBitmap(background_1, _x1, -135, mPaint);
 					canvas.drawBitmap(background_2, _x2,-135, mPaint);
 					
@@ -208,15 +203,12 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 						runCount = 0;
 					}
 					
-					//绘制小鹿
 					Matrix m = new Matrix();
 					m.postScale(-1, 1);
 					m.postTranslate(300, _y[current]);
 					canvas.drawBitmap(giraffe[runCount], m, mPaint);
 					
-					//绘制向下的按钮
 					Matrix m2 = new Matrix();
-					//绘制向上按钮
 					m2.postScale(0.5f, 0.5f);
 					m2.postTranslate(40, 510);
 					canvas.drawBitmap(upButton, m2, mPaint);
@@ -224,7 +216,6 @@ public class DriveView extends SurfaceView implements SurfaceHolder.Callback{
 					canvas.drawBitmap(downButton, m2, mPaint);
 					
 					if (speed_x > 0) {
-						//绘制加速路障
 						int speed_y = _y[1]+100;
 						canvas.drawBitmap(speedUp,speed_x, speed_y, mPaint);
 					}

@@ -3,7 +3,7 @@ package com.example.myfrog;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

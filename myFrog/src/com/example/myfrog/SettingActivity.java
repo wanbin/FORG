@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 import com.example.util.ResReader;
 
 public class SettingActivity extends GameBase {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myforg"
+    package="com.example.myfrog"
     android:versionCode="14"
     android:versionName="FROG1.1" >
 
@@ -108,7 +108,7 @@
         <activity android:name="com.example.myfrog.ChronometerActivity" >
         </activity>
         <activity
-            android:name="com.example.myfrog.WelcomeActivity"
+            android:name="com.example.myfrog.GamePop"
             android:label="@string/title_activity_welcome" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -116,14 +116,14 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.myfrog.ChooseDifficultyActivity"></activity>
-        <activity android:name="ViewGameChangeColor"></activity>
-        <activity android:name="ViewSelectGame"></activity>
-        <activity android:name="ViewGameDisplay"></activity>
-         <activity android:name="DriveActivity"></activity>
-         <activity android:name="ActivityJump"></activity>
-         <activity android:name="ActivitySetting"></activity>
-         <activity android:name="ShowScore"></activity>
-         <activity android:name="kaishidonghua"></activity>
+        <activity android:name="com.example.myfrog.GamePainter"></activity>
+        <activity android:name="com.example.myfrog.ChooseGameActivity"></activity>
+        <activity android:name="com.example.myfrog.WelcomeActivity"></activity>
+         <activity android:name="com.example.myfrog.GameDrive"></activity>
+         <activity android:name="com.example.myfrog.GameJump"></activity>
+         <activity android:name="com.example.myfrog.SettingActivity"></activity>
+         <activity android:name="com.example.myfrog.ShowScoreActivity"></activity>
+         <activity android:name="com.example.myfrog.VideoActivity"></activity>
 
     </application>
     

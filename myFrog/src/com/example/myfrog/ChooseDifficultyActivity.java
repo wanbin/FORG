@@ -1,6 +1,6 @@
 package com.example.myfrog;
 
-import com.example.myforg.R;
+import com.example.myfrog.R;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
