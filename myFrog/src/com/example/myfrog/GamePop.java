@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +46,8 @@ public class GamePop extends GameBase {
 	private int[] aninTime;
 	//头盔破碎动画
 	private AnimationDrawable breakHelmet;
+	//按钮指针
+	private View currentButton;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,6 +68,8 @@ public class GamePop extends GameBase {
 			BitmapDrawable frame = new BitmapDrawable(this.getResources(),helmet);
 			breakHelmet.addFrame(frame,10);
 		}
+		breakHelmet.addFrame(new ColorDrawable(0), 0);
+	    breakHelmet.setOneShot(true);
 		
 		for (int i = 0; i < 25; i++) {
 			Random random = new Random();
@@ -175,6 +180,7 @@ public class GamePop extends GameBase {
 				frameLayout.addView(btn);
 				if (clickcount == 2) {
 					Button helmetBtn = new Button(this);
+					helmetBtn.setId(n);
 					helmetBtn.setBackground(breakHelmet);
 					helmetBtn.setMaxHeight(50);
 					
@@ -184,6 +190,8 @@ public class GamePop extends GameBase {
 						public void onClick(View view) {
 							// TODO 监听帽子点击事件
 							breakHelmet.start();
+							checkIfAnimationDone(breakHelmet);
+							currentButton = view;
 						}
 					});
 					frameLayout.addView(helmetBtn);
@@ -200,6 +208,22 @@ public class GamePop extends GameBase {
 
 		return 1;
 	}
+	
+	private void checkIfAnimationDone(AnimationDrawable anim){
+        final AnimationDrawable a = anim;
+        int timeBetweenChecks = 300;
+        Handler h = new Handler();
+        h.postDelayed(new Runnable(){
+            public void run(){
+                if (a.getCurrent() != a.getFrame(a.getNumberOfFrames() - 1)){
+                    checkIfAnimationDone(a);
+                } else{
+                	currentButton.setVisibility(View.GONE);
+                }
+            }
+        }, timeBetweenChecks);
+        
+    };
 
 	private void addTenMMS() {
 		if (start == true) {
