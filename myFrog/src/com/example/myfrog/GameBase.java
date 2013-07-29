@@ -79,7 +79,7 @@ public class GameBase extends Activity {
 	}
 
 	/**
-	 * �峰��剧���欢
+	 * 获取图片
 	 * @param packName
 	 * @param imgPackName
 	 * @return

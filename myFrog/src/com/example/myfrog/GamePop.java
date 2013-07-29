@@ -13,6 +13,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -23,11 +24,13 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GamePop extends GameBase {
 	protected Button startGame;
@@ -97,10 +100,10 @@ public class GamePop extends GameBase {
 		int column = 2;
 		int row = 2;
 		if (gamePro == -1) {
-			newcount = 2;
+			newcount = 1;
 			column = 1;
 			row = 1;
-		} else if (gamePro == 4) {
+		} else if (gamePro == 1) {
 			newcount = 6;
 			column = 3;
 			row = 2;
@@ -140,9 +143,9 @@ public class GamePop extends GameBase {
 			startGame.setClickable(false);
 			tableLayout.setVisibility(View.VISIBLE);
 		}
-
-		initFrog(newcount, column, row);
 		gamePro = newcount;
+		initFrog(newcount, column, row);
+		
 	}
 
 
@@ -150,8 +153,8 @@ public class GamePop extends GameBase {
 	@SuppressLint("NewApi")
 	protected void initFrog(int count, int column, int row) {
 		frogcount = count;
+		Log.d("frogCount init", String.valueOf(frogcount));
 		tableLayout.removeAllViews();
-		int temclickcount = 0;
 		for (int n = 0; n < row; n++) {
 			TableRow tableRow = new TableRow(this);
 			tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -161,45 +164,49 @@ public class GamePop extends GameBase {
 				Random random = new Random();
 				int clickcount = Math.abs(random.nextInt()) % 2 + 1;
 				FrameLayout frameLayout = new FrameLayout(this);
+				frameLayout.setTag(clickcount);
+				
 				btn.setBackgroundResource(R.anim.yellow);
 				btn.setMaxHeight(50);
-				temclickcount += clickcount;
-				btn.setOnClickListener(new Button.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						v.setVisibility(View.INVISIBLE);
-						frogcount--;
-						source++;
-						updateText();
-						if (frogcount <= 0) {
-							controlGame();
-						}
-					}
-				});
-				
+				btn.setClickable(false);
 				frameLayout.addView(btn);
 				if (clickcount == 2) {
 					Button helmetBtn = new Button(this);
+					helmetBtn.setClickable(false);
 					helmetBtn.setId(n);
 					helmetBtn.setBackground(breakHelmet);
-					helmetBtn.setMaxHeight(50);
-					
-					helmetBtn.setOnClickListener(new Button.OnClickListener() {
-
-						@Override
-						public void onClick(View view) {
-							// TODO 监听帽子点击事件
-							breakHelmet.start();
-							checkIfAnimationDone(breakHelmet);
-							currentButton = view;
-						}
-					});
+					helmetBtn.setHeight(20);
+					helmetBtn.setWidth(20);
 					frameLayout.addView(helmetBtn);
 				}
-				tableRow.addView(frameLayout, 200, 200);
+				frameLayout.setBackgroundColor(Color.BLUE);
+				frameLayout.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View view) {
+						// TODO Auto-generated method stub
+						int index = (Integer) view.getTag()-1;
+						Log.d("index", String.valueOf(index));
+						View btn = ((ViewGroup)view).getChildAt(index);
+						btn.setVisibility(View.GONE);
+						Log.d("FrogCount before",String.valueOf(frogcount));
+						if (index <= 0) {
+							frogcount = frogcount-1;
+							source++;
+							updateText();
+							view.setClickable(false);
+							Log.d("FrogCount after", String.valueOf(frogcount));
+							if (frogcount <= 0) {
+								controlGame();
+							}
+						}
+						view.setTag(index);
+						
+					}
+				});
+				tableRow.addView(frameLayout, 50, 100);
 			}
 		}
-		frogcount = temclickcount;
 		// girdlayout.setScaleY(0.5f);
 		// girdlayout.setScaleX(0.5f);
 	}
