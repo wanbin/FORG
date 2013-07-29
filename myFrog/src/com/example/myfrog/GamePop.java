@@ -168,35 +168,39 @@ public class GamePop extends GameBase {
 				
 				btn.setBackgroundResource(R.anim.yellow);
 				btn.setMaxHeight(50);
+				//必须设置clickable 为false ,不然framelayout监听不到click事件，被子元所拦截
 				btn.setClickable(false);
 				frameLayout.addView(btn);
 				if (clickcount == 2) {
 					Button helmetBtn = new Button(this);
+					//必须设置clickable 为false ,不然framelayout监听不到click事件，被子元所拦截
 					helmetBtn.setClickable(false);
-					helmetBtn.setId(n);
 					helmetBtn.setBackground(breakHelmet);
 					helmetBtn.setHeight(20);
 					helmetBtn.setWidth(20);
 					frameLayout.addView(helmetBtn);
 				}
-				frameLayout.setBackgroundColor(Color.BLUE);
+//				frameLayout.setBackgroundColor(Color.BLUE);
+				//开始监听framelayout
 				frameLayout.setOnClickListener(new View.OnClickListener() {
-					
 					@Override
 					public void onClick(View view) {
-						// TODO Auto-generated method stub
 						int index = (Integer) view.getTag()-1;
 						Log.d("index", String.valueOf(index));
+						//获取对应index的Button
 						View btn = ((ViewGroup)view).getChildAt(index);
 						btn.setVisibility(View.GONE);
 						Log.d("FrogCount before",String.valueOf(frogcount));
+						//如果index ==0 ，则说明小鹿已经点没
 						if (index <= 0) {
 							frogcount = frogcount-1;
 							source++;
 							updateText();
+							//让framelayout为不可点，不然会crash
 							view.setClickable(false);
 							Log.d("FrogCount after", String.valueOf(frogcount));
 							if (frogcount <= 0) {
+								//小鹿点没，进行下一轮
 								controlGame();
 							}
 						}
