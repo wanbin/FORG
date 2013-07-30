@@ -48,9 +48,11 @@ public class GamePop extends GameBase {
 	private int randomPlayAnmi = 0;
 	private int[] aninTime;
 	//头盔破碎动画
-	private AnimationDrawable breakHelmet;
+//	private AnimationDrawable breakHelmet;
 	//按钮指针
 	private View currentButton;
+	private AnimationDrawable currentAnimation;
+	private ResReader resReader;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,15 +66,9 @@ public class GamePop extends GameBase {
 		aninTime = new int[25];
 		
 		//初始化帽子破碎的动画
-		ResReader resReader = new ResReader(this, "helmet");
-		breakHelmet = new AnimationDrawable();
-		for(int i=1;i<16;i++){
-			Bitmap helmet = resReader.getImg("helmet"+i);
-			BitmapDrawable frame = new BitmapDrawable(this.getResources(),helmet);
-			breakHelmet.addFrame(frame,10);
-		}
-		breakHelmet.addFrame(new ColorDrawable(0), 0);
-	    breakHelmet.setOneShot(true);
+		resReader = new ResReader(this, "helmet");
+		
+
 		
 		for (int i = 0; i < 25; i++) {
 			Random random = new Random();
@@ -175,6 +171,15 @@ public class GamePop extends GameBase {
 					Button helmetBtn = new Button(this);
 					//必须设置clickable 为false ,不然framelayout监听不到click事件，被子元所拦截
 					helmetBtn.setClickable(false);
+					AnimationDrawable breakHelmet = new AnimationDrawable();
+					for(int i=1;i<16;i++){
+						Bitmap helmet = resReader.getImg("helmet"+i);
+						BitmapDrawable frame = new BitmapDrawable(this.getResources(),helmet);
+						breakHelmet.addFrame(frame,10);
+					}
+					//最后一帧设为透明 
+					breakHelmet.addFrame(new ColorDrawable(0), 0);
+				    breakHelmet.setOneShot(true);
 					helmetBtn.setBackground(breakHelmet);
 					helmetBtn.setHeight(20);
 					helmetBtn.setWidth(20);
@@ -189,7 +194,14 @@ public class GamePop extends GameBase {
 						Log.d("index", String.valueOf(index));
 						//获取对应index的Button
 						View btn = ((ViewGroup)view).getChildAt(index);
-						btn.setVisibility(View.GONE);
+						currentAnimation = null;
+						if (index == 1) {
+							currentAnimation = (AnimationDrawable) btn.getBackground();
+							currentAnimation.start();
+						}else{
+							btn.setVisibility(View.GONE);
+						}
+						
 						Log.d("FrogCount before",String.valueOf(frogcount));
 						//如果index ==0 ，则说明小鹿已经点没
 						if (index <= 0) {
@@ -203,6 +215,10 @@ public class GamePop extends GameBase {
 								//小鹿点没，进行下一轮
 								controlGame();
 							}
+//							if (currentAnimation != null) {
+//								currentAnimation.stop();
+//							}
+							
 						}
 						view.setTag(index);
 						
@@ -229,6 +245,7 @@ public class GamePop extends GameBase {
                 if (a.getCurrent() != a.getFrame(a.getNumberOfFrames() - 1)){
                     checkIfAnimationDone(a);
                 } else{
+                	a.stop();
                 	currentButton.setVisibility(View.GONE);
                 }
             }
